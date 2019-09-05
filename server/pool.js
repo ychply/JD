@@ -7,7 +7,7 @@ var pool = mysql.createPool({
     user:"root",
     password:"123",
     database:"myigou",
-    port:3306,
+    port:3316,
     connectionLimit:5
 })
 //3:公开连接池对象
