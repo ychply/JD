@@ -5,15 +5,14 @@
 	       <h2>京东登录</h2>
 	    </header>
 	    <div class="main">
-	        <div class="main_user">
-	        <input type="text" placeholder="请输入用户名..."/>
+	        <div class="form_input">
+		        <input class="user_name" type="text" placeholder="用户名/邮箱/已验证手机" /><i class="icon iconcuo f26 fwb c999"></i>
+		        <div class="underline"></div>
 	        </div>
-	           <div class="main_user">
-	        <input type="password" placeholder="请输入用户密码..."/>
-	        </div>
-	        
-	        <div class="main_user maTop40">
-	           <p>登录</p>
+	        <div class="form_input pdt20">
+		        <input class="user_pwd" type="password" placeholder="请输入密码" /><i class="icon iconcuo f26 fwb c999"></i><i class="icon iconyanjing_bi f26 fwb c999 mgl20"></i>
+		        <span class="pwd">忘记密码</span>
+		        <div class="underline"></div>
 	        </div>
 	    </div>
 	</div>
@@ -42,23 +41,27 @@
 
 <style scoped="scoped">
 .m_login{
-	background: #F3F5F7;
+	background: #fff;
 	width: 100%;
 	height: 100%;
 }
 
 .top_bar {
     width: 100%;
-    height:60px;
-    background: url("../assets/images/header-bg.png") repeat-x;
+    height:70px;
     background-size: 1px 44px;
-    border-bottom: 1px solid #bfbfbf;
     position: fixed;
     z-index: 2;
-    background: #ddd;
+    background: #fff;
 }
 .top_bar h2{
-	margin-top: 3px;
+	width:100%;
+	height:100%;;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size:28px;
+	letter-spacing:1px;;
 }
 .top_bar .icon_back {
 	 background: url("../assets/images/sprites.png") no-repeat;
@@ -70,43 +73,64 @@
     margin: 10px 10px;
     position: absolute;
     left: 0;
-    top: 0;
+    top:8px;
 }
-
-
 .main{
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	padding-top:100px;
+	background-color:#fff;
 }
-.main .main_user{
-		width: 90%;
-	height: 60px;
-	line-height: 60px;
-	margin-bottom: 20px;
-	
+.form_input{
+	display: flex;
+	justify-content: flex-start;
+    flex-wrap: nowrap;
+    align-items: center;
+	width:90%;
+	margin:0 auto;
+	height:80px;
+	position:relative;
+	}
+.form_input .iconcuo{
+	visibility: hidden;
 }
-.main .main_user input{
-	display: block;
-	padding-left: 5%;
-	width: 100%;
-	height: 100%;
-	background: white;
-	border: 1px solid #999;
-	border-radius: 5px;
+.form_input input{
+	font-size:24px;
+	color:#333;
+}	
+.form_input .pwd{
+	font-size:24px;
+	color:#333;
+	position: relative;
+	margin-left:30px;
+	padding-left:20px;
+}	
+.form_input .pwd::before{
+	content:"";
+	position: absolute;
+	width:2px;
+	height:30px;
+	background-color:#999;
+	top:2px;
+	left:0px;
+}	
+.form_input input:focus ~ .iconcuo {
+	visibility:visible;
 }
-.main .main_user p{
-	width: 100%;
-	font-size: 25px;
-	height: 100%;
-	border: 3px solid #FBBABA;
-	color: #FBBABA;
-	border-radius: 6px;
-	font-weight: 600;
-}
-.maTop40{
-	margin-top: 40px;
-}
+.user_name{
+	width:90%;
+	height:40px;
+	line-height:40px;
+	}
+.user_pwd{
+	width:60%;
+	height:40px;
+	line-height:40px;
+	}
+.underline{width: 100%;height: 2px;position: absolute;bottom: 0;left: 0; z-index: 2;}
+.underline:before {content: '';display:block;width:100%;height: 2px;background: #1A73E8;position: absolute;bottom: 0px;left: 0;transform: scaleX(0);transform-origin: center;transition: all 200ms cubic-bezier(0.6, 0.05, 0.01, 0.99);z-index: -1;}
+.underline:after {display:block;content: '';width:100%; height: 2px;background: #dbdbdb;position: absolute;bottom: 0px;left: 0;z-index: -2;}
+.form_input input:focus ~ .underline:before {transform: scaleX(1);transform-origin: center;transition: all 300ms cubic-bezier(0.6, 0.05, 0.01, 0.99);}
 </style>

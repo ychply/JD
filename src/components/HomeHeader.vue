@@ -1,12 +1,11 @@
 <template>
 	<header :class="{header:isTrue,heaback:scroll}">
 		<div class="headBox">
-			<a href="javascript:;" class="icon-logo">
-			
-			</a>
+			<a href="javascript:;" class="icon-logo"></a>
 			<div class="search">
 				<img @click="search()" class="icon-search" src="../assets/images/search-logo.jpg"/>
-				<input type="text"  placeholder="请输入搜索商品..."/>
+				<!--<input type="text"  placeholder="请输入搜索商品..."/>-->
+				<span>请输入搜索商品...</span>
 			</div>
 			<router-link to="/login" class="login_btn">登录</router-link>
 			
@@ -17,11 +16,12 @@
 
 <script>
 	export default{
-		data(){return{
+		data(){
+			return{
 			isTrue:true,
 			scroll:false,
-			
-		}},
+				}
+			},
 		methods:{
 			search(){
 				this.$http({
@@ -35,15 +35,14 @@
 				})
 			},
 			
-			 menu(){
-			 	console.log(666);
-            let scrolled = document.documentElement.scrollTop || document.body.scrollTop;
-            if(scrolled>180){
-            	this.scroll=true;
-            }else{
-            	this.scroll=false;
-            }
-     }
+			menu(){
+	            let scrolled = document.documentElement.scrollTop || document.body.scrollTop;
+	            if(scrolled>180){
+	            	this.scroll=true;
+	            }else{
+	            	this.scroll=false;
+	            }
+   			}
 			 
 		},
 		mounted(){
@@ -58,24 +57,21 @@
 		position:fixed;
 	    width: 100%;
 		height:60px;
-		padding: 5px 0;
+		padding: 5px 16px;
 		top:0;
 		left: 0;
-		
 		z-index: 2;
-		
+		box-sizing: border-box;
 	}
 	.heaback{
 		background:rgba(201,21,35,0.85);
 	}
 	.headBox{
-		width:640px;
+		width:100%;
 		height: 100%;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		
-		
 	}
 	.headBox .icon-logo{
 		display:block;
@@ -85,34 +81,33 @@
 		background: url(../assets/images/sprites.png) no-repeat;
 		background-size: 200px 200px;
 		background-position: 0 -103px;
-		
 	}
 	.headBox .search{
 		width:60%;
-		height:44px;
+		height:40px;
 		border-radius:400px;
 		background:#EDF2F7;
 		overflow: hidden;
         margin: 0 auto;
         margin-top: 3px;
         display: flex;
+        padding-left:4px;
 	}
 	.search .icon-search{
 		cursor: pointer;
 		margin-top: 5px;
-		margin-left:3px;
-		width:40px;
-       height:40px;
+		margin-left:10px;
+		width:34px;
+       height:32px;
        display: inline-block;
 	
 	}
-	.search input{
-		margin-top: 3px;
-		display: inline-block;
-		flex: 1;
-		height: 40px;
-		background: #EDF2F7;
-	
+	.search span{
+		width:80%;
+		color:#999;
+		display:flex;
+		align-items: center;
+		padding-left:15px;
 	}
 	.headBox .login_btn{
 		display: block;
@@ -123,6 +118,5 @@
        margin-top: 10px;
        color: white;
        font-family: "微软雅黑";
-       
 	}
 </style>

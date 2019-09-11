@@ -8,6 +8,7 @@ import 'lib-flexible/flexible.js'
 import Vuelazyload from 'vue-lazyload'
 
 import {store} from './store/store';
+import '@/assets/images/iconfont/iconfont.css'
 
 
 Vue.use(Vuelazyload,{

@@ -124,4 +124,40 @@ textarea {
     .slide-left-leave-active {
         transform: translateX(-100%);
     }
+		:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+		    color: #999;  
+		    font-size:24px;
+		    letter-spacing:1px;
+		}
+	 
+		::-moz-placeholder { /* Mozilla Firefox 19+ */
+		    color: #999;
+		    font-size:22px;
+		    letter-spacing:1px;
+		}
+	 
+		input:-ms-input-placeholder,
+		textarea:-ms-input-placeholder {
+		    color: #999;
+		    font-size:24px;
+		    letter-spacing:1px;
+		}
+		input::-webkit-input-placeholder,
+		textarea::-webkit-input-placeholder {
+		    color: #999;
+		    font-size:24px;
+		    letter-spacing:1px;
+		}
+		.f22{font-size:22px!important;}
+		.f24{font-size:24px!important;}
+		.f26{font-size:26px!important;}
+		.f28{font-size:28px!important;}
+		.fwb{font-weight: bold!important;}
+		
+		.c333{color:#333;}
+		.c666{color:#666;}
+		.c999{color:#999;}
+		
+		.pdt20{padding-top:20px;}
+		.mgl20{margin-left:20px;}
 </style>
