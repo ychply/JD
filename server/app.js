@@ -40,7 +40,7 @@ app.get("/login",(req,res)=>{
     		}else{
     			let response = result[0];
     			console.log(response);
-    			if(response.uname == uname && response.upwd == upwd){
+    			if(response.user_name == uname && response.login_password == upwd){
     				res.send({
     					status:0,
     					msg:'恭喜，登录成功'
