@@ -56,7 +56,7 @@
 		overflow:hidden;
 		position:fixed;
 	    width: 100%;
-		height:60px;
+		height:80px;
 		padding: 5px 16px;
 		top:0;
 		left: 0;
@@ -64,7 +64,7 @@
 		box-sizing: border-box;
 	}
 	.heaback{
-		background:rgba(201,21,35,0.85);
+		background:rgba(201,21,35,0.9);
 	}
 	.headBox{
 		width:100%;
@@ -72,51 +72,52 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+		align-items: center;
+		padding:0 15px;
 	}
 	.headBox .icon-logo{
 		display:block;
 		width:58px;
 		height:46px;
-	    margin-top: 7px;
+	    margin-top: 9px;
 		background: url(../assets/images/sprites.png) no-repeat;
 		background-size: 200px 200px;
 		background-position: 0 -103px;
 	}
 	.headBox .search{
 		width:60%;
-		height:40px;
+		height:50px;
 		border-radius:400px;
 		background:#EDF2F7;
 		overflow: hidden;
-        margin: 0 auto;
-        margin-top: 3px;
         display: flex;
         padding-left:4px;
+        justify-content: space-between;
+        align-items: center;
+        padding-left:20px;
 	}
 	.search .icon-search{
 		cursor: pointer;
-		margin-top: 5px;
-		margin-left:10px;
 		width:34px;
-       height:32px;
-       display: inline-block;
-	
+        height:32px;
+        display: inline-block;
 	}
 	.search span{
-		width:80%;
+		width:90%;
 		color:#999;
 		display:flex;
 		align-items: center;
 		padding-left:15px;
+		font-size:22px;
 	}
 	.headBox .login_btn{
 		display: block;
-		margin-right: 6px;
-        width: 50px;
+        width: 60px;
         height: 36px;
-       cursor: pointer;
-       margin-top: 10px;
-       color: white;
-       font-family: "微软雅黑";
+        cursor: pointer;
+        color: white;
+        font-family: "微软雅黑";
+        font-size:24px;
+        letter-spacing:2px;
 	}
 </style>

@@ -8,8 +8,8 @@ import 'lib-flexible/flexible.js'
 import Vuelazyload from 'vue-lazyload'
 
 import {store} from './store/store';
+import './assets/js/app.js';
 import '@/assets/images/iconfont/iconfont.css'
-
 
 Vue.use(Vuelazyload,{
 	  preLoad: 1.3,
@@ -23,7 +23,6 @@ Vue.component('swipe-item', SwipeItem);
 
 Vue.config.productionTip = false;
 Vue.prototype.$http=axios;
-
 
 new Vue({
 	store,
