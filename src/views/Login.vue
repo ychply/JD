@@ -10,7 +10,8 @@
 		        <div class="underline"></div>
 	        </div>
 	        <div class="form_input">
-		        <input ref="user_pwd" class="user_pwd" type="password" placeholder="请输入密码" v-model="userPwd" /><i class="icon iconcuo f26 fwb c999"></i><i class="icon iconyanjing_bi f26 fwb c999 mgl20"></i>
+		        <input ref="user_pwd" class="user_pwd" :type="pwdType" placeholder="请输入密码" v-model="userPwd" /><i class="icon iconcuo f26 fwb c999"></i>
+		        <i :class="[pwdType == 'password' ? 'iconyanjing_bi':'iconai-eye','icon','f26','fwb','c999','mgl20']" @click="show_pwd"></i>
 		        <span class="pwd">忘记密码</span>
 		        <div class="underline"></div>
 	        </div>
@@ -25,7 +26,8 @@
 			return{
 			userName:"",
 			userPwd:"",
-			isShowData:false
+			isShowData:false,
+			pwdType:'password'
 		}
 		},
 		methods:{
@@ -58,6 +60,15 @@
 			},
 			reset_input(e){
 				
+			},
+			show_pwd(){
+				if(this.pwdType == 'password'){
+					this.pwdType = 'text';
+					this.$refs.user_pwd.focus();
+				}else{
+					this.pwdType = 'password';
+					this.$refs.user_pwd.focus();
+				}
 			}
 			
 		},
@@ -147,9 +158,9 @@
 	top:2px;
 	left:0px;
 }	
-.form_input input:focus ~ .iconcuo {
+/*.form_input input:focus ~ .iconcuo {
 	visibility:visible;
-}
+}*/
 .user_name{
 	width:90%;
 	height:40px;

@@ -5,9 +5,11 @@ const mysql = require("mysql");
 var pool = mysql.createPool({
     host:"localhost",
     user:"root",
-    password:"123",
+    //password:"123",
+    password:"",
     database:"myigou",
-    port:3316,
+    //port:3316,
+    port:5000,
     connectionLimit:5
 })
 //3:公开连接池对象

@@ -2,7 +2,7 @@
 	<div class="m_login">
 		<header class="top_bar">
 	        <a onclick="window.history.go(-1)" class="icon_back"></a>
-	       <h2>京东登录</h2>
+	       <h2>京东注册</h2>
 	    </header>
 	    <div class="main">
 	        <div class="form_input">
@@ -10,11 +10,11 @@
 		        <div class="underline"></div>
 	        </div>
 	    	 <div class="form_input">
-		        <input ref="user_name" class="user_name" type="password" placeholder="请输入密码" v-model="userPwd" /><i class="icon iconcuo f26 fwb c999" @click="reset_input"></i>
+		        <input ref="user_pwd" class="user_name" type="password" placeholder="请输入密码" v-model="userPwd" /><i class="icon iconcuo f26 fwb c999" @click="reset_input"></i>
 		        <div class="underline"></div>
 	        </div>
 	         <div class="form_input">
-		        <input ref="user_name" class="user_name" type="password" placeholder="请确认密码" v-model="userPwd1" /><i class="icon iconcuo f26 fwb c999" @click="reset_input"></i>
+		        <input ref="user_pwd1" class="user_name" type="password" placeholder="请确认密码" v-model="userPwd1" /><i class="icon iconcuo f26 fwb c999" @click="reset_input"></i>
 		        <div class="underline"></div>
 	        </div>
 	        <a href="javascript:;" class="login" @click="reg">注 册</a>
@@ -37,23 +37,31 @@
 				this.$emit('parent-show',this.isShowData)
 			},
 			reg(){
-				
 				let _this = this;
-				if(this.userName === ""){
+				if(_this.userName === ""){
+					_this.$toast('请输入用户名');
 					_this.$refs.user_name.focus();
 					return false;
 				} 
-				if(this.userPwd === ""){
+				if(_this.userPwd === ""){
+					_this.$toast('请输入密码');
 					_this.$refs.user_pwd.focus();
 					return false;
 				}
-				if(this.userPwd1 === ""){
-					_this.$refs.user_pwd.focus();
+				if(_this.userPwd.length < 6 || _this.userPwd.length >20){
+					_this.$toast('密码长度不能小于6位，大于20位');
 					return false;
 				}
-				if(this.userPwd1 === ""){
-				_this.$refs.user_pwd.focus();
-				return false;
+				if(_this.userPwd1 === ""){
+					_this.$toast('请确认密码');
+					_this.$refs.user_pwd1.focus();
+					return false;
+				}
+				
+				if(_this.userPwd != this.userPwd1){
+					_this.$toast('两次密码不一致');
+					_this.$refs.user_pwd1.focus();
+					return false;
 				}
 				
 				 _this.$http.get("/api/reg",{
@@ -65,19 +73,25 @@
 //					//	_this.$router.push('/home');
 //					_this.$router.go(-1);
 //					}
-                     console.log(res);
+                    if(res.data.status == 0){
+                    	_this.$toast(res.data.msg);
+                    	setTimeout(()=>{
+                    		_this.$router.push('/login');
+                    	},1000)
+                    }else if(res.data.status == 5){
+                    	_this.$toast(res.data.msg);
+                    }
 				}).catch(function(err){
 					console.log(err);
 				})
 			},
 			reset_input(){
-				
+				console.log(123)
 			}
 			
 		},
 	      created(){
 	      this.$store.commit('modifyCount',false)
-			
 		}
 	}
 	
@@ -100,12 +114,12 @@
 }
 .top_bar h2{
 	width:100%;
-	height:100%;;
+	height:100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size:28px;
-	letter-spacing:1px;;
+	letter-spacing:1px;
 }
 .top_bar .icon_back {
 	 background: url("../assets/images/sprites.png") no-repeat;
@@ -145,25 +159,10 @@
 	font-size:24px;
 	color:#333;
 }	
-.form_input .pwd{
-	font-size:24px;
-	color:#333;
-	position: relative;
-	margin-left:30px;
-	padding-left:20px;
-}	
-.form_input .pwd::before{
-	content:"";
-	position: absolute;
-	width:2px;
-	height:30px;
-	background-color:#999;
-	top:2px;
-	left:0px;
-}	
-.form_input input:focus ~ .iconcuo {
+
+/*.form_input input:focus ~ .iconcuo {
 	visibility:visible;
-}
+}*/
 .user_name{
 	width:90%;
 	height:40px;

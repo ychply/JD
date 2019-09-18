@@ -10,6 +10,9 @@ import Vuelazyload from 'vue-lazyload'
 import {store} from './store/store';
 import './assets/js/app.js';
 import '@/assets/images/iconfont/iconfont.css'
+import Toast from './components/toast/index.js'
+
+Vue.use(Toast)
 
 Vue.use(Vuelazyload,{
 	  preLoad: 1.3,
