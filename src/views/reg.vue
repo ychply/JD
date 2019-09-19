@@ -39,7 +39,13 @@
 			reg(){
 				let _this = this;
 				if(_this.userName === ""){
-					_this.$toast('请输入用户名');
+//					_this.$toast('请输入用户名');
+                        //this.$notify('提示文案');
+                        //this.$loading("加载提示文案");
+                        this.$toast({
+								  text: "成功文字",
+								  iconClass: "success"
+								});
 					_this.$refs.user_name.focus();
 					return false;
 				} 
@@ -97,9 +103,9 @@
 	
 </script>
 
-<style scoped="scoped">
+<style scoped="scoped" lang="scss">
 .m_login{
-	background: #fff;
+	background:#fff;
 	width: 100%;
 	height: 100%;
 }

@@ -49,7 +49,9 @@
 	
 	}
 </script>
-<style>
+<style lang="scss">
+	@import "@/assets/styles/_vars.scss";
+
 *,
 ::before,
 ::after {

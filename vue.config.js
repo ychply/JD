@@ -2,18 +2,22 @@
 
 
 module.exports={
-	
 	 css: {
         loaderOptions: {
-            css: {
                 // options here will be passed to css-loader
-            },
-            postcss: {
-                // options here will be passed to postcss-loader
-                plugins: [require('postcss-px2rem')({
-                    remUnit: 64
-                })]
-            }
+		       sass: {
+		       	data: `@import "@/assets/scss/mixin.scss";
+                       @import "@/assets/scss/variable.scss";`
+		        },
+//		       scss: {
+//		       	data: `@import "@/assets/styles/_vars.scss";`
+//		        },
+	            postcss: {
+	                // options here will be passed to postcss-loader
+	                plugins: [require('postcss-px2rem')({
+	                    remUnit: 64
+	                })]
+	            }
         }
     },
 	

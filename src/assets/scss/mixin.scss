@@ -1,0 +1,36 @@
+//宽高
+@mixin wh($width, $height) {
+  width: $width;
+  height: $height;
+}
+//字体水平对齐、行高
+@mixin tl($text-align, $line-height) {
+    text-align: $text-align;
+    line-height: $line-height;
+}
+//字体大小，颜色
+@mixin sc($size, $color) {
+    font-size: $size;
+    color: $color;
+}
+//2倍图 3倍图
+@mixin bg-image($url) {
+    background-image: url("./images/" + $url + "_2x.png");
+    background-repeat: no-repeat;
+    background-position: center 0;
+    @media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3){
+        background-image: url("./images/" + $url + "_3x.png");
+        background-repeat: no-repeat;
+        background-position: center 0;
+    }
+}
+//清除浮动
+@mixin clearfix {
+  *zoom:1;
+  &:after{
+    clear: both;
+    content:"";
+    display: block;
+    height: 0;
+  }
+}

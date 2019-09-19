@@ -7,12 +7,14 @@ import { Swipe, SwipeItem } from 'c-swipe';
 import 'lib-flexible/flexible.js'
 import Vuelazyload from 'vue-lazyload'
 
-import {store} from './store/store';
-import './assets/js/app.js';
-import '@/assets/images/iconfont/iconfont.css'
-import Toast from './components/toast/index.js'
 
-Vue.use(Toast)
+import {store} from './store/store';
+import '@/assets/images/iconfont/iconfont.css'
+import "@/assets/scss";
+import "./components/plugin";
+//import Toast from './components/toast/index.js'
+//import '@/assets/styles/base.scss';
+//Vue.use(Toast)
 
 Vue.use(Vuelazyload,{
 	  preLoad: 1.3,

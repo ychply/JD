@@ -22,7 +22,9 @@
     "mysql": "^2.16.0",
     "postcss-loader": "^3.0.0",
     "postcss-px2rem": "^0.3.0",
-    "vue-template-compiler": "^2.5.16"
+    "vue-template-compiler": "^2.5.16",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1"
   },
   "postcss": {
     "plugins": {
