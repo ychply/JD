@@ -5,7 +5,6 @@
     <!--<keep-alive></keep-alive>-->
     </transition>
     <NavBottomView  v-show="isShow"></NavBottomView>
-    
   </div>
 </template>
 <script>

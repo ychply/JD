@@ -7,10 +7,8 @@
 				<!--<input type="text"  placeholder="请输入搜索商品..."/>-->
 				<span>请输入搜索商品...</span>
 			</div>
-			<router-link to="/login" class="login_btn">登录</router-link>
-			
-		</div>
-		
+			<router-link to="/login"  class="login_btn"><span v-show="login">登录 {{login}}</span></router-link>	
+		</div>	
 	</header>
 </template>
 
@@ -20,6 +18,7 @@
 			return{
 			isTrue:true,
 			scroll:false,
+			login:true
 				}
 			},
 		methods:{
@@ -47,7 +46,18 @@
 		},
 		mounted(){
 			 window.addEventListener('scroll', this.menu);
-		}
+			 console.log(this.$store.getters.isLogin)
+		},
+//		computed(){
+//			login() {
+//			      return !this.$store.getters.isLogin;
+//			}
+//		},
+//		watch(){
+//			login(val) {
+//		     console.log(val)
+//		    }
+//		}
 	}
 </script>
 

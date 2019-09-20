@@ -8,7 +8,7 @@ import 'lib-flexible/flexible.js'
 import Vuelazyload from 'vue-lazyload'
 
 
-import {store} from './store/store';
+import {store} from './store/store.js';
 import '@/assets/images/iconfont/iconfont.css'
 import "@/assets/scss";
 import "./components/plugin";
@@ -28,6 +28,21 @@ Vue.component('swipe-item', SwipeItem);
 
 Vue.config.productionTip = false;
 Vue.prototype.$http=axios;
+
+router.beforeEach((to, from, next) => {
+	if(to.meta.isLogin){
+		next({
+        path: '/login'
+      })
+	}else{
+		next();
+	}
+
+})
+
+router.afterEach(route => {
+  window.scroll(0, 0)
+})
 
 new Vue({
 	store,
