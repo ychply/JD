@@ -7,19 +7,9 @@
 	        </form>
 	        <a href="#" class="icon_menu"></a>
 	    </header>
-	    
 	    <catgoryMainView></catgoryMainView>
-	
-	
-		
-		
-		
 	</div>
-	
-	
-	
 </template>
-
 <script>
 	import catgoryMainView from '../components/catgoryMain.vue'
 	export default{

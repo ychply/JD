@@ -21,7 +21,8 @@ export default new Router({
 			meta: {
 				title: '首页',
 				index: 1,
-				isLogin: false
+				isLogin: false,
+				showFooter: true 
 			}
 
 		},
@@ -32,7 +33,8 @@ export default new Router({
 			meta: {
 				title: '首页',
 				index: 1,
-				isLogin: false
+				isLogin: false,
+				showFooter: true 
 			}
 		},
 		{
@@ -48,7 +50,8 @@ export default new Router({
 			name: 'product',
 			component: Product,
 			meta: {
-				isLogin: false
+				isLogin: false,
+				showFooter: true 
 			}
 		},
 		{
@@ -84,7 +87,8 @@ export default new Router({
 			meta: {
 				title: '分类',
 				index: 2,
-				isLogin: false
+				isLogin: false,
+				showFooter: true 
 			}
 		},
 		{
@@ -104,7 +108,8 @@ export default new Router({
 			meta: {
 				title: '我的',
 				index: 5,
-				isLogin: true
+				isLogin: true,
+				showFooter: true 
 			}
 		},
 		{

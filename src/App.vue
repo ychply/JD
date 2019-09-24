@@ -4,12 +4,11 @@
     <keep-alive><router-view class="Router" /></keep-alive>
     <!--<keep-alive></keep-alive>-->
     </transition>
-    <NavBottomView  v-show="isShow"></NavBottomView>
+    <NavBottomView></NavBottomView>
   </div>
 </template>
 <script>
 	import NavBottomView from './components/NavBottom.vue'
-	
 	export default{
 		data(){return{
 			isshow:true,

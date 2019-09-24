@@ -31,9 +31,14 @@ Vue.prototype.$http=axios;
 
 router.beforeEach((to, from, next) => {
 	if(to.meta.isLogin){
-		next({
-        path: '/login'
+		if(!store.getters.isLogin){       //从vuex中获取是否已经登录
+				next({
+        path: '/login',
+        query:{redirect: to.fullPath} //将路由跳转的path作为参数，跳转成功后到该路由
       })
+		}else{
+			next();
+		}
 	}else{
 		next();
 	}
