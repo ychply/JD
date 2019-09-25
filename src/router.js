@@ -16,15 +16,7 @@ Vue.use(Router)
 export default new Router({
 	routes: [{
 			path: '/',
-			name: 'home',
-			component: Home,
-			meta: {
-				title: '首页',
-				index: 1,
-				isLogin: false,
-				showFooter: true 
-			}
-
+			redirect: '/home', //重定向到home
 		},
 		{
 			path: '/home',

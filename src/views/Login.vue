@@ -55,8 +55,13 @@
 					if(res.data.status === 0) {
 						_this.$toast(res.data.msg);
 						_this.$store.dispatch('setUser', true)
+						let redirect = _this.$route.query.redirect;
 						setTimeout(() => {
+							if(redirect){
+							_this.$router.push(redirect);
+						}else{
 							_this.$router.push('/home');
+						}
 						}, 1000)
 					} else {
 						_this.$toast(res.data.msg);

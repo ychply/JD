@@ -13,11 +13,25 @@
       "unicode_decimal": 58997
     },
     {
+      "icon_id": "424134",
+      "name": "定位",
+      "font_class": "dingwei",
+      "unicode": "e7c4",
+      "unicode_decimal": 59332
+    },
+    {
       "icon_id": "452808",
       "name": "删除",
       "font_class": "shanchu",
       "unicode": "e8c5",
       "unicode_decimal": 59589
+    },
+    {
+      "icon_id": "599986",
+      "name": "更多",
+      "font_class": "gengduo",
+      "unicode": "e671",
+      "unicode_decimal": 58993
     },
     {
       "icon_id": "600362",

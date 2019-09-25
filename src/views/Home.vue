@@ -72,7 +72,7 @@ export default {
 		width: 640px;
 		margin: 0 auto;
 		position: relative;
-		height: 1000px;
+		/*min-height: 100vh;*/
 		background: #F3F5F7;
 		
 	}
