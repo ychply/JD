@@ -20,15 +20,15 @@ module.exports={
 	
 	 devServer: {
         port: 8088, // 端口号
-          host: '192.168.1.217',
-//      host: '192.168.1.3',
+         // host: '192.168.1.217',
+      host: '192.168.1.3',
         https: false, // https:{type:Boolean}
         open: true, //配置自动启动浏览器
         // proxy: 'http://localhost:4000' // 配置跨域处理,只有一个代理
         proxy: {
             '/api': {
-//              target: 'http://192.168.1.3:3100/',
-                  target: 'http://192.168.1.217:3100/',
+              target: 'http://192.168.1.3:3100/',
+                //  target: 'http://192.168.1.217:3100/',
                 ws: true,
                 changeOrigin: true,
                 pathRewrite: {

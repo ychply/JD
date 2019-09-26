@@ -43,6 +43,16 @@
 						</div>
 					</div>
 					<div class="title">{{item.product_name}}</div>
+
+					<div class="mod_discount">
+						<span class="mod_title">优惠</span>
+						<div class="content">
+							<div class="dicount_coupon">
+								<span class="coupon coupon_item">满1299减100</span>
+								<span class="coupon1 bg_red coupon_item">满1299减100</span>
+							</div>
+						</div>
+					</div>
 				</div>
 
 			</div>
@@ -163,6 +173,92 @@
 </script>
 
 <style lang="scss" scoped="scoped">
+	.mod_discount {
+		width: 100%;
+		background-color: $color_fff;
+		display: flex;
+		justify-content: space-between;
+		.mod_title {
+			width: 10%;
+			color: $color_999;
+			font-size: 20px;
+		}
+		.content {
+			width: 80%;
+			height: 40px;
+			.dicount_coupon {
+				width: 100%;
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				.bg_red {
+					background-color: #e4393c;
+				}
+				.coupon_item {
+					width: 117px;
+					border-top: 1px solid #e4393c;
+					border-bottom: 1px solid #e4393c;
+					height: 26px;
+					position: relative;
+					box-sizing: border-box;
+					font-size: 14px;
+					overflow: hidden;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					padding-bottom: 2px;
+					&:before {
+						position: absolute;
+						content: "";
+						top: -1px;
+						left: 0px;
+						background-repeat: no-repeat;
+						height: 26.5px;
+					}
+					&:after {
+						position: absolute;
+						content: "";
+						top: -1px;
+						right: -1px;
+						background-size: 20px 100%;
+						background-repeat: no-repeat;
+						background-position: -11px 0;
+						height: 26.5px;
+					}
+				}
+				.coupon {
+					color: #333;
+					&:before {
+						background-image: url('../assets/images/coupon1.png');
+						background-size: 20px 100%;
+						width: 15px;
+					}
+					&:after {
+						background-image: url('../assets/images/coupon1.png');
+						width: 9px;
+					}
+				}
+				.coupon1 {
+					margin-left:20px;
+					color: #fff;
+					&:before {
+						background-image: url('../assets/images/coupon2.png');
+						background-size: 20px 100%;
+						width: 12px;
+						background-color: #fff;
+					}
+					&:after {
+												background-size: 15px 100%;
+
+						background-image: url('../assets/images/coupon2.png');
+						width: 5px;
+						background-color: #fff;
+					}
+				}
+			}
+		}
+	}
+	
 	.m_detail {
 		background: #F3F4F6;
 		height: 100vh;
