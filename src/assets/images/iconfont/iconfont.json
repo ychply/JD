@@ -186,6 +186,13 @@
       "font_class": "yanjing_bi",
       "unicode": "e673",
       "unicode_decimal": 58995
+    },
+    {
+      "icon_id": "10164900",
+      "name": "金钱",
+      "font_class": "jinqian",
+      "unicode": "e662",
+      "unicode_decimal": 58978
     }
   ]
 }

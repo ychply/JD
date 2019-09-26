@@ -20,13 +20,29 @@
 						</swipe-item>
 					</swipe>
 				</div>
-				<div class="proNa" v-for="(item,index) in listData" :key="index">
+				<!--<div class="proNa" v-for="(item,index) in listData" :key="index">
 					<p>{{item.product_name}}</p>
 					<p class="price">
 						<span>￥{{item.product_price}}</span>
 						<a href="#">降价通知</a>
 					</p>
 					<pre class="pdetail">{{item.product_detail}}{{item.product_detail}}</pre>
+				</div>-->
+				<div class="product" v-for="(item,index) in listData" :key="index">
+					<div class="price_box">
+						<span class="price">￥ <i class="f28">{{item.product_price}}</i></span>
+						<div class="remind">
+							<span class="remind_item">
+							<i class="icon iconjinqian"></i>
+							<em>降价提醒</em>
+						</span>
+							<span class="remind_item">
+							<i class="icon iconshoucang2"></i>
+							<em>收藏</em>
+						</span>
+						</div>
+					</div>
+					<div class="title">{{item.product_name}}</div>
 				</div>
 
 			</div>
@@ -74,7 +90,7 @@
 					//console.log(res.data[0]);
 					this.listImg = res.data[0];
 					this.listData = res.data[1];
-					console.log(res.data[0]);
+					console.log(this.listData);
 
 				}).catch((err) => {
 					console.log(err);
@@ -83,11 +99,10 @@
 			Show() {
 				this.isShow = true;
 			},
-			_back(){
+			_back() {
 				this.$router.go(-1)
 			},
 			top_scroll() {
-				console.log(this.isShow)
 				let scrolled = this.$refs.main.scrollTop;
 				if(scrolled == 0) {
 					this.topClass = 'top_bar_op0';
@@ -135,7 +150,6 @@
 			}
 		},
 		created() {
-			console.log(666)
 			//console.log(this.$route.params.uid);
 
 			this.feactData(this.$route.params.uid);
@@ -181,9 +195,9 @@
 				}
 				color:$color_fff;
 			}
-			.iconarrow-l{
+			.iconarrow-l {
 				position: relative;
-				left:-1px;
+				left: -1px;
 			}
 		}
 		.nav_list {
@@ -215,8 +229,8 @@
 			opacity: 0;
 			display: none;
 		}
-		.icon_bg{
-			background-color:rgba(102,102,102,1);
+		.icon_bg {
+			background-color: rgba(102, 102, 102, 1);
 		}
 	}
 	
@@ -227,10 +241,10 @@
 			opacity: .1;
 			display: block;
 		}
-		.icon_bg{
-			background-color:rgba(102,102,102,.9);
-			i{
-				color:rgba(255,255,255,0.9);
+		.icon_bg {
+			background-color: rgba(102, 102, 102, .9);
+			i {
+				color: rgba(255, 255, 255, 0.9);
 			}
 		}
 	}
@@ -241,10 +255,10 @@
 		.nav_list {
 			opacity: .2;
 		}
-		.icon_bg{
-			background-color:rgba(102,102,102,.8);
-			i{
-				color:rgba(255,255,255,0.8);
+		.icon_bg {
+			background-color: rgba(102, 102, 102, .8);
+			i {
+				color: rgba(255, 255, 255, 0.8);
 			}
 		}
 	}
@@ -255,10 +269,10 @@
 		.nav_list {
 			opacity: .3;
 		}
-		.icon_bg{
-			background-color:rgba(102,102,102,.7);
-			i{
-				color:rgba(255,255,255,0.7);
+		.icon_bg {
+			background-color: rgba(102, 102, 102, .7);
+			i {
+				color: rgba(255, 255, 255, 0.7);
 			}
 		}
 	}
@@ -269,10 +283,10 @@
 		.nav_list {
 			opacity: .4;
 		}
-		.icon_bg{
-			background-color:rgba(102,102,102,.6);
-			i{
-				color:rgba(255,255,255,0.6);
+		.icon_bg {
+			background-color: rgba(102, 102, 102, .6);
+			i {
+				color: rgba(255, 255, 255, 0.6);
 			}
 		}
 	}
@@ -283,10 +297,10 @@
 		.nav_list {
 			opacity: .5;
 		}
-		.icon_bg{
-			background-color:rgba(102,102,102,.5);
-			i{
-				color:rgba(255,255,255,0.5);
+		.icon_bg {
+			background-color: rgba(102, 102, 102, .5);
+			i {
+				color: rgba(255, 255, 255, 0.5);
 			}
 		}
 	}
@@ -297,10 +311,10 @@
 		.nav_list {
 			opacity: .6;
 		}
-		.icon_bg{
-			background-color:rgba(102,102,102,.4);
-			i{
-				color:rgba(51,51,51,0.6);
+		.icon_bg {
+			background-color: rgba(102, 102, 102, .4);
+			i {
+				color: rgba(51, 51, 51, 0.6);
 			}
 		}
 	}
@@ -311,10 +325,10 @@
 		.nav_list {
 			opacity: .7;
 		}
-		.icon_bg{
-			background-color:rgba(102,102,102,.3);
-			i{
-				color:rgba(51,51,51,0.7);
+		.icon_bg {
+			background-color: rgba(102, 102, 102, .3);
+			i {
+				color: rgba(51, 51, 51, 0.7);
 			}
 		}
 	}
@@ -325,10 +339,10 @@
 		.nav_list {
 			opacity: .8;
 		}
-		.icon_bg{
-			background-color:rgba(102,102,102,.2);
-			i{
-				color:rgba(51,51,51,0.8);
+		.icon_bg {
+			background-color: rgba(102, 102, 102, .2);
+			i {
+				color: rgba(51, 51, 51, 0.8);
 			}
 		}
 	}
@@ -339,10 +353,10 @@
 		.nav_list {
 			opacity: .9;
 		}
-		.icon_bg{
-			background-color:rgba(102,102,102,.1);
-			i{
-				color:rgba(51,51,51,0.9);
+		.icon_bg {
+			background-color: rgba(102, 102, 102, .1);
+			i {
+				color: rgba(51, 51, 51, 0.9);
 			}
 		}
 	}
@@ -353,10 +367,10 @@
 		.nav_list {
 			opacity: 1;
 		}
-		.icon_bg{
-			background-color:rgba(102,102,102,0);
-			i{
-				color:rgba(51,51,51,1);
+		.icon_bg {
+			background-color: rgba(102, 102, 102, 0);
+			i {
+				color: rgba(51, 51, 51, 1);
 			}
 		}
 	}
@@ -381,46 +395,69 @@
 		display: block;
 	}
 	
-	.product_main .main_top .proNa {
-		margin-top: 6px;
-		text-align: left;
+	.price_box {
 		width: 100%;
-		font-size: 26px;
-	}
-	
-	.product_main .main_top .proNa p.price {
+		height: 80px;
 		display: flex;
-		flex-direction: row;
-		height: 70px;
 		justify-content: space-between;
+		align-items: center;
+		padding: 0 15px;
+		background-color: $color_fff;
+		.price {
+			font-size: 22px;
+			font-weight: bold;
+			color: $color_primary;
+		}
+		.col_right {
+			width: 250px;
+			height: 100%;
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			.cheaper_info {}
+		}
 	}
 	
-	.product_main .main_top .proNa p.pdetail {
-		padding-top: 30px;
-		padding-bottom: 100px;
+	.remind {
+		width: 50%;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		.remind_item {
+			min-width: 50px;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-left: 18px;
+			i {
+				font-size: 23px;
+				color: $color_999;
+			}
+			em {
+				font-size: 16px;
+				color: $color_999;
+				margin-top: 2px;
+			}
+		}
 	}
 	
-	.product_main .main_top .proNa p.price span {
-		display: block;
-		width: 100px;
-		padding-left: 20px;
-		height: 100%;
-		line-height: 70px;
-		color: red;
-	}
-	
-	.product_main .main_top .proNa p.price a {
-		display: block;
-		margin-right: 20px;
-		width: 140px;
-		font-family: "微软雅黑";
-		color: #666666;
-		padding: 0 10px;
-		height: 100%;
-		text-align: center;
-		line-height: 70px;
-		border: 1px solid #999999;
-		border-radius: 6px;
+	.title {
+		width: 100%;
+		min-height: 60px;
+		padding: 5px 15px;
+		line-height: 1.6em;
+		color: $color_333;
+		text-align: left;
+		background-color: $color_fff;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+		overflow: hidden;
+		font: {
+			size: 24px;
+			weight: bold;
+		}
 	}
 	
 	.pro_footer {

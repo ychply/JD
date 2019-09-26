@@ -46,7 +46,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(route => {
-  window.scroll(0, 0)
+//window.scroll(0, 0)
 })
 
 new Vue({

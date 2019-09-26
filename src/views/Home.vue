@@ -69,7 +69,8 @@ export default {
 </script>
 <style scoped="scoped">
 	.m_layout{
-		width: 640px;
+		max-width:750px;
+		width: 100%;
 		margin: 0 auto;
 		position: relative;
 		/*min-height: 100vh;*/

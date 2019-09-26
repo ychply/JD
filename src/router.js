@@ -26,7 +26,8 @@ export default new Router({
 				title: '首页',
 				index: 1,
 				isLogin: false,
-				showFooter: true 
+				showFooter: true ,
+				keepAlive: true
 			}
 		},
 		{
@@ -34,7 +35,8 @@ export default new Router({
 			name: 'reg',
 			component: Reg,
 			meta: {
-				isLogin: false
+				isLogin: false,
+				keepAlive: false
 			}
 		},
 		{
@@ -43,7 +45,8 @@ export default new Router({
 			component: Product,
 			meta: {
 				isLogin: false,
-				showFooter: true 
+				showFooter: true,
+				keepAlive: true
 			}
 		},
 		{
@@ -51,7 +54,8 @@ export default new Router({
 			name: 'productdatil',
 			component: productDatil,
 			meta: {
-				isLogin: false
+				isLogin: false,
+				keepAlive: false
 			}
 		},
 		{
@@ -59,7 +63,8 @@ export default new Router({
 			name: 'login',
 			component: Login,
 			meta: {
-				isLogin: false
+				isLogin: false,
+				keepAlive: false
 			}
 		},
 		{
@@ -69,7 +74,8 @@ export default new Router({
 			meta: {
 				title: '购物车',
 				index: 4,
-				isLogin: true
+				isLogin: true,
+				keepAlive: false
 			}
 		},
 		{
@@ -80,7 +86,8 @@ export default new Router({
 				title: '分类',
 				index: 2,
 				isLogin: false,
-				showFooter: true 
+				showFooter: true, 
+				keepAlive: true
 			}
 		},
 		{
@@ -90,7 +97,8 @@ export default new Router({
 			meta: {
 				title: '搜索',
 				index: 3,
-				isLogin: false
+				isLogin: false,
+				keepAlive: false
 			}
 		},
 		{
@@ -101,7 +109,8 @@ export default new Router({
 				title: '我的',
 				index: 5,
 				isLogin: true,
-				showFooter: true 
+				showFooter: true,
+				keepAlive: true
 			}
 		},
 		{
@@ -111,7 +120,8 @@ export default new Router({
 			meta: {
 				title: '详情页',
 				index: 6,
-				isLogin: false
+				isLogin: false,
+				keepAlive: false
 			}
 		},
 	]
