@@ -43,18 +43,60 @@
 						</div>
 					</div>
 					<div class="title">{{item.product_name}}</div>
-
-					<div class="mod_discount">
+					<div class="mod_discount mgt20">
 						<span class="mod_title">优惠</span>
 						<div class="content">
 							<div class="dicount_coupon">
-								<span class="coupon coupon_item">满1299减100</span>
+								<span class="coupon coupon_item">满699减10</span>
 								<span class="coupon1 bg_red coupon_item">满1299减100</span>
 							</div>
+							每满300可减30元现金
+						</div>
+						<div class="see">
+							<i class="icon icongengduo"></i>
+						</div>
+					</div>
+					<div class="mod_discount">
+						<div class="line"></div>
+						<span class="mod_title">白条</span>
+						<div class="content">
+							3期免息
+						</div>
+						<div class="see">
+							<i class="icon icongengduo"></i>
+						</div>
+					</div>
+					<div class="mod_discount mgt20">
+						<span class="mod_title">已选</span>
+						<div class="content">
+							套餐1
+						</div>
+						<div class="see">
+							<i class="icon icongengduo"></i>
+						</div>
+					</div>
+					<div class="mod_discount">
+						<div class="line"></div>
+						<span class="mod_title">送至</span>
+						<div class="content">
+							广州黄埔区时代春树里
+						</div>
+						<div class="see">
+							<i class="icon icongengduo"></i>
+						</div>
+					</div>
+					<div class="mod_discount">
+						<div class="line"></div>
+						<div class="content">
+							<span class="detail_serve_item "><i class="icon iconxuanzhong"></i> 商家发货&售后</span>
+							<span class="detail_serve_item "><i class="icon iconxuanzhong"></i> 七天无理由退货</span>
+							<span class="detail_serve_item "><i class="icon iconxuanzhong"></i> 送运费险</span>
+						</div>
+						<div class="see">
+							<i class="icon icongengduo"></i>
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 		<footer v-if='isShow' class="pro_footer">
@@ -174,28 +216,59 @@
 
 <style lang="scss" scoped="scoped">
 	.mod_discount {
+		padding: 20px;
 		width: 100%;
 		background-color: $color_fff;
 		display: flex;
 		justify-content: space-between;
+		position: relative;
+		.line {
+			width: 96%;
+			height: 2px;
+			position: absolute;
+			background-color: #F3F4F6;
+			top: 0;
+			right: 0;
+		}
 		.mod_title {
 			width: 10%;
 			color: $color_999;
 			font-size: 20px;
 		}
+		.see {
+			width: 10%;
+			color: $color_333;
+			i {
+				font-size: 22px;
+				font-weight: bold;
+			}
+		}
 		.content {
 			width: 80%;
 			height: 40px;
+			text-align: left;
+			font-size: 20px;
+			padding-top: 1px;
+			.detail_serve_item{
+				display:inline-block;
+				margin-right:15px;
+				&:last-child{margin-right:0;}
+				i{
+					font-size:24px;
+					color:$color_primary;
+				}
+			}
 			.dicount_coupon {
 				width: 100%;
 				display: flex;
 				justify-content: flex-start;
 				align-items: center;
+				flex-wrap: wrap;
 				.bg_red {
 					background-color: #e4393c;
 				}
 				.coupon_item {
-					width: 117px;
+					min-width: 110px;
 					border-top: 1px solid #e4393c;
 					border-bottom: 1px solid #e4393c;
 					height: 26px;
@@ -206,7 +279,8 @@
 					display: flex;
 					justify-content: center;
 					align-items: center;
-					padding-bottom: 2px;
+					padding: 0 18px;
+					line-height: 1em;
 					&:before {
 						position: absolute;
 						content: "";
@@ -227,6 +301,7 @@
 					}
 				}
 				.coupon {
+					margin-right: 20px;
 					color: #333;
 					&:before {
 						background-image: url('../assets/images/coupon1.png');
@@ -235,11 +310,10 @@
 					}
 					&:after {
 						background-image: url('../assets/images/coupon1.png');
-						width: 9px;
+						width: 10px;
 					}
 				}
 				.coupon1 {
-					margin-left:20px;
 					color: #fff;
 					&:before {
 						background-image: url('../assets/images/coupon2.png');
@@ -248,10 +322,12 @@
 						background-color: #fff;
 					}
 					&:after {
-												background-size: 15px 100%;
-
+						background-size: 20px 100%;
 						background-image: url('../assets/images/coupon2.png');
-						width: 5px;
+						width: 10px;
+						background-color: #fff;
+						background-position: -14px 0;
+						right: -5px;
 						background-color: #fff;
 					}
 				}

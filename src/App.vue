@@ -226,6 +226,9 @@
 	.pdt20 {
 		padding-top: 20px;
 	}
+	.mgt20{
+		margin-top:20px;
+	}
 	
 	.mgl20 {
 		margin-left: 20px;
