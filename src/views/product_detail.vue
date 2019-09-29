@@ -97,6 +97,41 @@
 						</div>
 					</div>
 				</div>
+				<div class="ass_title">
+					<span class="span1">评价 <i>好评100%</i></span>
+					<span class="span2">共 80+ 条</span>
+				</div>
+				<ul class="cmt_tag">
+					<li>舒适度爆棚(25)</li>
+					<li>穿行舒适(18)</li>
+					<li>尺码精准(8)</li>
+					<li>新颖时尚(6)</li>
+					<li>做工精细(3)</li>
+					<li>颜色纯正(2)</li>
+					<li>样式靓丽(2)</li>
+					<li>质地上乘(2)</li>
+					<li>豪无色差(1)</li>
+					<li>风格百搭(1)</li>
+					<li>底软舒适(1)</li>
+				</ul>
+				<ul class="cmt_list">
+					<li>
+						<div class="cmt_user">
+							<div class="user_info">
+								<img src="//img11.360buyimg.com/jdphoto/s40x40_jfs/t1/25255/18/10701/1678/5c89f892E78c04688/684d63c0d68e39b1.png">
+								<span class="user">jd_134333ddv</span>
+							</div>
+							<span class="date">2019-08-19</span>
+						</div>
+						<div class="cmt_cnt">这鞋面料不错，不磨脚。也很修脚形。黑色很百搭，我工作鞋的，平时也能搭衣服</div>
+						<div class="cmt_att">
+							<span class="img"><img ptag="7001.1.29" src="//img30.360buyimg.com/shaidan/s128x96_jfs/t1/41414/8/12332/75635/5d59f48bE87c89021/2d124e4aec7e85d0.jpg!cc_100x100!q70.dpg.webp"></span>
+							<span class="img"><img ptag="7001.1.29" src="//img30.360buyimg.com/shaidan/s128x96_jfs/t1/78314/15/7540/70114/5d59f48cE27bfc2f7/38d29631cb8ccb36.jpg!cc_100x100!q70.dpg.webp"></span>
+							<span class="img"><img ptag="7001.1.29" src="//img30.360buyimg.com/shaidan/s128x96_jfs/t1/73837/28/7663/46487/5d59f48cE640709fd/63aa7f00b418149b.jpg!cc_100x100!q70.dpg.webp"></span>
+							<span class="img"><img ptag="7001.1.29" src="//img30.360buyimg.com/shaidan/s128x96_jfs/t1/80866/32/7555/58939/5d59f48cE3d7e0957/64841dd1b6582b5e.jpg!cc_100x100!q70.dpg.webp"></span>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</div>
 		<footer v-if='isShow' class="pro_footer">
@@ -139,7 +174,7 @@
 						pId: pid
 					}
 				}).then((res) => {
-					//console.log(res.data[0]);
+					//					console.log(res.data[0]);
 					this.listImg = res.data[0];
 					this.listData = res.data[1];
 					console.log(this.listData);
@@ -215,6 +250,88 @@
 </script>
 
 <style lang="scss" scoped="scoped">
+	.cmt_list {
+		background-color:$color_fff;
+		padding:0 16px;
+	}
+	.cmt_cnt{
+		width:100%;
+		font-size:24px;
+		color:$color_000;
+		text-align: left;
+	}
+	.cmt_user{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.user_info{
+			width:60%;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			height:60px;
+			img{
+				width:45px;
+				height: 45px;
+				display: block;
+				border-radius: 50%;
+				overflow: hidden;
+			}
+			.user{
+				font-size:18px;
+				color:$color_000;
+			}
+			
+		}
+		.date{
+			font-size:20px;
+			color:$color_999;
+		}
+	}
+	.cmt_tag{
+		width:100%;
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+		background-color:$color_fff;
+		padding:10px 18px;
+		li{
+		   padding:3px 15px;
+		   background-color: #fdf0f0;
+		   color: $color_666;
+		   margin-right:20px;
+		   margin-bottom:15px;
+		   border-radius:4px;
+		   font-size: 18px;
+		}
+		
+		}
+	
+	.ass_title {
+		width: 100%;
+		height: 70px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: 20px;
+		padding: 0 40px 0 20px;
+		background-color: $color_fff;
+		margin-bottom: 1px;
+		.span1 {
+			font-size: 22px;
+			color: $color_000;
+			i {
+				color: $color_primary;
+				font-size: 18px;
+				margin-left: 15px;
+			}
+		}
+		.span2 {
+			font-size: 18px;
+			color: $color_999;
+		}
+	}
+	
 	.mod_discount {
 		padding: 20px;
 		width: 100%;
@@ -245,17 +362,19 @@
 		}
 		.content {
 			width: 80%;
-			height: 40px;
+			min-height: 40px;
 			text-align: left;
-			font-size: 20px;
+			font-size: 18px;
 			padding-top: 1px;
-			.detail_serve_item{
-				display:inline-block;
-				margin-right:15px;
-				&:last-child{margin-right:0;}
-				i{
-					font-size:24px;
-					color:$color_primary;
+			.detail_serve_item {
+				display: inline-block;
+				margin-right: 15px;
+				&:last-child {
+					margin-right: 0;
+				}
+				i {
+					font-size: 24px;
+					color: $color_primary;
 				}
 			}
 			.dicount_coupon {
