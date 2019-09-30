@@ -63,7 +63,7 @@ export default {
     HomeMainView,
   },
   	created(){
-			 this.$store.commit('modifyCount',true);
+//			 this.$store.commit('modifyCount',true);
 		}
 }
 </script>

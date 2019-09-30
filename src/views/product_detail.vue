@@ -14,11 +14,13 @@
 			<div class="main_top">
 				<div class="lImg">
 					<!--<img :src="item.image_url" v-for="(item,index) in listImg" :key="index" />-->
-					<swipe style="text-align: center; width: 100%; background: #42b983;">
-						<swipe-item v-for="(item,index) in listImg" :key="index">
-							<img style="width:100%; height:300px;" :src="item.image_url" />
-						</swipe-item>
-					</swipe>
+
+					<swiper :options="swiperOption" class="swiper-container wrapper">
+						<swiper-slide class="slide_item" v-for='(item,index) of listImg' :key='index'>
+							<img class='' :src="item.image_url" alt="" />
+						</swiper-slide>
+						<div class="swiper-pagination" slot="pagination"></div>
+					</swiper>
 				</div>
 				<!--<div class="proNa" v-for="(item,index) in listData" :key="index">
 					<p>{{item.product_name}}</p>
@@ -124,11 +126,13 @@
 							<span class="date">2019-08-19</span>
 						</div>
 						<div class="cmt_cnt">这鞋面料不错，不磨脚。也很修脚形。黑色很百搭，我工作鞋的，平时也能搭衣服</div>
-						<div class="cmt_att">
-							<span class="img"><img ptag="7001.1.29" src="//img30.360buyimg.com/shaidan/s128x96_jfs/t1/41414/8/12332/75635/5d59f48bE87c89021/2d124e4aec7e85d0.jpg!cc_100x100!q70.dpg.webp"></span>
-							<span class="img"><img ptag="7001.1.29" src="//img30.360buyimg.com/shaidan/s128x96_jfs/t1/78314/15/7540/70114/5d59f48cE27bfc2f7/38d29631cb8ccb36.jpg!cc_100x100!q70.dpg.webp"></span>
-							<span class="img"><img ptag="7001.1.29" src="//img30.360buyimg.com/shaidan/s128x96_jfs/t1/73837/28/7663/46487/5d59f48cE640709fd/63aa7f00b418149b.jpg!cc_100x100!q70.dpg.webp"></span>
-							<span class="img"><img ptag="7001.1.29" src="//img30.360buyimg.com/shaidan/s128x96_jfs/t1/80866/32/7555/58939/5d59f48cE3d7e0957/64841dd1b6582b5e.jpg!cc_100x100!q70.dpg.webp"></span>
+						<div class="cmt_box">
+							<div class="cmt_att">
+								<img src="//img30.360buyimg.com/shaidan/s128x96_jfs/t1/41414/8/12332/75635/5d59f48bE87c89021/2d124e4aec7e85d0.jpg!cc_100x100!q70.dpg.webp">
+								<img src="//img30.360buyimg.com/shaidan/s128x96_jfs/t1/78314/15/7540/70114/5d59f48cE27bfc2f7/38d29631cb8ccb36.jpg!cc_100x100!q70.dpg.webp">
+								<img src="//img30.360buyimg.com/shaidan/s128x96_jfs/t1/73837/28/7663/46487/5d59f48cE640709fd/63aa7f00b418149b.jpg!cc_100x100!q70.dpg.webp">
+								<img src="//img30.360buyimg.com/shaidan/s128x96_jfs/t1/80866/32/7555/58939/5d59f48cE3d7e0957/64841dd1b6582b5e.jpg!cc_100x100!q70.dpg.webp">
+							</div>
 						</div>
 					</li>
 				</ul>
@@ -160,6 +164,20 @@
 	export default {
 		data() {
 			return {
+				swiperOption: {
+					initialSlide: 0,
+					// 参数选项,显示小点
+					pagination: '.swiper-pagination ',
+					//循环
+					loop: false,
+					//每张播放时长3秒，自动播放
+					//					autoplay: 2000,
+					//滑动速度
+					speed: 300,
+					// delay:1000
+					grabCursor: true,
+
+				},
 				listImg: [],
 				listData: [],
 				isShow: true,
@@ -250,62 +268,89 @@
 </script>
 
 <style lang="scss" scoped="scoped">
-	.cmt_list {
-		background-color:$color_fff;
-		padding:0 16px;
+	.wrapper /deep/ .swiper-pagination-bullet-active {
+		background: #ffffff;
 	}
-	.cmt_cnt{
-		width:100%;
-		font-size:24px;
-		color:$color_000;
-		text-align: left;
+	
+	.slide_item {
+		height: 600px;
 	}
-	.cmt_user{
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		.user_info{
-			width:60%;
+	
+	.cmt_box {
+		width: 100%;
+		height: 200px;
+		overflow-x: scroll;
+		.cmt_att {
+			width: 200%;
 			display: flex;
 			justify-content: flex-start;
 			align-items: center;
-			height:60px;
-			img{
-				width:45px;
+			img {
+				display: block;
+				width: 200px;
+				height: 200px;
+				margin-right: 20px;
+			}
+		}
+	}
+	
+	.cmt_list {
+		background-color: $color_fff;
+		padding: 0 16px;
+	}
+	
+	.cmt_cnt {
+		width: 100%;
+		font-size: 24px;
+		color: $color_000;
+		text-align: left;
+	}
+	
+	.cmt_user {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.user_info {
+			width: 60%;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			height: 60px;
+			img {
+				width: 45px;
 				height: 45px;
 				display: block;
 				border-radius: 50%;
 				overflow: hidden;
 			}
-			.user{
-				font-size:18px;
-				color:$color_000;
+			.user {
+				font-size: 18px;
+				color: $color_000;
 			}
-			
 		}
-		.date{
-			font-size:20px;
-			color:$color_999;
+		.date {
+			font-size: 20px;
+			color: $color_999;
 		}
 	}
-	.cmt_tag{
-		width:100%;
+	
+	.cmt_tag {
+		width: 100%;
 		display: flex;
 		justify-content: flex-start;
 		flex-wrap: wrap;
-		background-color:$color_fff;
-		padding:10px 18px;
-		li{
-		   padding:3px 15px;
-		   background-color: #fdf0f0;
-		   color: $color_666;
-		   margin-right:20px;
-		   margin-bottom:15px;
-		   border-radius:4px;
-		   font-size: 18px;
+		background-color: $color_fff;
+		padding: 10px 18px;
+		li {
+			padding: 3px 15px;
+			background-color: #fdf0f0;
+			color: $color_666;
+			margin-right: 20px;
+			margin-bottom: 15px;
+			border-radius: 4px;
+			font-size: 18px;
 		}
-		
-		}
+	}
 	
 	.ass_title {
 		width: 100%;

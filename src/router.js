@@ -14,6 +14,7 @@ import Detail from './views/product_detail.vue'
 Vue.use(Router)
 
 export default new Router({
+	mode: 'history',
 	routes: [{
 			path: '/',
 			redirect: '/home', //重定向到home

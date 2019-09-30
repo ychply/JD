@@ -2,16 +2,17 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import axios from 'axios'
-import 'c-swipe/dist/swipe.css';
-import { Swipe, SwipeItem } from 'c-swipe';
 import 'lib-flexible/flexible.js'
 import Vuelazyload from 'vue-lazyload'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
 
 
 import {store} from './store/store.js';
 import '@/assets/images/iconfont/iconfont.css'
 import "@/assets/scss";
 import "./components/plugin";
+
 //import Toast from './components/toast/index.js'
 //import '@/assets/styles/base.scss';
 //Vue.use(Toast)
@@ -23,11 +24,11 @@ Vue.use(Vuelazyload,{
     attempt: 1,
     listenEvents: ['scroll']
 })
-Vue.component('swipe', Swipe);
-Vue.component('swipe-item', SwipeItem);
+
 
 Vue.config.productionTip = false;
 Vue.prototype.$http=axios;
+Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
 router.beforeEach((to, from, next) => {
 	if(to.meta.isLogin){
