@@ -1,14 +1,11 @@
 <template>
-	<div class="">
+	<div class="wrap">
 		<swiper :options="swiperOption" class="swiper-container wrapper">
-			<!-- slides -->
 			<swiper-slide v-for='(item,index) of swiperList' :key='index'>
 				<img class='' :src="require( '../assets/images/'+item)" alt="" />
-			</swiper-slide>
-					<div class="swiper-pagination" slot="pagination"></div>
+			</swiper-slide>			
+             <div class="swiper-pagination" slot="pagination"></div>
 		</swiper>
-		<!-- Optional controls ,显示小点-->
-
 	</div>
 </template>
 <script>
@@ -17,11 +14,20 @@
 			return {
 				swiperOption: {
 					// 参数选项,显示小点
-					pagination: '.swiper-pagination ',
+					 pagination: { 
+					 	el: '.swiper-pagination' 
+					 },
+					 notNextTick: true,
+					 //设定初始化时slide的索引
+                     initialSlide:0,
 					//循环
 					loop: true,
-					//每张播放时长3秒，自动播放
-					autoplay: 2000,
+					//自动播放
+                autoplay: {
+                    delay: 3000,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: true,
+                },
 					//滑动速度
 					speed: 300,
 					// delay:1000

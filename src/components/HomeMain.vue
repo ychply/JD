@@ -50,12 +50,8 @@
 					url: "/api/list",
 					data: {}
 				}).then((res) => {
-					_this.listTop.push(res.data[0]);
-					_this.listTop.push(res.data[1]);
-					_this.listTop.push(res.data[2]);
-					_this.listTop.push(res.data[3]);
+					_this.listTop = res.data.slice(20,24);
 					_this.productList = res.data;
-					console.log(res.data[0]);
 
 				}).catch((err) => {
 					console.log(err);

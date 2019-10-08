@@ -14,7 +14,6 @@
 			<div class="main_top">
 				<div class="lImg">
 					<!--<img :src="item.image_url" v-for="(item,index) in listImg" :key="index" />-->
-
 					<swiper :options="swiperOption" class="swiper-container wrapper">
 						<swiper-slide class="slide_item" v-for='(item,index) of listImg' :key='index'>
 							<img class='' :src="item.image_url" alt="" />
@@ -22,14 +21,6 @@
 						<div class="swiper-pagination" slot="pagination"></div>
 					</swiper>
 				</div>
-				<!--<div class="proNa" v-for="(item,index) in listData" :key="index">
-					<p>{{item.product_name}}</p>
-					<p class="price">
-						<span>￥{{item.product_price}}</span>
-						<a href="#">降价通知</a>
-					</p>
-					<pre class="pdetail">{{item.product_detail}}{{item.product_detail}}</pre>
-				</div>-->
 				<div class="product" v-for="(item,index) in listData" :key="index">
 					<div class="price_box">
 						<span class="price">￥ <i class="f28">{{item.product_price}}</i></span>
@@ -99,75 +90,36 @@
 						</div>
 					</div>
 				</div>
-				<div class="ass_title">
-					<span class="span1">评价 <i>好评100%</i></span>
-					<span class="span2">共 80+ 条</span>
+				<assess></assess>
+				<div class="detail_faqbox">
+					<div class="detail_faqbox_head">
+						<div class="detail_faqbox_head_tit">问答专区</div>
+						<div class="detail_faqbox_head_num">查看全部问答 <i class="icon iconarrow-r"></i></div>
+					</div>
+					<ul class="detail_faqbox_list">
+						<li><p>这款风衣有里子吗？</p><span>暂无回答</span></li>
+						<li><p>这款风衣好看吗？</p><span>2个回答</span></li>
+					</ul>
 				</div>
-				<ul class="cmt_tag">
-					<li>舒适度爆棚(25)</li>
-					<li>穿行舒适(18)</li>
-					<li>尺码精准(8)</li>
-					<li>新颖时尚(6)</li>
-					<li>做工精细(3)</li>
-					<li>颜色纯正(2)</li>
-					<li>样式靓丽(2)</li>
-					<li>质地上乘(2)</li>
-					<li>豪无色差(1)</li>
-					<li>风格百搭(1)</li>
-					<li>底软舒适(1)</li>
-				</ul>
-				<ul class="cmt_list">
-					<li>
-						<div class="cmt_user">
-							<div class="user_info">
-								<img src="//img11.360buyimg.com/jdphoto/s40x40_jfs/t1/25255/18/10701/1678/5c89f892E78c04688/684d63c0d68e39b1.png">
-								<span class="user">jd_134333ddv</span>
-							</div>
-							<span class="date">2019-08-19</span>
-						</div>
-						<div class="cmt_cnt">这鞋面料不错，不磨脚。也很修脚形。黑色很百搭，我工作鞋的，平时也能搭衣服</div>
-						<div class="cmt_box">
-							<div class="cmt_att">
-								<img src="//img30.360buyimg.com/shaidan/s128x96_jfs/t1/41414/8/12332/75635/5d59f48bE87c89021/2d124e4aec7e85d0.jpg!cc_100x100!q70.dpg.webp">
-								<img src="//img30.360buyimg.com/shaidan/s128x96_jfs/t1/78314/15/7540/70114/5d59f48cE27bfc2f7/38d29631cb8ccb36.jpg!cc_100x100!q70.dpg.webp">
-								<img src="//img30.360buyimg.com/shaidan/s128x96_jfs/t1/73837/28/7663/46487/5d59f48cE640709fd/63aa7f00b418149b.jpg!cc_100x100!q70.dpg.webp">
-								<img src="//img30.360buyimg.com/shaidan/s128x96_jfs/t1/80866/32/7555/58939/5d59f48cE3d7e0957/64841dd1b6582b5e.jpg!cc_100x100!q70.dpg.webp">
-							</div>
-						</div>
-					</li>
-				</ul>
+				<pushList></pushList>
 			</div>
 		</div>
-		<footer v-if='isShow' class="pro_footer">
-			<div class="fot_left">
-				<a href="#">
-					<em class="cat_pic_icon"></em>
-					<span>商家</span>
-				</a>
-				<a href="#">
-					<em class="cat_pic_icon1"></em>
-					<span>关注</span>
-				</a>
-				<a href="#">
-					<em class="cat_pic_icon2"></em>
-					<span>购物车</span>
-				</a>
-			</div>
-			<div class="fot_right">
-				<a href="#">加入购物车</a>
-				<a href="#">立即购买</a>
-			</div>
-		</footer>
+		<bottom></bottom>
 	</div>
 </template>
 <script>
+	import assess from "../components/detail_assess.vue"
+	import bottom from "../components/detail_footer.vue"
+	import pushList from "../components/detail_push.vue"
 	export default {
 		data() {
 			return {
 				swiperOption: {
 					initialSlide: 0,
 					// 参数选项,显示小点
-					pagination: '.swiper-pagination ',
+					pagination: {
+						el: '.swiper-pagination '
+					},
 					//循环
 					loop: false,
 					//每张播放时长3秒，自动播放
@@ -180,7 +132,6 @@
 				},
 				listImg: [],
 				listData: [],
-				isShow: true,
 				topClass: "top_bar_op0"
 			}
 		},
@@ -195,7 +146,6 @@
 					//					console.log(res.data[0]);
 					this.listImg = res.data[0];
 					this.listData = res.data[1];
-					console.log(this.listData);
 
 				}).catch((err) => {
 					console.log(err);
@@ -263,118 +213,80 @@
 		mounted() {
 			this.$refs.main.addEventListener('scroll', this.top_scroll);
 			this.Show();
+		},
+		components: {
+			assess,
+			bottom,
+			pushList
 		}
 	}
 </script>
 
 <style lang="scss" scoped="scoped">
-	.wrapper /deep/ .swiper-pagination-bullet-active {
-		background: #ffffff;
+.detail_faqbox_list{
+	padding:0 15px;
+	li{
+		height:50px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		p{
+			font-size:22px;
+			color:#333;
+			&:before{
+				content: "Q";
+				display: inline-block;	
+				width:25px;
+				height: 25px;
+				line-height: 25px;
+				text-align: center;
+				background-color:#ff9600;
+				color:#fff;
+				font-size: 20px;
+				border-radius: 2px;
+				margin-right:6px;
+				margin-top:-6px;
+			}
+		}
+		span{
+			font-size: 20px;
+			color:#999;
+			
+		}
+	}
+}
+.detail_faqbox{
+	margin-bottom:20px;
+	background-color:#fff;
+	.detail_faqbox_head{
+		height: 70px;
+		display:flex;
+		padding:0 15px;
+		justify-content: space-between;
+		align-items: center;
+		border-bottom:1px solid #e5e5e5;
+		.detail_faqbox_head_tit{
+			font-size:22px;
+			color:#333;
+		}
+		.detail_faqbox_head_num{
+			font-size:20px;
+			color:#666;
+			i{
+				font-size:24px;
+				color:#666;
+				position: relative;
+				top:2px;
+			}
+		}
+	}
+}
+	.wrapper /deep/ .swiper-pagination-bullet {
+		background: #fff;
 	}
 	
 	.slide_item {
 		height: 600px;
-	}
-	
-	.cmt_box {
-		width: 100%;
-		height: 200px;
-		overflow-x: scroll;
-		.cmt_att {
-			width: 200%;
-			display: flex;
-			justify-content: flex-start;
-			align-items: center;
-			img {
-				display: block;
-				width: 200px;
-				height: 200px;
-				margin-right: 20px;
-			}
-		}
-	}
-	
-	.cmt_list {
-		background-color: $color_fff;
-		padding: 0 16px;
-	}
-	
-	.cmt_cnt {
-		width: 100%;
-		font-size: 24px;
-		color: $color_000;
-		text-align: left;
-	}
-	
-	.cmt_user {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		.user_info {
-			width: 60%;
-			display: flex;
-			justify-content: flex-start;
-			align-items: center;
-			height: 60px;
-			img {
-				width: 45px;
-				height: 45px;
-				display: block;
-				border-radius: 50%;
-				overflow: hidden;
-			}
-			.user {
-				font-size: 18px;
-				color: $color_000;
-			}
-		}
-		.date {
-			font-size: 20px;
-			color: $color_999;
-		}
-	}
-	
-	.cmt_tag {
-		width: 100%;
-		display: flex;
-		justify-content: flex-start;
-		flex-wrap: wrap;
-		background-color: $color_fff;
-		padding: 10px 18px;
-		li {
-			padding: 3px 15px;
-			background-color: #fdf0f0;
-			color: $color_666;
-			margin-right: 20px;
-			margin-bottom: 15px;
-			border-radius: 4px;
-			font-size: 18px;
-		}
-	}
-	
-	.ass_title {
-		width: 100%;
-		height: 70px;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-top: 20px;
-		padding: 0 40px 0 20px;
-		background-color: $color_fff;
-		margin-bottom: 1px;
-		.span1 {
-			font-size: 22px;
-			color: $color_000;
-			i {
-				color: $color_primary;
-				font-size: 18px;
-				margin-left: 15px;
-			}
-		}
-		.span2 {
-			font-size: 18px;
-			color: $color_999;
-		}
 	}
 	
 	.mod_discount {
@@ -516,7 +428,6 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 0 20px;
-		border-bottom: 1px solid #e5e5e5;
 		.icon_bg {
 			width: 45px;
 			height: 45px;
@@ -671,7 +582,7 @@
 	
 	.top_bar_op8 {
 		background: hsla(0, 0%, 100%, .8);
-		border-color: hsla(0, 0%, 90%, .8);
+		border-bottom: 1px solid hsla(0, 0%, 90%, .8);
 		.nav_list {
 			opacity: .8;
 		}
@@ -685,7 +596,7 @@
 	
 	.top_bar_op9 {
 		background: hsla(0, 0%, 100%, .9);
-		border-color: hsla(0, 0%, 90%, .9);
+		border-bottom: 1px solid hsla(0, 0%, 90%, .9);
 		.nav_list {
 			opacity: .9;
 		}
@@ -699,7 +610,7 @@
 	
 	.top_bar_op10 {
 		background: #fff;
-		border-color: #e5e5e5;
+		border-bottom: 1px solid #e5e5e5;
 		.nav_list {
 			opacity: 1;
 		}
@@ -714,7 +625,7 @@
 	
 	.product_main {
 		width: 640px;
-		height: 90vh;
+		height: 92vh;
 		overflow-y: scroll;
 	}
 	
@@ -795,91 +706,4 @@
 			weight: bold;
 		}
 	}
-	
-	.pro_footer {
-		box-shadow: 0 -2px 10px #ccc;
-		width: 100%;
-		height: 90px;
-		position: fixed;
-		left: 0;
-		bottom: 0;
-		background: #FFFFFF;
-		z-index: 2;
-		display: flex;
-		flex-direction: row;
-	}
-	
-	.pro_footer .fot_left {
-		flex: 1;
-		display: flex;
-		height: 100%;
-		flex-direction: row;
-	}
-	
-	.pro_footer a {
-		flex: 1;
-		display: block;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
-	}
-	
-	.pro_footer a .cat_pic_icon {
-		display: block;
-		width: 50px;
-		height: 40px;
-		background: url("../assets/images/cart_sprits_all.png") no-repeat top center;
-		background-size: 200px 200px;
-		margin: 6px auto 0;
-		background-position: -45px 0;
-	}
-	
-	.pro_footer a .cat_pic_icon1 {
-		display: block;
-		width: 50px;
-		height: 40px;
-		background: url("../assets/images/cart_sprits_all.png") no-repeat top center;
-		background-size: 200px 200px;
-		margin: 6px auto 0;
-		background-position: -97px 0;
-	}
-	
-	.pro_footer a .cat_pic_icon2 {
-		display: block;
-		width: 50px;
-		height: 40px;
-		background: url("../assets/images/cart_sprits_all.png") no-repeat top center;
-		background-size: 200px 200px;
-		margin: 6px auto 0;
-		background-position: 0px -42px;
-	}
-	
-	.pro_footer a span {
-		text-align: center;
-	}
-	
-	.pro_footer .fot_right {
-		flex: 1;
-		height: 100%;
-		display: flex;
-		flex-direction: row;
-	}
-	
-	.pro_footer .fot_right a {
-		flex: 1;
-		height: 100%;
-		display: block;
-		line-height: 90px;
-	}
-	
-	.pro_footer .fot_right a:nth-child(1) {
-		background: #FFB03F;
-	}
-	
-	.pro_footer .fot_right a:nth-child(2) {
-		background: #F23030;
-	}
-	/*底部*/
 </style>

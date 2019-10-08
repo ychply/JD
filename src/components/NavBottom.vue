@@ -105,7 +105,7 @@
 		left: 0;
 		width: 100%;
 		display: flex;
-		height: 70px;
+		height: 90px;
 		color: $color_text;
 		box-shadow: 0 3px 14px 2px rgba(0, 0, 0, .12);
 		background-color: $color_background;
