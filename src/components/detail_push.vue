@@ -1,24 +1,20 @@
 <template>
 	<div class="push_box">
 		<h2 class="push_title">猜你喜欢</h2>
-		<ul class="push_list">
-			<li><img src="https://img14.360buyimg.com/mobilecms/s270x270_jfs/t1/74472/7/6634/229086/5d4a4168E8c558887/7b49c1fd42d26f7f.jpg!q70.dpg.webp" alt="" /><p class="price">¥<span class="int">132</span>.00</p></li>
-						<li><img src="https://img14.360buyimg.com/mobilecms/s270x270_jfs/t1/74472/7/6634/229086/5d4a4168E8c558887/7b49c1fd42d26f7f.jpg!q70.dpg.webp" alt="" /><p class="price">¥<span class="int">132</span>.00</p></li>
-
-			<li><img src="https://img14.360buyimg.com/mobilecms/s270x270_jfs/t1/74472/7/6634/229086/5d4a4168E8c558887/7b49c1fd42d26f7f.jpg!q70.dpg.webp" alt="" /><p class="price">¥<span class="int">132</span>.00</p></li>
-
-			<li><img src="https://img14.360buyimg.com/mobilecms/s270x270_jfs/t1/74472/7/6634/229086/5d4a4168E8c558887/7b49c1fd42d26f7f.jpg!q70.dpg.webp" alt="" /><p class="price">¥<span class="int">132</span>.00</p></li>
-
-			<li><img src="https://img14.360buyimg.com/mobilecms/s270x270_jfs/t1/74472/7/6634/229086/5d4a4168E8c558887/7b49c1fd42d26f7f.jpg!q70.dpg.webp" alt="" /><p class="price">¥<span class="int">132</span>.00</p></li>
-
-			<li><img src="https://img14.360buyimg.com/mobilecms/s270x270_jfs/t1/74472/7/6634/229086/5d4a4168E8c558887/7b49c1fd42d26f7f.jpg!q70.dpg.webp" alt="" /><p class="price">¥<span class="int">132</span>.00</p></li>
-
-			<li><img src="https://img14.360buyimg.com/mobilecms/s270x270_jfs/t1/74472/7/6634/229086/5d4a4168E8c558887/7b49c1fd42d26f7f.jpg!q70.dpg.webp" alt="" /><p class="price">¥<span class="int">132</span>.00</p></li>
-
-			<li><img src="https://img14.360buyimg.com/mobilecms/s270x270_jfs/t1/74472/7/6634/229086/5d4a4168E8c558887/7b49c1fd42d26f7f.jpg!q70.dpg.webp" alt="" /><p class="price">¥<span class="int">132</span>.00</p></li>
-
-		</ul>
-		</swiper>
+		<div class="push_list">
+			<swiper :options="swiperOption" class="wrapper">
+				<swiper-slide v-for='(item,index) of productList' :key='index'>
+					<ul class="slide_item">
+						<li class="list_item" v-for='(li_item,index1) of item' :key='index1'>
+							<img class="swiper-lazy" :data-src="li_item.product_img_url" alt="" />
+							<div class="swiper-lazy-preloader"></div>
+							<p class="price">¥<span class="int">{{li_item.product_price}}</span>.00</p>
+						</li>
+					</ul>
+				</swiper-slide>
+				<div class="swiper-pagination" slot="pagination"></div>
+			</swiper>
+		</div>
 	</div>
 </template>
 <script>
@@ -26,6 +22,7 @@
 		data() {
 			return {
 				swiperOption: {
+					preloadImages : true,
 					initialSlide: 0,
 					// 参数选项,显示小点
 					pagination: {
@@ -39,6 +36,7 @@
 					speed: 300,
 					// delay:1000
 					grabCursor: true,
+					lazy: true,
 
 				},
 				productList: []
@@ -52,10 +50,12 @@
 					url: "/api/list",
 					data: {}
 				}).then((res) => {
-					
-					_this.productList = res.data.slice(0,9);
-					console.log(res.data.slice(0,9));
-
+					var arr = [];
+					arr[0] = res.data.slice(0, 9);
+					arr[1] = res.data.slice(10, 19);
+					arr[2] = res.data.slice(20, 29);
+					arr[3] = res.data.slice(30, 39);
+                    _this.productList= arr;
 				}).catch((err) => {
 					console.log(err);
 				})
@@ -64,41 +64,63 @@
 		components: {
 
 		},
-		mounted() {
+		created() {
 			this.showList();
-			///this.play();
+		},
+		mounted() {
 		}
 	}
 </script>
 <style lang="scss" scoped="scoped">
+	.wrapper /deep/ .swiper-pagination-bullet-active {
+		width: 15px;
+	}
+	
+	.wrapper /deep/ .swiper-pagination-bullet {
+		margin-right: 10px;
+		background: rgba(0, 0, 0, 0.5);
+		border-radius: 6px;
+	}
+	
+	.wrapper /deep/ .swiper-pagination {
+		width: 100%;
+		bottom: 10px;
+		left: 0;
+	}
+	
 	.push_list {
 		width: 100%;
-		display: flex;
-		justify-content: flex-start;
-		flex-wrap: wrap;
-		li {
-			width: 206px;
-			height: 200px;
-			margin-right: 10px;
-			margin-bottom:10px;
-			position: relative;
-			img{
-				max-width: 100%;
-				max-height: 100%;
-			}
-			&:nth-child(3n) {
-				margin-right: 0;
-			}
-			p {
-				position: absolute;
-				bottom: 0;
-				right: 0;
-				height: 30px;
-				min-width: 80px;
-				padding:5px 10px;
-				background-color: rgba(0, 0, 0, 0.5);
-				border-radius: 6px 0 0 0;
-				color:#fff;
+		.slide_item {
+			width: 100%;
+			display: flex;
+			justify-content: flex-start;
+			flex-wrap: wrap;
+			padding: 0 5px 30px 5px;
+			background-color: #fff;
+			.list_item {
+				width: 205px;
+				height: 200px;
+				margin-right: 7px;
+				margin-bottom: 7px;
+				position: relative;
+				img {
+					max-width: 100%;
+					max-height: 100%;
+				}
+				&:nth-child(3n) {
+					margin-right: 0;
+				}
+				p {
+					position: absolute;
+					bottom: 0;
+					right: 0;
+					height: 30px;
+					min-width: 80px;
+					padding: 5px 10px;
+					background-color: rgba(0, 0, 0, 0.5);
+					border-radius: 6px 0 0 0;
+					color: #fff;
+				}
 			}
 		}
 	}

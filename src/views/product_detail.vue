@@ -16,8 +16,9 @@
 					<!--<img :src="item.image_url" v-for="(item,index) in listImg" :key="index" />-->
 					<swiper :options="swiperOption" class="swiper-container wrapper">
 						<swiper-slide class="slide_item" v-for='(item,index) of listImg' :key='index'>
-							<img class='' :src="item.image_url" alt="" />
-						</swiper-slide>
+							<img class='' :src="item.image_url" alt="" />						
+<!--							<img v-lazy="item.image_url" />
+-->						</swiper-slide>
 						<div class="swiper-pagination" slot="pagination"></div>
 					</swiper>
 				</div>
@@ -102,6 +103,7 @@
 					</ul>
 				</div>
 				<pushList></pushList>
+				<info></info>
 			</div>
 		</div>
 		<bottom></bottom>
@@ -111,6 +113,8 @@
 	import assess from "../components/detail_assess.vue"
 	import bottom from "../components/detail_footer.vue"
 	import pushList from "../components/detail_push.vue"
+	import info from "../components/detail_info.vue"
+    import BScroll from 'better-scroll';
 	export default {
 		data() {
 			return {
@@ -213,11 +217,15 @@
 		mounted() {
 			this.$refs.main.addEventListener('scroll', this.top_scroll);
 			this.Show();
+//			this.scroll = new BScroll(this.$refs.main, {
+//					    click: true,
+//					  });
 		},
 		components: {
 			assess,
 			bottom,
-			pushList
+			pushList,
+			info
 		}
 	}
 </script>
