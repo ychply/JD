@@ -1,7 +1,7 @@
-<template>
+ <template>
 	<header class="top_bar">
 		<span @click="_back" class="icon_bg"><i class="icon iconarrow-l fwb"></i></span>
-		<div v-if="head=='top'" class="search"><i class="icon iconsousuo1 fwb"></i> <span>请输入搜索内容...</span></div>
+		<router-link to="/search" v-if="head=='top'" class="search"><i class="icon iconsousuo1 fwb"></i> <span>请输入搜索内容...</span></router-link>
 		<form v-else class="search" action="#"><i class="icon iconsousuo1 fwb"></i>
 			<input type="text" placeholder="请输入搜索内容..." />
 			
@@ -85,6 +85,8 @@
 				padding-right:10px;
 				outline: none;
 				border:none;
+				height: 100%;
+				background-color:rgba(0,0,0,0);
 			}
 		}
 	}
