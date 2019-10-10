@@ -8,6 +8,7 @@ import Reg from './views/reg.vue'
 import Cart from './views/cart.vue'
 import Catgory from './views/catgory.vue'
 import Find from './views/find.vue'
+import Search from './views/search.vue'
 import Mine from './views/mine.vue'
 import Detail from './views/product_detail.vue'
 
@@ -96,8 +97,19 @@ export default new Router({
 			name: 'find',
 			component: Find,
 			meta: {
-				title: '搜索',
+				title: '发现',
 				index: 3,
+				isLogin: false,
+				keepAlive: false
+			}
+		},
+		{
+			path: '/search',
+			name: 'search',
+			component: Search,
+			meta: {
+				title: '搜索',
+				index: 7,
 				isLogin: false,
 				keepAlive: false
 			}

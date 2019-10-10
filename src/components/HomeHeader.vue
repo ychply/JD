@@ -2,11 +2,11 @@
 	<header :class="{header:isTrue,heaback:scroll}">
 		<div class="headBox">
 			<a href="javascript:;" class="icon-logo"></a>
-			<div class="search">
+			<router-link class="search" to="/search">
 				<img @click="search()" class="icon-search" src="../assets/images/search-logo.jpg"/>
 				<!--<input type="text"  placeholder="请输入搜索商品..."/>-->
 				<span>请输入搜索商品...</span>
-			</div>
+			</router-link>
 			<router-link :to="!this.$store.getters.isLogin?'/login':'/mine'"  class="login_btn"><span v-show="!this.$store.getters.isLogin">登录</span><span v-show="this.$store.getters.isLogin">欢迎</span></router-link>
 		</div>	
 	</header>
