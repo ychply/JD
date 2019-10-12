@@ -3,15 +3,16 @@
 		<header class="top_bar" :class="topClass">
 			<span @click="_back" class="icon_bg"><i class="icon iconarrow-l fwb"></i></span>
 			<ul class="nav_list">
-				<li><i class="icon icondingwei"></i> 商品</li>
+				<li :class="{'active':nav_id==index}" v-for="(item,index) of nav" :key="index"><i class="icon icondingwei"></i> {{item}}</li>
+				<!--<li><i class="icon icondingwei"></i> 商品</li>
 				<li><i class="icon icondingwei"></i> 评价</li>
 				<li><i class="icon icondingwei"></i> 详情</li>
-				<li><i class="icon icondingwei"></i> 推荐</li>
+				<li><i class="icon icondingwei"></i> 推荐</li>-->
 			</ul>
 			<span class="icon_bg"><i class="icon icongengduo "></i></span>
 		</header>
 		<div ref="main" class="product_main">
-			<div class="main_top">
+			<div class="main_top" ref="floor1">
 				<div class="lImg">
 					<!--<img :src="item.image_url" v-for="(item,index) in listImg" :key="index" />-->
 					<swiper :options="swiperOption" class="swiper-container wrapper">
@@ -91,7 +92,7 @@
 						</div>
 					</div>
 				</div>
-				<assess></assess>
+				<assess ref="floor2"></assess>
 				<div class="detail_faqbox">
 					<div class="detail_faqbox_head">
 						<div class="detail_faqbox_head_tit">问答专区</div>
@@ -102,8 +103,8 @@
 						<li><p>这款风衣好看吗？</p><span>2个回答</span></li>
 					</ul>
 				</div>
-				<pushList></pushList>
-				<info></info>
+				<pushList ref="floor3"></pushList>
+				<info ref="floor4"></info>
 			</div>
 		</div>
 		<bottom></bottom>
@@ -136,7 +137,9 @@
 				},
 				listImg: [],
 				listData: [],
-				topClass: "top_bar_op0"
+				topClass: "top_bar_op0",
+				nav:['商品','评价','推荐','详情'],
+				nav_id:0
 			}
 		},
 		methods: {
@@ -163,6 +166,12 @@
 			},
 			top_scroll() {
 				let scrolled = this.$refs.main.scrollTop;
+				var floor1 = this.$refs.floor1.scrollTop;
+				var floor2 = this.$refs.floor2.scrollTop;
+				var floor3 = this.$refs.floor3.scrollTop;
+				var floor4 = this.$refs.floor4.scrollTop;
+
+				console.log(floor2)
 				if(scrolled == 0) {
 					this.topClass = 'top_bar_op0';
 				}
@@ -472,6 +481,13 @@
 					visibility: hidden;
 					color: $color_primary;
 					font-size: 20px;
+					margin-top:3px;
+					margin-right:4px;
+				}
+			}
+			.active{
+				i{
+					visibility: visible;
 				}
 			}
 		}
@@ -635,6 +651,8 @@
 		width: 640px;
 		height: 92vh;
 		overflow-y: scroll;
+		-webkit-overflow-scrolling: touch;
+		overflow-scrolling: touch;
 	}
 	
 	.product_main .main_top {
