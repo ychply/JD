@@ -3,8 +3,7 @@
 		<span @click="_back" class="icon_bg"><i class="icon iconarrow-l fwb"></i></span>
 		<router-link to="/search" v-if="head=='top'" class="search"><i class="icon iconsousuo1 fwb"></i> <span>请输入搜索内容...</span></router-link>
 		<form v-else class="search" action="#"><i class="icon iconsousuo1 fwb"></i>
-			<input type="text" placeholder="请输入搜索内容..." />
-			
+			<input ref="myInput" type="text" placeholder="请输入搜索内容..." />		
 		</form>
 		<span class="icon_bg"><i class="icon icongengduo "></i></span>
 	</header>
@@ -27,7 +26,7 @@
 		   
 		},
 		mounted(){
-			
+			this.$refs.myInput.focus();
 		}
 	}
 </script>
@@ -73,8 +72,9 @@
 				font-size:24px;
 				color:#666;
 				position: relative;
-				top:1px;
+				top:0px;
 				margin-right:18px;
+				font-weight: bold;
 			}
 			span{
 				font-size: 20px;
@@ -87,6 +87,7 @@
 				border:none;
 				height: 100%;
 				background-color:rgba(0,0,0,0);
+				padding-top:3px;
 			}
 		}
 	}

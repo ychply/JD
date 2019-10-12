@@ -35,29 +35,16 @@
 
 				},
 				index: 0,
-				swiperList: ["l1.jpg", "l2.jpg", "l3.jpg", "l4.jpg", "l5.jpg", "l6.jpg", "l7.jpg", "l8.jpg"],
-				timer: null
+				swiperList: ["l1.jpg", "l2.jpg", "l3.jpg", "l4.jpg", "l5.jpg", "l6.jpg", "l7.jpg", "l8.jpg"]
 			}
 		},
 		methods: {
-			play() {
-				this.timer = setInterval(() => {
-					this.index++;
-					if(this.index > 7) {
-						this.index = 0;
-					}
-				}, 1000)
-
-			},
-			clearPlay() {
-				clearInterval(this.timer);
-			}
+			
 		},
 		components:{
 			
 		},
 		mounted() {
-			///this.play();
 		}
 	}
 </script>

@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import Login from './views/Login.vue'
-import Product from './views/product.vue'
-import productDatil from './views/productDatil.vue'
-import Reg from './views/reg.vue'
-import Cart from './views/cart.vue'
-import Catgory from './views/catgory.vue'
-import Find from './views/find.vue'
-import Search from './views/search.vue'
-import Mine from './views/mine.vue'
-import Detail from './views/product_detail.vue'
+//import Home from './views/Home.vue'
+//import Login from './views/Login.vue'
+//import Product from './views/product.vue'
+//import productDatil from './views/productDatil.vue'
+//import Reg from './views/reg.vue'
+//import Cart from './views/cart.vue'
+//import Catgory from './views/catgory.vue'
+//import Find from './views/find.vue'
+//import Search from './views/search.vue'
+//import Mine from './views/mine.vue'
+//import Detail from './views/product_detail.vue'
 
 Vue.use(Router)
 
@@ -23,7 +23,7 @@ export default new Router({
 		{
 			path: '/home',
 			name: 'home',
-			component: Home,
+			component: (resolve) => require(['./views/Home.vue'],resolve),
 			meta: {
 				title: '首页',
 				index: 1,
@@ -35,7 +35,7 @@ export default new Router({
 		{
 			path: '/reg',
 			name: 'reg',
-			component: Reg,
+			component: (resolve) => require(['./views/reg.vue'],resolve),
 			meta: {
 				isLogin: false,
 				keepAlive: false
@@ -44,7 +44,7 @@ export default new Router({
 		{
 			path: '/product',
 			name: 'product',
-			component: Product,
+			component: (resolve) => require(['./views/product.vue'],resolve),
 			meta: {
 				isLogin: false,
 				showFooter: true,
@@ -54,7 +54,7 @@ export default new Router({
 		{
 			path: '/productdatil',
 			name: 'productdatil',
-			component: productDatil,
+			component: (resolve) => require(['./views/productDatil.vue'],resolve),
 			meta: {
 				isLogin: false,
 				keepAlive: false
@@ -63,7 +63,7 @@ export default new Router({
 		{
 			path: '/login',
 			name: 'login',
-			component: Login,
+			component: (resolve) => require(['./views/Login.vue'],resolve),
 			meta: {
 				isLogin: false,
 				keepAlive: false
@@ -72,7 +72,7 @@ export default new Router({
 		{
 			path: '/cart',
 			name: 'cart',
-			component: Cart,
+			component: (resolve) => require(['./views/cart.vue'],resolve),
 			meta: {
 				title: '购物车',
 				index: 4,
@@ -83,7 +83,7 @@ export default new Router({
 		{
 			path: '/catgory',
 			name: 'catgory',
-			component: Catgory,
+			component: (resolve) => require(['./views/catgory.vue'],resolve),
 			meta: {
 				title: '分类',
 				index: 2,
@@ -95,7 +95,7 @@ export default new Router({
 		{
 			path: '/find',
 			name: 'find',
-			component: Find,
+			component: (resolve) => require(['./views/find.vue'],resolve),
 			meta: {
 				title: '发现',
 				index: 3,
@@ -106,7 +106,7 @@ export default new Router({
 		{
 			path: '/search',
 			name: 'search',
-			component: Search,
+			component: (resolve) => require(['./views/search.vue'],resolve),
 			meta: {
 				title: '搜索',
 				index: 7,
@@ -117,7 +117,7 @@ export default new Router({
 		{
 			path: '/mine',
 			name: 'mine',
-			component: Mine,
+			component: (resolve) => require(['./views/mine.vue'],resolve),
 			meta: {
 				title: '我的',
 				index: 5,
@@ -129,7 +129,7 @@ export default new Router({
 		{
 			path: '/detail/:uid',
 			name: 'detail',
-			component: Detail,
+			component: (resolve) => require(['./views/product_detail.vue'],resolve),
 			meta: {
 				title: '详情页',
 				index: 6,
