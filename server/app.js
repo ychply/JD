@@ -9,6 +9,7 @@ server.listen("3100",()=>{
 });
 
 //登录
+app.use(express.static("./dist"));
 app.get("/login",(req,res)=>{
 	  //参数:uname upwd
 	var param = req.query || req.params;
