@@ -40,11 +40,19 @@ app.get("/login",(req,res)=>{
     			res.end();
     		}else{
     			let response = result[0];
-    			console.log(response);
+//  			console.log(response);
     			if(response.user_name == uname && response.login_password == upwd){
+    				let userInfo = {
+    					'id'  : response.user_id,
+    					'name': response.user_name,
+    					'img' : response.user_photo
+    				}
+    				userInfo = JSON.stringify(userInfo);
+    				console.log(userInfo);
     				res.send({
     					status:0,
-    					msg:'恭喜，登录成功'
+    					msg:'恭喜，登录成功',
+    					userInfo:userInfo
     				});
     				res.end();
     			}else{

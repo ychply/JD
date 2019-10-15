@@ -21,6 +21,8 @@
 	</div>
 </template>
 <script>
+//	import userApi from "@/api/userApi";
+//	import { mapGetters } from "vuex";
 	export default {
 		data() {
 			return {
@@ -30,9 +32,12 @@
 				pwdType: 'password'
 			}
 		},
+//		computed: {
+//			...mapGetters(["token"])
+//		},
 		methods: {
 			childHandle() {
-//				this.$emit('parent-show', this.isShowData)
+				//				this.$emit('parent-show', this.isShowData)
 			},
 			login() {
 				let _this = this;
@@ -54,14 +59,18 @@
 				}).then(function(res) {
 					if(res.data.status === 0) {
 						_this.$toast(res.data.msg);
-						_this.$store.dispatch('setUser', true)
+                        var userInfo = JSON.parse(res.data.userInfo);
+                        _this.$store.dispatch('setToken', userInfo.id);
+                        _this.$store.dispatch('setUserInfo', userInfo)
+//                      console.log(userInfo.id)
+//                       this.$router.push({ path: this.redirect || "/" });
 						let redirect = _this.$route.query.redirect;
 						setTimeout(() => {
-							if(redirect){
-							_this.$router.push(redirect);
-						}else{
-							_this.$router.push('/home');
-						}
+							if(redirect) {
+								_this.$router.push(redirect);
+							} else {
+								_this.$router.push('/home');
+							}
 						}, 1000)
 					} else {
 						_this.$toast(res.data.msg);
@@ -85,7 +94,6 @@
 
 		},
 		created() {
-			
 
 		}
 	}

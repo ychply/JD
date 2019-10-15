@@ -6,9 +6,12 @@ import 'lib-flexible/flexible.js'
 import Vuelazyload from 'vue-lazyload'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
+//import "@/permission";
 
 
-import {store} from './store/store.js';
+
+//import {store} from './store/store.js';
+import store from "./store/index";
 import '@/assets/images/iconfont/iconfont.css'
 import "@/assets/scss";
 import "./components/plugin";
@@ -16,7 +19,7 @@ import "./components/plugin";
 //import Toast from './components/toast/index.js'
 //import '@/assets/styles/base.scss';
 //Vue.use(Toast)
-
+console.log(process.env)
 Vue.use(Vuelazyload,{
 	  preLoad: 1.3,
     error: require('./assets/images/err.png'),

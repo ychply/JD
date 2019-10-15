@@ -7,11 +7,12 @@
 				<!--<input type="text"  placeholder="请输入搜索商品..."/>-->
 				<span>请输入搜索商品...</span>
 			</router-link>
-			<router-link :to="!this.$store.getters.isLogin?'/login':'/mine'"  class="login_btn"><span v-show="!this.$store.getters.isLogin">登录</span><span v-show="this.$store.getters.isLogin">欢迎</span></router-link>
+			<router-link :to="!this.$store.getters.isLogin?'/login':'/mine'"  class="login_btn"><span v-show="token == 0">登录</span><span v-show="token != 0">{{token}}</span></router-link>
 		</div>	
 	</header>
 </template>
 <script>
+	import { mapGetters } from "vuex";
 	export default{
 		data(){
 			return{
@@ -42,6 +43,7 @@
 //			 login(){
 //              return this.$store.getters.isLogin;
 //          }
+			...mapGetters(["token"])
 		},
 //		watch(){
 //			login(val) {
