@@ -12,8 +12,8 @@
 			<span class="icon_bg"><i class="icon icongengduo "></i></span>
 		</header>
 		<div ref="main" class="product_main">
-			<div class="main_top" ref="floor1">
-				<div class="lImg">
+			<div class="main_top">
+				<div class="lImg" id="floor1">
 					<!--<img :src="item.image_url" v-for="(item,index) in listImg" :key="index" />-->
 					<swiper :options="swiperOption" class="swiper-container wrapper">
 						<swiper-slide class="slide_item" v-for='(item,index) of listImg' :key='index'>
@@ -92,7 +92,7 @@
 						</div>
 					</div>
 				</div>
-				<assess ref="floor2"></assess>
+				<assess id="floor2"></assess>
 				<div class="detail_faqbox">
 					<div class="detail_faqbox_head">
 						<div class="detail_faqbox_head_tit">问答专区</div>
@@ -103,8 +103,8 @@
 						<li><p>这款风衣好看吗？</p><span>2个回答</span></li>
 					</ul>
 				</div>
-				<pushList ref="floor3"></pushList>
-				<info ref="floor4"></info>
+				<pushList id="floor3"></pushList>
+				<info id="floor4"></info>
 			</div>
 		</div>
 		<bottom></bottom>
@@ -165,13 +165,25 @@
 				this.$router.go(-1)
 			},
 			top_scroll() {
+				let clientHeight = document.documentElement.clientHeight || document.body.clientHeight;   // 设备/屏幕高度
+//				let scrollObj = document.getElementById(div); // 滚动区域
+//		        let scrollTop = scrollObj.scrollTop; // div 到头部的距离
+//		        let scrollHeight = scrollObj.scrollHeight; // 滚动条的总高度
+		         //滚动条到底部的条件
+//          if(scrollTop+clientHeight == scrollHeight){
+//              // div 到头部的距离 + 屏幕高度 = 可滚动的总高度
+//          }  
 				let scrolled = this.$refs.main.scrollTop;
-				var floor1 = this.$refs.floor1.scrollTop;
-				var floor2 = this.$refs.floor2.scrollTop;
-				var floor3 = this.$refs.floor3.scrollTop;
-				var floor4 = this.$refs.floor4.scrollTop;
+				let floor1 = this.$refs.main.querySelector('#floor1').offsetTop;
+				let floor2 = this.$refs.main.querySelector('#floor2').offsetTop;
+				let floor3 = this.$refs.main.querySelector('#floor3').offsetTop;
+				let floor4 = this.$refs.main.querySelector('#floor4').offsetTop;
+//                 let total = jump[index].offsetTop;  
 
-				console.log(floor2)
+				console.log(floor1);
+				console.log(floor2);
+				console.log(floor3);
+				console.log(floor4);
 				if(scrolled == 0) {
 					this.topClass = 'top_bar_op0';
 				}
@@ -235,7 +247,10 @@
 			bottom,
 			pushList,
 			info
-		}
+		},
+		destroyed: function () {
+//      this.$refs.main.removeEventListener('scroll', this.top_scroll);   //  离开页面清除（移除）滚轮滚动事件
+      }
 	}
 </script>
 
