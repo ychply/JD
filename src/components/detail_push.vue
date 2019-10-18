@@ -47,7 +47,7 @@
 				let _this = this;
 				this.$http({
 					method: "get",
-					url: "/api/list",
+					url: "list",
 					data: {}
 				}).then((res) => {
 					var arr = [];

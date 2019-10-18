@@ -30,7 +30,7 @@
 		watch: {
 			parentData(val) {
 				let _this = this;
-				_this.$http.get('/api/categorygoods', {
+				_this.$http.get('categorygoods', {
 					params: {
 						mId: val[0]
 					}
@@ -48,7 +48,7 @@
 			this.scroll = new BScroll(this.$refs.cat, {
 				click: true,
 			});
-			this.$http.get('/api/categorygoods', {
+			this.$http.get('categorygoods', {
 				params: {
 					mId: 3
 				}

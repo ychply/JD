@@ -70,7 +70,7 @@
 					return false;
 				}
 
-				_this.$http.get("/api/reg", {
+				_this.$http.get("reg", {
 					params: {
 						'userName': _this.userName,
 						'userPwd': _this.userPwd,

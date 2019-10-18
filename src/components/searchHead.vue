@@ -26,7 +26,9 @@
 		   
 		},
 		mounted(){
-			this.$refs.myInput.focus();
+			if(this.$refs.myInput){
+				this.$refs.myInput.focus();
+			}
 		}
 	}
 </script>

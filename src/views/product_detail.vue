@@ -145,7 +145,7 @@
 		methods: {
 			feactData(pid) {
 				var _this = this;
-				_this.$http.get("/api/detail", {
+				_this.$http.get("detail", {
 					params: {
 						pId: pid
 					}
@@ -165,7 +165,7 @@
 				this.$router.go(-1)
 			},
 			top_scroll() {
-				let clientHeight = document.documentElement.clientHeight || document.body.clientHeight;   // 设备/屏幕高度
+//				let clientHeight = document.documentElement.clientHeight || document.body.clientHeight;   // 设备/屏幕高度
 //				let scrollObj = document.getElementById(div); // 滚动区域
 //		        let scrollTop = scrollObj.scrollTop; // div 到头部的距离
 //		        let scrollHeight = scrollObj.scrollHeight; // 滚动条的总高度
@@ -175,15 +175,22 @@
 //          }  
 				let scrolled = this.$refs.main.scrollTop;
 				let floor1 = this.$refs.main.querySelector('#floor1').offsetTop;
-				let floor2 = this.$refs.main.querySelector('#floor2').offsetTop;
-				let floor3 = this.$refs.main.querySelector('#floor3').offsetTop;
-				let floor4 = this.$refs.main.querySelector('#floor4').offsetTop;
+				let floor2 = this.$refs.main.querySelector('#floor2').offsetTop - 60;
+				let floor3 = this.$refs.main.querySelector('#floor3').offsetTop - 60;
+				let floor4 = this.$refs.main.querySelector('#floor4').offsetTop - 60;
 //                 let total = jump[index].offsetTop;  
-
-				console.log(floor1);
-				console.log(floor2);
-				console.log(floor3);
-				console.log(floor4);
+                if(scrolled > floor1){
+                	this.nav_id = 0;
+                }
+                if(scrolled > floor2){
+                	this.nav_id = 1;
+                }
+                if(scrolled > floor3){
+                	this.nav_id = 2;
+                }
+                if(scrolled > floor4){
+                	this.nav_id = 3;
+                }
 				if(scrolled == 0) {
 					this.topClass = 'top_bar_op0';
 				}

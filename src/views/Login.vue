@@ -51,7 +51,7 @@
 					_this.$refs.user_pwd.focus();
 					return false;
 				}
-				_this.$http.get("/api/login", {
+				_this.$http.get("login", {
 					params: {
 						'userName': _this.userName,
 						'userPwd': _this.userPwd

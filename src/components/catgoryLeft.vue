@@ -26,7 +26,7 @@
 		methods:{
 		    dataList(){
 		    	let _this=this;
-		    	_this.$http.get('/api/category').then((res)=>{
+		    	_this.$http.get('category').then((res)=>{
 		    		_this.tabList=res.data.reverse();	    		
 		    	}).catch((err)=>{
 		    		console.log(err);

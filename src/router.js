@@ -15,7 +15,9 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
-	mode: 'history',
+//	mode: 'history', //开发环境地址路径中的去掉#
+	mode: 'product', //打包要时不要有
+
 	routes: [{
 			path: '/',
 			redirect: '/home', //重定向到home
