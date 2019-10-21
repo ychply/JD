@@ -1,5 +1,8 @@
 <template>
-	<h1>我的</h1>
+	<div>
+		<searchHead head="search"></searchHead>
+
+	</div>
 </template>
 
 <script>

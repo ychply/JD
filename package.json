@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
       "serve": "vue-cli-service serve --mode dev",
-	  "build": "vue-cli-service build --mode prod"
+	  "build": "vue-cli-service build --no-clean --mode prod"
+		  
   },
   "dependencies": {
     "better-scroll": "^1.15.2",
