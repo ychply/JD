@@ -104,6 +104,13 @@
       "unicode_decimal": 58916
     },
     {
+      "icon_id": "1451523",
+      "name": "设置",
+      "font_class": "shezhi",
+      "unicode": "e6ed",
+      "unicode_decimal": 59117
+    },
+    {
       "icon_id": "1687292",
       "name": "置顶",
       "font_class": "ziyuan",

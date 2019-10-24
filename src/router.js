@@ -15,8 +15,8 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
-//	mode: 'history', //开发环境地址路径中的去掉#//打包要时不要有
-	mode: 'hash', 
+	mode: 'history', //开发环境地址路径中的去掉#//打包要时不要有
+//	mode: 'hash', 
 
 	routes: [{
 			path: '/',

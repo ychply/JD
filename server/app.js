@@ -8,6 +8,22 @@ server.listen("3100",()=>{
 	console.log("正在监听3100端口");
 });
 
+
+//解决打包后路由	mode: 'history',点击刷新后404   引入connect-history-api-fallback解决
+const history = require('connect-history-api-fallback');
+//app.use(history({
+//rewrites: [
+//{ from: /^\/wap\/.*$/, to: '/index.html' }//这个是正确方式
+//]
+//}));
+
+app.use(history({
+    // index:"index.html",->index属性默认值为指向index.html
+    htmlAcceptHeaders: ['text/html', 'application/xhtml+xml']
+}));
+
+
+
 //登录
 app.use(express.static("./dist"));
 app.get("/login",(req,res)=>{
