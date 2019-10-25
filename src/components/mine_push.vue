@@ -13,6 +13,12 @@
 				</router-link>
 			</ul>
 		</section>
+	    <ul class="common_links">
+	    	<li><span>yang15766633241</span></li>
+	    	<li><span>退出</span></li>
+	    	<li><span>客户服务</span></li>
+	    	<li><span>返回顶部</span></li>
+	    </ul>
 	</div>
 </template>
 
@@ -48,70 +54,51 @@
 </script>
 
 <style lang="scss" scoped="scoped">
-	.product_box {
-		width: 640px;
-		margin-top: 20px;
-	}
-	
-	.product_top {
+.common_links{
+	border-top: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+	width:100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	height: 110px;
+	background-color:#fff;
+	margin-top:20px;
+	li{
+		height: 100%;
+		width:25%;
 		display: flex;
-		flex-direction: row;
-		justify-content: flex-start;
-		width: 100%;
-		height: 36px;
-		padding-bottom: 3px;
-		border-bottom: 2px solid #999;
-	}
-	
-	.product_top img.miaosha_icon {
-		display: block;
-		width: 80px;
-		height: 35px;
-		margin-right: 8px;
-	}
-	
-	.product_top .time {
-		margin-left: 8px;
-		display: block;
-		height: 20px;
-		font-size: 12px;
-		color: #999;
-		margin-bottom: 3px;
-		align-self: flex-end;
-	}
-	
-	.product_main {
-		background: white;
-		margin-top: 6px;
-		width: 100%;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-	}
-	
-	.product_main .product_main_item {
-		flex: 1;
-		padding-top: 6px;
-		display: flex;
-		flex-direction: column;
 		align-items: center;
+		padding:0 20px;
+		font-size:22px;
+		color:#666;
+		position: relative;
+		&:after{
+			content: "";
+			display: block;
+			width:1px;
+			height: 30px;
+			position: absolute;
+			top:50%;
+			transform: translateY(-50%);
+			right:0px;
+			background-color:#d7d7d7;
+			z-index: 3;
+		}
+		&:last-child:after{
+			display: none;
+		}
+		span{
+			width: 100%;
+			overflow: hidden;
+		    white-space: nowrap;
+		    text-overflow: ellipsis;
+		    font-size:22px;
+		    color:#666;
+		}
 	}
-	
-	.product_main .product_main_item .pro_icon {
-		display: block;
-		margin: 0 auto;
-		width: 120px;
-		height: 100px;
-	}
-	
-	.product_main .product_main_item .price {
-		color: red;
-	}
-	
-	.product_main .product_main_item .uprice {
-		color: #666;
-		text-decoration: line-through;
-	}
+}
+
 	/*商品*/
 	
 	.idx_main {
@@ -125,11 +112,15 @@
 			justify-content: flex-start;
 			flex-wrap: wrap;
 			li {
-				width: 300px;
-				height: 400px;
-				margin-right: 20px;
+				width: 310px;
+				height: 420px;
 				background-color: $color_fff;
-				margin-bottom: 10px;
+				padding:20px;
+				border-right:1px solid #f7f7f7;
+				border-bottom:1px solid #f7f7f7;
+				&:nth-child(2n){
+				border-right:none;
+			}
 				.imgs {
 					display: block;
 					width: 100%;

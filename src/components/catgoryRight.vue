@@ -104,13 +104,14 @@
 		flex-wrap: wrap;
 		padding: 10px 10px 100px 10px;
 		li {
-			width: 157px;
+			width: 156px;
 			height: 180px;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
 			margin-right: 10px;
 			margin-bottom: 15px;
+			overflow:hidden; 
 			&:nth-child(3n) {
 				margin-right: 0;
 			}

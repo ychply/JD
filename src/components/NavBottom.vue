@@ -107,8 +107,9 @@
 		display: flex;
 		height: 7vh;
 		color: $color_text;
-		box-shadow: 0 3px 14px 2px rgba(0, 0, 0, .12);
-		background-color: $color_background;
+/*		box-shadow: 0 3px 14px 2px rgba(0, 0, 0, .12);*/	
+	    background-color: $color_background;
+		box-shadow: 0 0 20px 0 hsla(0,6%,58%,.6);
 		li {
 			height: 100%;
 			display: flex;

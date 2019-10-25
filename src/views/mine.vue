@@ -1,10 +1,11 @@
 <template>
 	<div class="m_mine">
-		<div class="cmm_header">
+		<!--<div class="cmm_header">
 			<span @click="_back" class="span"><i class="icon iconarrow-l fwb"></i></span>
 			<span class="cmm_title">我的京东</span>
 			<span class="span"><i class="icon icongengduo "></i></span>
-		</div>
+		</div>-->
+		<headTitle message="我的京东"></headTitle>
 		<div class="header_con">
 			<div class="my_header shadow">
 				<div class="user_info">
@@ -115,6 +116,7 @@
 </template>
 <script>
 	import mineList from "../components/mine_push.vue"
+	import headTitle from "../components/head_title.vue"
 	export default {
 		data() {
 			return {
@@ -170,12 +172,11 @@
 			}
 		},
 		methods:{
-			_back() {
-				this.$router.go(-1)
-			}
+			
 		},
 		components:{
-			mineList
+			mineList,
+			headTitle
 		}
 	
 	}
@@ -574,31 +575,6 @@
 	.m_mine {
 		width: 100%;
 		background-color: #f7f7f7;
-		padding-bottom:100px;
-	}
-	
-	.cmm_header {
-		width: 100%;
-		height: 70px;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding:0 15px;
-		.cmm_title{
-			font-size:26px;
-			color:$color_333;
-		}
-		.span{
-			width: 45px;
-			height: 45px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			i{
-				font-size: 30px;
-			color: $color_333;
-			}
-			
-		}
+		padding-bottom:80px;
 	}
 </style>
