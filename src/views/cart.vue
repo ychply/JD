@@ -50,7 +50,7 @@
 .mod_blockTips{
 	width:100%;
 	background-color:#fdf0f0;
-	color:#e93b3d;
+	color:#e93b3d; 
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -81,12 +81,10 @@
 	.btn{
 		font-size: 24px;
 		color:#222;
-		
 	}
 }
 .m_cart{
 	background-color:#fff;
-	
 }
 
 </style>
