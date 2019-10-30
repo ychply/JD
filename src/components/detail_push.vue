@@ -6,9 +6,9 @@
 				<swiper-slide v-for='(item,index) of productList' :key='index'>
 					<ul class="slide_item">
 						<li class="list_item" v-for='(li_item,index1) of item' :key='index1'>
-							<img class="swiper-lazy" :data-src="li_item.product_img_url" alt="" />
-							<div class="swiper-lazy-preloader"></div>
-							<p class="price">¥<span class="int">{{li_item.product_price}}</span>.00</p>
+							<img :src="li_item.product_img_url" alt="" />
+<!--							<div class="swiper-lazy-preloader"></div>
+-->							<p class="price">¥<span class="int">{{li_item.product_price}}</span>.00</p>
 						</li>
 					</ul>
 				</swiper-slide>
@@ -35,8 +35,8 @@
 					//滑动速度
 					speed: 300,
 					// delay:1000
-					grabCursor: true,
-					lazy: true,
+					grabCursor: true
+//					lazy: true,
 
 				},
 				productList: []

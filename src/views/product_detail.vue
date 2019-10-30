@@ -3,7 +3,7 @@
 		<header class="top_bar" :class="topClass">
 			<span @click="_back" class="icon_bg"><i class="icon iconarrow-l fwb"></i></span>
 			<ul class="nav_list">
-				<li :class="{'active':nav_id==index}" v-for="(item,index) of nav" :key="index"><i class="icon icondingwei"></i> {{item}}</li>
+				<li :class="{'active':nav_id==index}" :data-floor="index" @click="nav_click($event,index)" v-for="(item,index) of nav" :key="index"><i class="icon icondingwei"></i> {{item}}</li>
 				<!--<li><i class="icon icondingwei"></i> 商品</li>
 				<li><i class="icon icondingwei"></i> 评价</li>
 				<li><i class="icon icondingwei"></i> 详情</li>
@@ -164,6 +164,13 @@
 			_back() {
 				this.$router.go(-1)
 			},
+			nav_click(event,index){
+				var floor = event.target.dataset.floor;
+				floor++;
+				var floor_st = this.$refs.main.querySelector('#floor'+floor).offsetTop;
+				this.$refs.main.scrollTop = floor_st-40;
+				
+            },
 			top_scroll() {
 //				let clientHeight = document.documentElement.clientHeight || document.body.clientHeight;   // 设备/屏幕高度
 //				let scrollObj = document.getElementById(div); // 滚动区域
