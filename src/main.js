@@ -19,7 +19,7 @@ import "./components/plugin";
 //import Toast from './components/toast/index.js'
 //import '@/assets/styles/base.scss';
 //Vue.use(Toast)
-console.log(process.env)
+console.log(process.env.BASE_URL)
 Vue.use(Vuelazyload,{
 	  preLoad: 1.3,
     error: require('./assets/images/err.png'),
@@ -29,8 +29,9 @@ Vue.use(Vuelazyload,{
 })
 
 axios.defaults.timeout = 5000; // 请求超时
-axios.defaults.baseURL = '/api/' ;//开发环境的，跨域的请求
+//axios.defaults.baseURL = '/api/' ;//开发环境的，跨域的请求
 //axios.defaults.baseURL = '/' ;//打包后的，不跨域的请求
+axios.defaults.baseURL = process.env.BASE_URL;
 Vue.config.productionTip = false;
 Vue.prototype.$http=axios;
 Vue.use(VueAwesomeSwiper, /* { default global options } */)
