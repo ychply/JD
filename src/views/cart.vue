@@ -18,7 +18,9 @@
 		</div>
 		<ul class="cart_list">
 			<li>
-				<i class="icon icontishi"></i>
+				<div class="span1">
+					<i class="icon iconchoose"></i>
+				</div>
 				<div class="imgs">
 					<img src="" alt="" />
 				</div>
@@ -76,6 +78,10 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			i{
+				font-size: 38px;
+				color:#ccc;
+			}
 		}
 		.imgs{
 			width:200px;
