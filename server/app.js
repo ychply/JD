@@ -17,7 +17,7 @@ const history = require('connect-history-api-fallback');
 //]
 //}));
 
-app.use(history({
+app.use(history({//vue中路由生效
     // index:"index.html",->index属性默认值为指向index.html
     htmlAcceptHeaders: ['text/html', 'application/xhtml+xml']
 }));
@@ -145,6 +145,36 @@ app.get('/category',(req,res)=>{
 	})
 	
 })
+//购物车数据
+app.get('/cart',(req,res)=>{
+	let user_id = req.query.userId;
+	console.log(user_id);
+	let sql = `select a.goods_num,a.cart_id,a.product_id,b.user_id,c.product_name,c.product_price,c.product_uprice,c.product_img_url,c.shop_id from goods_cart a left join user b on a.user_id = b.user_id 
+	left join product c on a.product_id = c.product_id
+where a.user_id ='${user_id}'`;
+//	let sql=`select * from product where product_id=(select product_id from goods_cart where user_id ='${user_id}')`;
+	pool.query(sql,(err,result)=>{
+		if(err)throw err;
+		res.json(result);
+//		console.log(result);
+	})
+})
+//购物车数量加
+app.get('/cartAdd',(req,res)=>{
+	let cart_id = req.query.cartId;
+	let sql = `select a.goods_num,a.cart_id,a.product_id,b.user_id,c.product_name,c.product_price,c.product_uprice,c.product_img_url,c.shop_id from goods_cart a left join user b on a.user_id = b.user_id 
+	left join product c on a.product_id = c.product_id
+where a.user_id ='${user_id}'`;
+//	let sql=`select * from product where product_id=(select product_id from goods_cart where user_id ='${user_id}')`;
+	pool.query(sql,(err,result)=>{
+		if(err)throw err;
+		res.json(result);
+//		console.log(result);
+	})
+})
+
+
+
 //分类页右边数据
 app.get("/categorygoods",(req,res)=>{
 	let mId=req.query.mId;

@@ -16,40 +16,46 @@
 				<i class="icon icontishi"></i><i class="btn_inline">凑单免运费</i><i class="btn_inline">优惠券</i>
 			</span>
 		</div>
-		<ul class="cart_list">
-			<li>
-				<div class="span1">
-					<i class="icon iconchoose"></i>
-				</div>
-				<div class="imgs">
-					<img src="" alt="" />
-				</div>
-				<div class="content">
-					
-				</div>
-			</li>
-		</ul>
+		<div class="cart_list">
+			<cartitem v-for="(item,index) in cart" :key="index" :goods="item" ></cartitem>
+		</div>
 	</div>
 
 </template>
 
 <script>
 	import headTitle from "../components/head_title.vue"
+	import cartitem from "../components/cartItem.vue"
 	export default {
 		data() {
-			return {}
+			return {
+				cart:[]
+			}
 		},
 		methods: {
 
 		},
+		created(){
+					this.$http.get('cart', {
+				params: {
+					userId: 3
+				}
+			}).then((res) => {
+				this.cart = res.data;
+//				console.log(res.data)
+			}).catch((err) => {
+				console.log(err);
+			})
+		},
 		mounted() {
-
+	
 		},
 		computed: {
 
 		},
 		components: {
-			headTitle
+			headTitle,
+			cartitem
 		}
 		//		watch(){
 		//			login(val) {
@@ -62,38 +68,7 @@
 <style lang="scss" scoped="scoped">
 .cart_list{
 	width:100%;
-	li{
-		width:100%;
-		height: 270px;
-		display: flex;
-		justify-content: flex-start;
-		background-color: #fff;
-		.content{
-			flex: 1;
-			
-		}
-		.span1{
-			width:100px;
-			height: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			i{
-				font-size: 38px;
-				color:#ccc;
-			}
-		}
-		.imgs{
-			width:200px;
-			height: 200px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			img{
-				max-width: 100%;
-			}
-		}
-	}
+	
 }
 .head_wrap{
 	display: flex;
