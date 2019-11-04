@@ -19,8 +19,13 @@
 		<div class="cart_list">
 			<cartitem v-for="(item,index) in cart" :key="index" :goods="item" ></cartitem>
 		</div>
+		<div class="fixBar">
+			<div class="all_select">
+				<i class="icon iconchoose"></i>
+				<span>全选</span>
+			</div>
+		</div>
 	</div>
-
 </template>
 
 <script>
@@ -66,9 +71,50 @@
 </script>
 
 <style lang="scss" scoped="scoped">
+.fixBar{
+	width:100%;
+	height: 90px;
+	position: fixed;
+	bottom:0;
+	left:0;
+	right:0;
+	margin:0 auto;
+	background: hsla(0,0%,100%,.95);
+	padding-bottom: env(safe-area-inset-bottom);
+	z-index: 120;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	&:before{
+	    content: "";
+	    position: absolute;
+	    z-index: 1;
+	    pointer-events: none;
+	    background-color: #ddd;
+	    height: 1px;
+	    left: 0;
+	    right: 0;
+	    top: 0;
+	}
+	.all_select{
+		display:flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		width:100px;
+		i{
+			font-size:38px;
+			color:#ccc;
+		}
+		span{
+			font-size:24px;
+			color:#aaa;
+		}
+	}
+}
 .cart_list{
 	width:100%;
-	
+	background-color:#f7f7f7;
 }
 .head_wrap{
 	display: flex;

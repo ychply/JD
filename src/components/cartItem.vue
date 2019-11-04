@@ -21,6 +21,9 @@
 				</div>-->
 				<setnumber :number="goods.goods_num" :min-number="1" :max-number="999" @on-minus="onMinus"  @on-add="onAdd"></setnumber>
 			</div>	
+			<div class="m_action">
+				<span>移入关注</span><span>删除</span>
+			</div>
 		</div>
 	</div>
 </template>
@@ -79,6 +82,24 @@
 </script>
 
 <style lang="scss" scoped="scoped">
+.m_action{
+	width:100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin-top:20px;
+	span{
+		font-size:20px;
+		color:#999;
+		display: block;
+		height: 36px;
+		line-height: 36px;
+		letter-spacing:2px; 
+		&:last-child{
+			margin-left:20px;
+		}
+	}
+}
 .price_line{
 	width:100%;
 	height: 40px;
@@ -136,10 +157,12 @@
 }
 	.cart_item{
 		width:100%;
-		height: 270px;
+		min-height: 270px;
 		display: flex;
 		justify-content: flex-start;
 		background-color: #fff;
+		margin-bottom:30px;
+		padding:20px 0;
 		.content{
 			flex: 1;
 			margin:0 15px;
