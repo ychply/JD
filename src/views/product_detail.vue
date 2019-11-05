@@ -108,6 +108,7 @@
 			</div>
 		</div>
 		<bottom></bottom>
+		<popupMain></popupMain>
 	</div>
 </template>
 <script>
@@ -115,6 +116,7 @@
 	import bottom from "../components/detail_footer.vue"
 	import pushList from "../components/detail_push.vue"
 	import info from "../components/detail_info.vue"
+	import popupMain from "../components/popupMain.vue"
     import BScroll from 'better-scroll';
 	export default {
 		data() {
@@ -260,7 +262,8 @@
 			assess,
 			bottom,
 			pushList,
-			info
+			info,
+			popupMain
 		},
 		destroyed: function () {
 //      this.$refs.main.removeEventListener('scroll', this.top_scroll);   //  离开页面清除（移除）滚轮滚动事件

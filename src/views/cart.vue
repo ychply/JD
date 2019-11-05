@@ -17,13 +17,18 @@
 			</span>
 		</div>
 		<div class="cart_list">
-			<cartitem v-for="(item,index) in cart" :key="index" :goods="item" ></cartitem>
+			<cartitem v-for="(item,index) in cart" :key="index" :goods="item" @getlist="getList"></cartitem>
 		</div>
 		<div class="fixBar">
 			<div class="all_select">
 				<i class="icon iconchoose"></i>
 				<span>全选</span>
 			</div>
+			<div class="total">
+				<p class="t_main">总计:<span>￥4900.01</span></p>
+				<p class="t_tip">已优惠¥50.00</p>
+			</div>
+			<div class="buy">去结算<span class="num">(9件)</span></div>
 		</div>
 	</div>
 </template>
@@ -38,19 +43,21 @@
 			}
 		},
 		methods: {
-
+			getList(){
+				this.$http.get('cart', {
+					params: {
+						userId: 3
+					}
+				}).then((res) => {
+					this.cart = res.data;
+	//				console.log(res.data)
+				}).catch((err) => {
+					console.log(err);
+				})
+				}
 		},
 		created(){
-					this.$http.get('cart', {
-				params: {
-					userId: 3
-				}
-			}).then((res) => {
-				this.cart = res.data;
-//				console.log(res.data)
-			}).catch((err) => {
-				console.log(err);
-			})
+			this.getList();
 		},
 		mounted() {
 	
@@ -73,7 +80,7 @@
 <style lang="scss" scoped="scoped">
 .fixBar{
 	width:100%;
-	height: 90px;
+	height: 86px;
 	position: fixed;
 	bottom:0;
 	left:0;
@@ -85,6 +92,50 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	.total{
+		flex: 1;
+		padding-right:36px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: flex-end;
+		.t_main{
+			width:100%;
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			font-size: 26px;
+			color:#333;
+			font-weight: bold;
+			span{
+				color:#f2270c;
+			}
+		}
+		.t_tip{
+			color:#999;
+			letter-spacing: 1px;
+		}
+	}
+	.buy{
+		width:190px;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color:#f2270c;
+		background-image: linear-gradient(135deg,#f2140c,#f2270c 70%,#f24d0c);
+		background-image: -webkit-linear-gradient(315deg,#f2140c,#f2270c 70%,#f24d0c);
+		color: #fff;
+		border-radius: 4px;
+		font-weight: 700;
+		flex-shrink: 0;
+		font-size: 28px;
+		letter-spacing: 2px;
+		span{
+			font-size: 20px;
+			font-weight: normal;
+		}
+	}
 	&:before{
 	    content: "";
 	    position: absolute;
@@ -115,6 +166,7 @@
 .cart_list{
 	width:100%;
 	background-color:#f7f7f7;
+	padding-bottom:40px;
 }
 .head_wrap{
 	display: flex;

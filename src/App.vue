@@ -68,7 +68,7 @@
 	
 	body {
 		font-size: 14px;
-		font-family: "Microsoft YaHei" sans-serif;
+		font-family: -apple-system,Helvetica,sans-serif;
 		color: #000;
 	}
 	

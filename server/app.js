@@ -2,12 +2,17 @@ const pool=require("./pool");
 const user=require("./user");
 const http=require("http");
 const express=require("express");
+const bodyParser=require("body-parser"); //接收post过来的数据
+
 let app=express();
 let server=http.createServer(app);
 server.listen("3100",()=>{
 	console.log("正在监听3100端口");
 });
 
+
+app.use(bodyParser.json());//接收post过来的数据
+app.use(bodyParser.urlencoded({ extended: false })); //接收post过来的数据
 
 //解决打包后路由	mode: 'history',点击刷新后404   引入connect-history-api-fallback解决
 const history = require('connect-history-api-fallback');
@@ -87,7 +92,6 @@ app.get("/login",(req,res)=>{
 app.get("/reg",(req,res)=>{
 	  //参数:uname upwd
 	var param = req.query || req.params;
-	console.log(param);
     let uname = param.userName;
     let upwd  = param.userPwd;
     let upwd1  = param.userPwd1;
@@ -159,22 +163,53 @@ where a.user_id ='${user_id}'`;
 //		console.log(result);
 	})
 })
-//购物车数量加
-app.get('/cartAdd',(req,res)=>{
-	let cart_id = req.query.cartId;
-	let sql = `select a.goods_num,a.cart_id,a.product_id,b.user_id,c.product_name,c.product_price,c.product_uprice,c.product_img_url,c.shop_id from goods_cart a left join user b on a.user_id = b.user_id 
-	left join product c on a.product_id = c.product_id
-where a.user_id ='${user_id}'`;
-//	let sql=`select * from product where product_id=(select product_id from goods_cart where user_id ='${user_id}')`;
-	pool.query(sql,(err,result)=>{
-		if(err)throw err;
-		res.json(result);
+//购物车数量加减
+app.post('/updataCartNum',(req,res)=>{
+		let cart_id = req.body.cartId;
+		let updata_type = req.body.updataType;
+		let cart_num = req.body.cartNum;
+		let sql = `UPDATE goods_cart SET goods_num='${cart_num}' WHERE cart_id ='${cart_id}'`;
+    	pool.query(sql,(err,result)=>{
+			if(err)throw err;
+			if(result.affectedRows > 0){
+				res.send({
+    					status:1,
+    					msg:'恭喜你，修改成功了！'
+    				});
+    			res.end();
+			}else{
+			res.send({
+    					status:1,
+    					msg:'很遗憾，修改失败了！'
+    				});
+    			res.end();
+			}
+//		res.json(result);
 //		console.log(result);
 	})
 })
-
-
-
+//购物车商品删除
+app.get("/delCart",(req,res)=>{
+	let cart_id = req.query.cartId;
+	console.log(cart_id);
+	let sql = `DELETE from goods_cart WHERE cart_id ='${cart_id}'`;
+	pool.query(sql,(err,result)=>{
+		if(err)throw err;
+		if(result.affectedRows > 0){
+			res.send({
+					status:1,
+					msg:'恭喜你，修改成功了！'
+				});
+			res.end();
+			}else{
+			res.send({
+						status:1,
+						msg:'很遗憾，修改失败了！'
+					});
+				res.end();
+			}
+	})
+})
 //分类页右边数据
 app.get("/categorygoods",(req,res)=>{
 	let mId=req.query.mId;
@@ -196,7 +231,7 @@ app.get('/detail',(req,res)=>{
     pool.query(imagesStr,(err,imgData)=>{
     	if(err){
     		console.error(err);
-             res.status(500).send('database err').end();
+            res.status(500).send('database err').end();
     	}else{
     		proData.push(imgData);
     		pool.query(productStr,(err,data)=>{
@@ -210,5 +245,4 @@ app.get('/detail',(req,res)=>{
     		})
     	}
     })
-	
 })

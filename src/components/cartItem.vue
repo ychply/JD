@@ -22,7 +22,7 @@
 				<setnumber :number="goods.goods_num" :min-number="1" :max-number="999" @on-minus="onMinus"  @on-add="onAdd"></setnumber>
 			</div>	
 			<div class="m_action">
-				<span>移入关注</span><span>删除</span>
+				<span>移入关注</span><span @click="delCart">删除</span>
 			</div>
 		</div>
 	</div>
@@ -47,17 +47,36 @@
 			}
 		},
 		methods:{
+			updataCart(num){
+				this.$http.post('updataCartNum',{cartId:this.cart_id,cartNum:num}).then((res)=>{
+	        	console.log(res.data.msg)
+		        }).catch((err)=>{
+		        	console.log(err)
+		        })
+			},
 			onMinus () {
 		        this.goods.goods_num--;
+				this.updataCart(this.goods.goods_num);
 		      },
 		      onAdd () {
 		        this.goods.goods_num++;
-		        console.log(this.goods)
+		        this.updataCart(this.goods.goods_num);
+		      },
+		      delCart(){
+		      	this.$http.get('delCart',{
+					params: {
+						'cartId': this.cart_id
+					}}).then((res)=>{
+						this.$emit('getlist');
+	        		console.log(res)
+		        }).catch((err)=>{
+		        	console.log(err)
+		        })
 		      }
 	      
 		},
 		mounted(){
-			
+
 		},
 		computed:{
 			price_p1: function(){
@@ -68,6 +87,9 @@
 				let price = this.goods.product_uprice.toFixed(2);
 				let p = price.toString().split('.');
 				return p[1]
+			},
+			cart_id: function(){
+				return this.goods.cart_id;
 			}
 		},
 		components: {
@@ -97,6 +119,16 @@
 		letter-spacing:2px; 
 		&:last-child{
 			margin-left:20px;
+			position: relative;
+			&:before{
+				content: "";
+			    width:1px;
+			    height: 18px;
+			    background-color:#e5e5e5;
+			    position: absolute;
+			    top:6px;
+			    left:-11px;
+			}
 		}
 	}
 }
