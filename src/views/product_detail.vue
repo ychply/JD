@@ -107,8 +107,8 @@
 				<info id="floor4"></info>
 			</div>
 		</div>
-		<bottom></bottom>
-		<popupMain></popupMain>
+		<bottom @showCartPop="showCart"></bottom>
+		<popupMain :popType="popType" @hidePop="showCart"></popupMain>
 	</div>
 </template>
 <script>
@@ -141,10 +141,19 @@
 				listData: [],
 				topClass: "top_bar_op0",
 				nav:['商品','评价','推荐','详情'],
-				nav_id:0
+				nav_id:0,
+				popType:'false'
 			}
 		},
 		methods: {
+			showCart(type){
+				if(type == 'true'){
+					ModalHelper.afterOpen();
+				}else{
+					ModalHelper.beforeClose();
+				}
+				this.popType = type;
+			},
 			feactData(pid) {
 				var _this = this;
 				_this.$http.get("detail", {

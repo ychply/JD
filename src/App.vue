@@ -71,6 +71,10 @@
 		font-family: -apple-system,Helvetica,sans-serif;
 		color: #000;
 	}
+	body.dialog-open {
+	  position: fixed;
+	  width: 100%;
+	}
 	
 	a {
 		text-decoration: none;

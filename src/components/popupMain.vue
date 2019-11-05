@@ -1,6 +1,6 @@
 <template>
-	<div class="pop_box">
-		<div class="pop_bg"></div>
+	<div class="pop_box" :class="{'hide' : popType == 'false'}">
+		<div class="pop_bg" @click="hide"></div>
 		<div class="main">
 			<div class="header">
 				<div class="imgs"><img src="//m.360buyimg.com/mobilecms/s750x750_jfs/t1/82878/35/14523/106345/5dc01aacEbec8d015/9fc46c371462c0eb.jpg!q80.dpg.webp" alt="" /></div>
@@ -8,7 +8,7 @@
 					<p class="p1">￥<em>1888</em>.00</p>
 					<p class="p2"><em>已选</em> 碳纤黑,6GB 128GB,1个</p>
 				</div>
-				<div class="close"><i class="icon iconcuo"></i></div>
+				<div class="close" @click="hide"><i class="icon iconcuo"></i></div>
 			</div>
 			<div class="body" ref="body_main">
 				<div class="scroll_body">
@@ -33,7 +33,7 @@
 							<span class="guide">服务介绍 <i class="icon iconarrow-r"></i></span>
 						</div>
 						<ul class="items">
-							<li class="active">
+							<li class="">
 								<div class="type"><span>京享无忧2年<i class="discount">原厂物料+保值</i></span><span class="price">¥169.00</span></div>
 								<div class="content">原厂物料2年全保修+回收换新补贴</div>
 							</li>
@@ -49,25 +49,44 @@
 					</div>
 					<div class="service">
 						<div class="title">
-							<span class="name">全面保障</span>
+							<span class="name">只换不修</span>
 							<span class="guide">服务介绍 <i class="icon iconarrow-r"></i></span>
 						</div>
 						<ul class="items">
-							<li class="active">
-								<div class="type"><span>京享无忧2年<i class="discount">原厂物料+保值</i></span><span class="price">¥169.00</span></div>
-								<div class="content">原厂物料2年全保修+回收换新补贴</div>
+							<li class="">
+								<div class="type"><span>3年免费换新<i class="discount">履约再赠换新</i></span><span class="price">¥169.00</span></div>
+								<div class="content">三包故障，享JD免费换机一次</div>
 							</li>
 							<li class="">
-								<div class="type"><span>全保修3年</span><span class="price">¥159.00</span></div>
-								<div class="content">三包硬件+碎屏溅液等故障全保修</div>
+								<div class="type"><span>2年免费换新</span><span class="price">¥159.00</span></div>
+								<div class="content">三包故障，享JD免费换机一次</div>
 							</li>
 							<li class="">
-								<div class="type"><span>全保修2年</span><span class="price">¥139.00</span></div>
-								<div class="content">三包硬件+碎屏溅液等故障全保修</div>
+								<div class="type"><span>2年意外换新</span><span class="price">¥139.00</span></div>
+								<div class="content">意外硬件故障80%限额内换新</div>
+							</li>
+						</ul>
+					</div>
+					<div class="service">
+						<div class="title">
+							<span class="name">延长保障</span>
+							<span class="guide">服务介绍 <i class="icon iconarrow-r"></i></span>
+						</div>
+						<ul class="items">
+							<li class="">
+								<div class="type"><span>5年享质保<i class="discount">原厂物料</i></span><span class="price">¥169.00</span></div>
+								<div class="content">厂保延长至5年 免费原厂维修</div>
+							</li>
+							<li class="">
+								<div class="type"><span>2年享质保<i class="discount">原厂物料</i></span><span class="price">¥159.00</span></div>
+								<div class="content">厂保延长至2年 免费原厂维修</div>
 							</li>
 						</ul>
 					</div>
 				</div>
+			</div>
+			<div class="btns">
+				<div class="popupConfirm">确认</div>
 			</div>
 		</div>
 	</div>
@@ -77,7 +96,7 @@
 	import setnumber from "../components/number.vue"
 	export default {
 		props: {
-
+			popType:String
 		},
 		data() {
 			return {
@@ -85,6 +104,9 @@
 			}
 		},
 		methods: {
+			hide(){
+				this.$emit('hidePop','false')
+			},
 			onMinus() {
 				this.p_number--;
 			},
@@ -99,7 +121,7 @@
 			}
 		},
 		mounted() {
-
+               console.log(this.popType)
 		},
 		computed: {
 
@@ -242,7 +264,9 @@
 			width: 68px;
 		}
 	}
-	
+	.hide{
+		display: none;
+	}
 	.pop_box {
 		position: fixed;
 		top: 0;
@@ -277,6 +301,26 @@
 			z-index: 115;
 			display: flex;
 			flex-direction: column;
+			.btns{
+				width:100%;
+				height: 88px;
+				position: absolute;
+				bottom:0;
+				left:0;
+				right:0;
+				.popupConfirm{
+					width:100%;
+					height: 100%;
+					background: -webkit-linear-gradient(131deg,#ff4f18,#ff2000 24%,#f10000);
+				    background: linear-gradient(-41deg,#ff4f18,#ff2000 24%,#f10000);
+				    display: flex;
+				    justify-content: center;
+				    align-items: center;
+				    color:#fff;
+				    font-size:28px;
+				    letter-spacing: 4px;
+				}
+			}
 			.body {
 				position: absolute;
 				top: 150px;

@@ -15,8 +15,8 @@
 			</a>
 		</div>
 		<div class="fot_right">
-			<a href="#">加入购物车</a>
-			<a href="#">立即购买</a>
+			<a href="javascript:;" @click="addCart">加入购物车</a>
+			<a href="javascript:;">立即购买</a>
 		</div>
 	</div>
 </template>
@@ -27,7 +27,11 @@
 
 			}
 		},
-		methods: {},
+		methods: {
+			addCart(){
+				this.$emit('showCartPop','true')
+			}
+		},
 		components: {
 
 		},
