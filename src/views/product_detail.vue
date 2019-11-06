@@ -108,7 +108,7 @@
 			</div>
 		</div>
 		<bottom @showCartPop="showCart"></bottom>
-		<popupMain :popType="popType" @hidePop="showCart" :info_data="listData"></popupMain>
+		<popupMain :popType="popType" @hidePop="showCart" :info_data="listData" v-if='listData.length'></popupMain>
 	</div>
 </template>
 <script>
@@ -251,11 +251,13 @@
 					this.feactData(categotyId);
 				}
 			}
+			
 		},
 		created() {
 			//console.log(this.$route.params.uid);
-
-			this.feactData(this.$route.params.uid);
+			this.$nextTick(() => {
+				this.feactData(this.$route.params.uid);
+			})
 //			console.log(this.listData);
 		},
 		mounted() {
@@ -264,6 +266,7 @@
 //			this.scroll = new BScroll(this.$refs.main, {
 //					    click: true,
 //					  });
+
 		},
 		components: {
 			assess,

@@ -38,6 +38,7 @@ module.exports = {
       //baseUrl 从 Vue CLI 3.3 起已弃用，请使用publicPath
     //baseUrl: process.env.NODE_ENV === "production" ? "./" : "/",
     publicPath: process.env.NODE_ENV === "prod" ? "./" : "/",
+    // publicPath: "/", // history模式打包用
     // outputDir: 在npm run build 或 yarn build 时 ，生成文件的目录名称（要和baseUrl的生产环境路径一致）
     outputDir: "dist",
     //用于放置生成的静态资源 (js、css、img、fonts) 的；（项目打包之后，静态资源会放在这个文件夹下）
@@ -98,8 +99,8 @@ module.exports = {
 	devServer: {
 		disableHostCheck: true, //内网穿透
 		port: 8088, // 端口号
-		host: '192.168.1.210',
-//		  host: '192.168.1.4',
+//		host: '192.168.1.210',
+		  host: '192.168.1.4',
 		//  host: '127.0.0.1',
 
 		https: false, // https:{type:Boolean}
@@ -107,8 +108,8 @@ module.exports = {
 //		 proxy: 'http://localhost:4000' // 配置跨域处理,只有一个代理
 		proxy: {
 			'/api': {
-//				target: 'http://192.168.1.4:3100/',
-				target: 'http://192.168.1.210:3100/',
+				target: 'http://192.168.1.4:3100/',
+//				target: 'http://192.168.1.210:3100/',
 				ws: true,// 是否启用websockets
 				changeOrigin: true,//开启代理：在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
 				pathRewrite: {

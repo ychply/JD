@@ -3,7 +3,7 @@
 		<div class="pop_bg" @click="hide"></div>
 		<div class="main">
 			<div class="header">
-				<div class="imgs"><img src="//m.360buyimg.com/mobilecms/s750x750_jfs/t1/82878/35/14523/106345/5dc01aacEbec8d015/9fc46c371462c0eb.jpg!q80.dpg.webp" alt="" /></div>
+				<div class="imgs"><img :src="info_data[0].product_img_url" alt="" /></div>
 				<div class="header_con">
 					<p class="p1">￥<em>1888</em>.00</p>
 					<p class="p2"><em>已选</em> 碳纤黑,6GB 128GB,1个</p>
@@ -102,7 +102,8 @@
 		props:['popType','info_data'],
 		data() {
 			return {
-				p_number: 1
+				p_number: 1,
+				list: []
 			}
 		},
 		methods: {
@@ -126,7 +127,7 @@
 			}
 		},
 		mounted() {
-           console.log(this.info_data);
+            console.log(this.info_data[0])
 		},
 		computed: {
 
@@ -138,12 +139,13 @@
 			this.$nextTick(() => {
 				this._initScroll();
 			})
-		}
-		//		watch(){
-		//			login(val) {
-		//		     console.log(val)
-		//		    }
-		//		}
+		},
+//		watch(){
+//			info_data(val){
+//		     console.log(val);
+//		     this.list = val;
+//		    }
+//		}
 	}
 </script>
 
