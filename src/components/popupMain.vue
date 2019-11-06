@@ -1,5 +1,5 @@
 <template>
-	<div class="pop_box" :class="{'hide' : popType == 'false'}">
+	<div class="pop_box" :class="{'show' : popType == 'true'}">
 		<div class="pop_bg" @click="hide"></div>
 		<div class="main">
 			<div class="header">
@@ -86,7 +86,7 @@
 				</div>
 			</div>
 			<div class="btns">
-				<div class="popupConfirm">确认</div>
+				<div class="popupConfirm" @click="addCart">确认</div>
 			</div>
 		</div>
 	</div>
@@ -95,9 +95,11 @@
 	import BScroll from 'better-scroll';
 	import setnumber from "../components/number.vue"
 	export default {
-		props: {
-			popType:String
-		},
+//		props: {
+//			popType:String,
+//			info_data:Array
+//		},
+		props:['popType','info_data'],
 		data() {
 			return {
 				p_number: 1
@@ -118,10 +120,13 @@
 					// better-scroll 会将点击事件去掉，要在这里开启，同时点击在PC 会被执行两次，要在这里控制
 					click: true
 				});
+			},
+			addCart(){
+				console.log('加入购物车');
 			}
 		},
 		mounted() {
-               console.log(this.popType)
+           console.log(this.info_data);
 		},
 		computed: {
 
@@ -264,9 +269,6 @@
 			width: 68px;
 		}
 	}
-	.hide{
-		display: none;
-	}
 	.pop_box {
 		position: fixed;
 		top: 0;
@@ -275,6 +277,7 @@
 		bottom: 0;
 		background-color: rgba(0, 0, 0, .7);
 		z-index: 110;
+		display: none;
 		.pop_bg {
 			position: absolute;
 			top: 0;
@@ -292,12 +295,12 @@
 			min-height: 700px;
 			max-height: 900px;
 			background-color: #fff;
-			-webkit-transform: translate3d(0, 0, 0);
-			transform: translate3d(0, 0, 0);
-			-webkit-transition: -webkit-transform .2s cubic-bezier(0, 0, .25, 1);
+			-webkit-transform: translate3d(0, 1000px, 0);
+			transform: translate3d(0, 1000px, 0);
+			/*-webkit-transition: -webkit-transform .2s cubic-bezier(0, 0, .25, 1);
 			transition: -webkit-transform .2s cubic-bezier(0, 0, .25, 1);
 			transition: transform .2s cubic-bezier(0, 0, .25, 1);
-			transition: transform .2s cubic-bezier(0, 0, .25, 1), -webkit-transform .2s cubic-bezier(0, 0, .25, 1);
+			transition: transform .2s cubic-bezier(0, 0, .25, 1), -webkit-transform .2s cubic-bezier(0, 0, .25, 1);*/
 			z-index: 115;
 			display: flex;
 			flex-direction: column;
@@ -427,6 +430,52 @@
 					}
 				}
 			}
+		}
+	}
+	.pop_box.show{
+		display: block;
+		.main{
+			animation: show_main 0.2s ease-out forwards;
+		}
+	}
+	@keyframes show_main{
+		from{
+			-webkit-transform: translate3d(0, 1000px, 0);
+			transform: translate3d(0, 1000px, 0);
+		}
+		to{
+			-webkit-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
+		}
+	}
+	@-moz-keyframes name{
+		from{
+			-webkit-transform: translate3d(0, 1000px, 0);
+			transform: translate3d(0, 1000px, 0);
+		}
+		to{
+			-webkit-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
+		}
+	}
+	@-ms-keyframes name{
+		from{
+			-webkit-transform: translate3d(0, 1000px, 0);
+			transform: translate3d(0, 1000px, 0);
+		}
+		to{
+			-webkit-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
+		}
+	}
+	@-webkit-keyframes name{
+		from{
+			-webkit-transform: translate3d(0, 1000px, 0);
+			transform: translate3d(0, 1000px, 0);
+		}
+		to{
+			-webkit-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
 		}
 	}
 </style>

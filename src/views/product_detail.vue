@@ -108,7 +108,7 @@
 			</div>
 		</div>
 		<bottom @showCartPop="showCart"></bottom>
-		<popupMain :popType="popType" @hidePop="showCart"></popupMain>
+		<popupMain :popType="popType" @hidePop="showCart" :info_data="listData"></popupMain>
 	</div>
 </template>
 <script>
@@ -161,17 +161,15 @@
 						pId: pid
 					}
 				}).then((res) => {
-					//					console.log(res.data[0]);
 					this.listImg = res.data[0];
 					this.listData = res.data[1];
-
 				}).catch((err) => {
 					console.log(err);
 				})
 			},
-			Show() {
-				this.isShow = true;
-			},
+//			Show() {
+//				this.isShow = true;
+//			},
 			_back() {
 				this.$router.go(-1)
 			},
@@ -258,11 +256,11 @@
 			//console.log(this.$route.params.uid);
 
 			this.feactData(this.$route.params.uid);
-			//console.log(this.listImg);
+//			console.log(this.listData);
 		},
 		mounted() {
 			this.$refs.main.addEventListener('scroll', this.top_scroll);
-			this.Show();
+//			this.Show();
 //			this.scroll = new BScroll(this.$refs.main, {
 //					    click: true,
 //					  });
