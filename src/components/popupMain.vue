@@ -6,7 +6,7 @@
 				<div class="imgs"><img :src="info_data[0].product_img_url" alt="" /></div>
 				<div class="header_con">
 					<p class="p1">￥<em>1888</em>.00</p>
-					<p class="p2"><em>已选</em> 碳纤黑,6GB 128GB,1个</p>
+					<p class="p2"><em>已选</em> {{colourList[chooseColour]}},{{typeList[chooseType]}},{{p_number}}个</p>
 				</div>
 				<div class="close" @click="hide"><i class="icon iconcuo"></i></div>
 			</div>
@@ -14,14 +14,16 @@
 				<div class="scroll_body">
 					<div class="sku_kind">颜色</div>
 					<ul class="sku_choose">
-						<li class="active">碳纤黑</li>
-						<li>电光紫</li>
+						<!--<li class="active">碳纤黑</li>
+						<li>电光紫</li>-->
+						<li :class="{active: index==chooseColour}" v-for="(item,index) in colourList" :key="index" @click="clickColour(index)">{{item}}</li>
 					</ul>
 					<div class="sku_kind">版本</div>
 					<ul class="sku_choose">
-						<li class="active">6GB 128GB</li>
+						<!--<li class="active">6GB 128GB</li>
 						<li>8GB 64GB</li>
-						<li>8GB 128GB</li>
+						<li>8GB 128GB</li>-->
+						<li :class="{active : index == chooseType}" v-for="(item,index) in typeList" :key="index" @click="clickType(index)">{{item}}</li>
 					</ul>
 					<div class="sku_kind"><span>版本</span>
 						<setnumber :number="p_number" :min-number="1" :max-number="999" @on-minus="onMinus" @on-add="onAdd"></setnumber>
@@ -33,15 +35,15 @@
 							<span class="guide">服务介绍 <i class="icon iconarrow-r"></i></span>
 						</div>
 						<ul class="items">
-							<li class="">
+							<li :class="{active : safeList1 == 1}" @click="safeClick(1,1)">
 								<div class="type"><span>京享无忧2年<i class="discount">原厂物料+保值</i></span><span class="price">¥169.00</span></div>
 								<div class="content">原厂物料2年全保修+回收换新补贴</div>
 							</li>
-							<li class="">
+							<li :class="{active : safeList1 == 2}" @click="safeClick(1,2)">
 								<div class="type"><span>全保修3年</span><span class="price">¥159.00</span></div>
 								<div class="content">三包硬件+碎屏溅液等故障全保修</div>
 							</li>
-							<li class="">
+							<li :class="{active : safeList1 == 3}" @click="safeClick(1,3)">
 								<div class="type"><span>全保修2年</span><span class="price">¥139.00</span></div>
 								<div class="content">三包硬件+碎屏溅液等故障全保修</div>
 							</li>
@@ -52,16 +54,16 @@
 							<span class="name">只换不修</span>
 							<span class="guide">服务介绍 <i class="icon iconarrow-r"></i></span>
 						</div>
-						<ul class="items">
-							<li class="">
+						<ul class="items" >
+							<li :class="{active : safeList2 == 1}" @click="safeClick(2,1)">
 								<div class="type"><span>3年免费换新<i class="discount">履约再赠换新</i></span><span class="price">¥169.00</span></div>
 								<div class="content">三包故障，享JD免费换机一次</div>
 							</li>
-							<li class="">
+							<li :class="{active : safeList2 == 2}" @click="safeClick(2,2)">
 								<div class="type"><span>2年免费换新</span><span class="price">¥159.00</span></div>
 								<div class="content">三包故障，享JD免费换机一次</div>
 							</li>
-							<li class="">
+							<li :class="{active : safeList2 == 3}" @click="safeClick(2,3)">
 								<div class="type"><span>2年意外换新</span><span class="price">¥139.00</span></div>
 								<div class="content">意外硬件故障80%限额内换新</div>
 							</li>
@@ -73,11 +75,11 @@
 							<span class="guide">服务介绍 <i class="icon iconarrow-r"></i></span>
 						</div>
 						<ul class="items">
-							<li class="">
+							<li :class="{active : safeList3 == 1}" @click="safeClick(3,1)">
 								<div class="type"><span>5年享质保<i class="discount">原厂物料</i></span><span class="price">¥169.00</span></div>
 								<div class="content">厂保延长至5年 免费原厂维修</div>
 							</li>
-							<li class="">
+							<li :class="{active : safeList3 == 2}" @click="safeClick(3,2)">
 								<div class="type"><span>2年享质保<i class="discount">原厂物料</i></span><span class="price">¥159.00</span></div>
 								<div class="content">厂保延长至2年 免费原厂维修</div>
 							</li>
@@ -103,7 +105,14 @@
 		data() {
 			return {
 				p_number: 1,
-				list: []
+				list: [],
+				colourList:['碳纤黑','电光紫'],
+				typeList:['6GB 128GB','8GB 64GB','8GB 128GB'],
+				chooseColour:0,
+				chooseType:0,
+				safeList1:0,
+				safeList2:0,
+				safeList3:0
 			}
 		},
 		methods: {
@@ -124,6 +133,22 @@
 			},
 			addCart(){
 				console.log('加入购物车');
+			},
+			clickColour(index){
+				this.chooseColour = index;
+			},
+			clickType(index){
+				this.chooseType = index;
+			},
+			safeClick(index,val){
+				if(index == 1){
+					this.safeList1 = val;
+				}else if(index == 2){
+					this.safeList2 = val;
+				}else if(index == 3){
+					this.safeList3 = val;
+				}
+				
 			}
 		},
 		mounted() {
