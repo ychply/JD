@@ -210,6 +210,52 @@ app.get("/delCart",(req,res)=>{
 			}
 	})
 })
+//购物车商品增加
+app.post("/addCart",(req,res)=>{
+	let user_id = req.body.userId;
+	let product_id = req.body.productId;
+	let cart_num = req.body.num;
+	console.log(user_id);
+	let sql = `select cart_id,goods_num from goods_cart where user_id = '${user_id}' and product_id = '${product_id}'`;
+	pool.query(sql,(err,result)=>{
+		if(err)throw err;
+		else{
+    		if(result.length !=0){
+    			console.log('已经加入购物车了')
+    			let cart_id = result[0].cart_id;
+    			cart_num += result[0].goods_num;
+    			let sql1 = `UPDATE goods_cart SET goods_num='${cart_num}' WHERE cart_id ='${cart_id}'`;
+	       		pool.query(sql1,[user_id,product_id,cart_num],(err,result)=>{
+         			if(err)throw err
+         			else{
+         				res.send({
+         					status: 0,
+         					msg:'在原购物车商品数量上叠加了',
+         					result
+         				});
+         				res.end();
+         			}
+         	})
+    			
+    		}else if(result.length ==0 ){
+    		    console.log('还没有加入购物车')
+    		    let sql2 = `insert into goods_cart(user_id,product_id,goods_num) VALUES(?,?,?)`;
+	       		pool.query(sql2,[user_id,product_id,cart_num],(err,result)=>{
+         			if(err)throw err
+         			else{
+         				res.send({
+         					status: 0,
+         					msg:'恭喜，加入购物车成功',
+         					result
+         				});
+         				res.end();
+         			}
+         	})
+	       		
+    		}
+    	}
+	})
+})
 //分类页右边数据
 app.get("/categorygoods",(req,res)=>{
 	let mId=req.query.mId;

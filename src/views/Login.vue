@@ -23,6 +23,8 @@
 <script>
 //	import userApi from "@/api/userApi";
 //	import { mapGetters } from "vuex";
+	import Storage from "@/utils/storage";
+
 	export default {
 		data() {
 			return {
@@ -59,10 +61,10 @@
 				}).then(function(res) {
 					if(res.data.status === 0) {
 						_this.$toast(res.data.msg);
+						Storage.set("userInfo", res.data.userInfo);
                         var userInfo = JSON.parse(res.data.userInfo);
                         _this.$store.dispatch('setToken', userInfo.id);
                         _this.$store.dispatch('setUserInfo', userInfo)
-//                      console.log(userInfo.id)
 //                       this.$router.push({ path: this.redirect || "/" });
 						let redirect = _this.$route.query.redirect;
 						setTimeout(() => {

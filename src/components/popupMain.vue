@@ -96,6 +96,7 @@
 <script>
 	import BScroll from 'better-scroll';
 	import setnumber from "../components/number.vue"
+	import { mapGetters } from "vuex";
 	export default {
 //		props: {
 //			popType:String,
@@ -132,7 +133,14 @@
 				});
 			},
 			addCart(){
-				console.log('加入购物车');
+				console.log('加入购物车');	
+				console.log(this.userInfo.id)
+				this.$http.post('addCart',{userId:this.userInfo.id,productId:this.info_data[0].product_id,num:this.p_number}).then((res)=>{
+					console.log(res);
+				}).catch((err)=>{
+					console.log(err)
+				})
+
 			},
 			clickColour(index){
 				this.chooseColour = index;
@@ -142,20 +150,32 @@
 			},
 			safeClick(index,val){
 				if(index == 1){
-					this.safeList1 = val;
+					if(this.safeList1 == val){
+						this.safeList1 = 0;
+					}else{
+						this.safeList1 = val;
+					}
 				}else if(index == 2){
-					this.safeList2 = val;
+					if(this.safeList2 == val){
+						this.safeList2 = 0;
+					}else{
+						this.safeList2 = val;
+					}
 				}else if(index == 3){
-					this.safeList3 = val;
+					if(this.safeList3 == val){
+						this.safeList3 = 0;
+					}else{
+						this.safeList3 = val;
+					}
 				}
 				
 			}
 		},
 		mounted() {
-            console.log(this.info_data[0])
+
 		},
 		computed: {
-
+			...mapGetters(["userInfo"])
 		},
 		components: {
 			setnumber

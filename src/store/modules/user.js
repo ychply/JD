@@ -4,7 +4,7 @@ import Storage from "@/utils/storage";
 const user = {
   state: {
     token: Storage.get("token") || 0,
-    userInfo: {}
+    userInfo: JSON.parse(Storage.get("userInfo")) || ""
   },
 
   mutations: {
