@@ -36,6 +36,7 @@
 <script>
 	import headTitle from "../components/head_title.vue"
 	import cartitem from "../components/cartItem.vue"
+	import { mapGetters } from "vuex";
 	export default {
 		data() {
 			return {
@@ -46,7 +47,7 @@
 			getList(){
 				this.$http.get('cart', {
 					params: {
-						userId: 3
+						userId: this.userInfo.id
 					}
 				}).then((res) => {
 					this.cart = res.data;
@@ -63,7 +64,7 @@
 	
 		},
 		computed: {
-
+			...mapGetters(["userInfo"])
 		},
 		components: {
 			headTitle,

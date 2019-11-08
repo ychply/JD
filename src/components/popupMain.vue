@@ -133,10 +133,16 @@
 				});
 			},
 			addCart(){
+				let that = this;
 				console.log('加入购物车');	
 				console.log(this.userInfo.id)
 				this.$http.post('addCart',{userId:this.userInfo.id,productId:this.info_data[0].product_id,num:this.p_number}).then((res)=>{
-					console.log(res);
+					if(res.data.status == 0 || res.data.status == 1){
+						this.$toast("加入购物车成功");
+						setTimeout(function () {
+						    that.hide();
+						}, 500);
+					}		
 				}).catch((err)=>{
 					console.log(err)
 				})

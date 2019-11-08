@@ -1,7 +1,7 @@
 <template>
 	<div class="cart_item">
 		<div class="span1">
-			<i class="icon iconchoose"></i>
+			<i class="checkbox"></i>55
 		</div>
 		<div class="imgs">
 			<img :src="goods.product_img_url" alt="" />
@@ -223,10 +223,23 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			i{
-				font-size: 38px;
-				color:#ccc;
+			.checkbox:before{
+				font-family: "iconfont" !important;
+				font-size: 16px;
+				font-style: normal;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				content: "\e614";
+				font-size: 40px;
+				color: #999;
+				position: absolute;
+				top: 20px;
+				left: 20px;
 			}
+		}
+		.active .checkbox:before{
+			content: "\e626";
+			color: #e4393c;
 		}
 		.imgs{
 			width:200px;

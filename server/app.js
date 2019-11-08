@@ -229,7 +229,7 @@ app.post("/addCart",(req,res)=>{
          			if(err)throw err
          			else{
          				res.send({
-         					status: 0,
+         					status: 1,
          					msg:'在原购物车商品数量上叠加了',
          					result
          				});
@@ -237,7 +237,7 @@ app.post("/addCart",(req,res)=>{
          			}
          	})
     			
-    		}else if(result.length ==0 ){
+    		}else if(result.length == 0 ){
     		    console.log('还没有加入购物车')
     		    let sql2 = `insert into goods_cart(user_id,product_id,goods_num) VALUES(?,?,?)`;
 	       		pool.query(sql2,[user_id,product_id,cart_num],(err,result)=>{
