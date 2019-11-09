@@ -139,5 +139,13 @@ export default new Router({
 				keepAlive: false
 			}
 		},
-	]
+	],
+	//这个前进会回到顶部，后退就不动了…
+	 scrollBehavior (to, from, savedPosition) {
+		 if (savedPosition) {
+		  return savedPosition
+		 } else {
+		  return { x: 0, y: 0 }
+		 }
+	 }
 })

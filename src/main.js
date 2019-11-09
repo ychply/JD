@@ -38,6 +38,7 @@ Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
 router.beforeEach((to, from, next) => {
 //	console.log(store.getters.token);
+console.log(to.path)
 	if(to.meta.isLogin){
 		if(store.getters.token == 0){       //从vuex中获取是否已经登录
 				next({
@@ -48,7 +49,13 @@ router.beforeEach((to, from, next) => {
 			next();
 		}
 	}else{
-		next();
+		if(to.path == '/login' && store.getters.token != 0){ //已经登录后不能回到登录页，跳回首页
+			next({
+        path: '/home'
+      })
+		}else{
+				next();
+		}
 	}
 
 })

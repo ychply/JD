@@ -1,7 +1,7 @@
 <template>
 	<div class="m_login">
 		<header class="top_bar">
-			<a onclick="window.history.go(-1)" class="icon_back"></a>
+			<a @click="_back" class="icon_back"></a>
 			<h2>京东注册</h2>
 		</header>
 		<div class="main">
@@ -33,6 +33,11 @@
 			}
 		},
 		methods: {
+			_back() {
+				 window.history.length > 1
+			        ? this.$router.go(-1)
+			        : this.$router.push('/');
+			},
 			childHandle() {
 				this.$emit('parent-show', this.isShowData)
 			},

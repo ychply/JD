@@ -1,7 +1,7 @@
 <template>
 	<div class="cart_item">
-		<div class="span1">
-			<i class="checkbox"></i>55
+		<div class="span1" :class="{'active':goods.select}" @click="onClickCheck">
+			<i class="checkbox"></i>
 		</div>
 		<div class="imgs">
 			<img :src="goods.product_img_url" alt="" />
@@ -42,8 +42,7 @@
 		},
 		data(){
 			return{
-				 number: 1,
-   				 checked: false
+				 number: 1
 			}
 		},
 		methods:{
@@ -72,8 +71,11 @@
 		        }).catch((err)=>{
 		        	console.log(err)
 		        })
-		      }
-	      
+		     },
+		     onClickCheck(){
+		     	this.goods.select = !this.goods.select;
+//		     	this.$emit('checkChange',{checked:this.goods.select,id:this.goods.product_id})
+		     }
 		},
 		mounted(){
 
@@ -219,10 +221,14 @@
 		}
 		.span1{
 			width:100px;
-			height: 100%;
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			padding-bottom: 40px;
+			.checkbox{
+				width:40px;
+				height: 40px;
+			}
 			.checkbox:before{
 				font-family: "iconfont" !important;
 				font-size: 16px;
@@ -232,15 +238,16 @@
 				content: "\e614";
 				font-size: 40px;
 				color: #999;
-				position: absolute;
-				top: 20px;
-				left: 20px;
 			}
+			&.active .checkbox:before {
+					content: "\e626";
+					color: #e4393c;
+				}
 		}
-		.active .checkbox:before{
+		/*&.active .checkbox:before{
 			content: "\e626";
 			color: #e4393c;
-		}
+		}*/
 		.imgs{
 			width:200px;
 			height: 200px;

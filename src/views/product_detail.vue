@@ -171,7 +171,9 @@
 //				this.isShow = true;
 //			},
 			_back() {
-				this.$router.go(-1)
+				 window.history.length > 1
+			        ? this.$router.go(-1)
+			        : this.$router.push('/');
 			},
 			nav_click(event,index){
 				var floor = event.target.dataset.floor;

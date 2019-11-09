@@ -7,7 +7,8 @@
 				<!--<input type="text"  placeholder="请输入搜索商品..."/>-->
 				<span>请输入搜索商品...</span>
 			</router-link>
-			<router-link :to="!this.$store.getters.isLogin?'/login':'/mine'"  class="login_btn"><span v-show="token == 0">登录</span><span v-show="token != 0">{{token}}</span></router-link>
+			<router-link :to="!this.$store.getters.isLogin?'/login':'/mine'"  class="login_btn" v-show="token == 0"><span>登录</span></router-link>
+			<div class="login_btn" v-show="token != 0"><span>{{userInfo.name}}</span></div>
 		</div>	
 	</header>
 </template>
@@ -43,7 +44,7 @@
 //			 login(){
 //              return this.$store.getters.isLogin;
 //          }
-			...mapGetters(["token"])
+			...mapGetters(["token","userInfo"])
 		},
 //		watch(){
 //			login(val) {
@@ -121,5 +122,8 @@
         font-family: "微软雅黑";
         font-size:24px;
         letter-spacing:2px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
 	}
 </style>

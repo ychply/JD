@@ -10,25 +10,25 @@
 			<i class="icon iconcuo"></i>
 		</div>
 		<div class="head_wrap">
-			<span class="span1"><i class="icon iconchoose"></i></span>
+			<span class="span1" :class="{'active':isSelectAll}" @click="all_select"><i class="checkbox"></i></span>
 			<span class="span2">京东自营</span>
 			<span class="span3">
 				<i class="icon icontishi"></i><i class="btn_inline">凑单免运费</i><i class="btn_inline">优惠券</i>
 			</span>
 		</div>
 		<div class="cart_list">
-			<cartitem v-for="(item,index) in cart" :key="index" :goods="item" @getlist="getList"></cartitem>
+			<cartitem v-for="(item,index) in cart" :key="index" :goods="item" @getlist="getList" ></cartitem>
 		</div>
 		<div class="fixBar">
-			<div class="all_select">
-				<i class="icon iconchoose"></i>
+			<div class="all_select" :class="{'active':isSelectAll}" @click="all_select">
+				<i class="checkbox"></i>
 				<span>全选</span>
 			</div>
 			<div class="total">
-				<p class="t_main">总计:<span>￥4900.01</span></p>
+				<p class="t_main">总计:<span>￥{{getTotal.totalPrice}}</span></p>
 				<p class="t_tip">已优惠¥50.00</p>
 			</div>
-			<div class="buy">去结算<span class="num">(9件)</span></div>
+			<div class="buy">去结算<span class="num">({{getTotal.totalNum}}件)</span></div>
 		</div>
 	</div>
 </template>
@@ -45,26 +45,70 @@
 		},
 		methods: {
 			getList(){
-				this.$http.get('cart', {
+				var _this = this;
+				_this.$http.get('cart', {
 					params: {
-						userId: this.userInfo.id
+						userId: _this.userInfo.id
 					}
 				}).then((res) => {
-					this.cart = res.data;
+					_this.cart = res.data;
+					console.log(_this.cart)
+					_this.cart.map(function(item){
+						_this.$set(item,'select',true)			
+					})
 	//				console.log(res.data)
 				}).catch((err) => {
 					console.log(err);
 				})
-				}
+			},
+			all_select(){
+				let checked = this.isSelectAll;
+				console.log(checked)
+				this.cart.map(function(item){
+					if(checked){
+						item.select = false;
+					}else{
+						item.select = true;
+					}
+				})
+			}
+//			checkChange(product){
+//				this.cart.map(function(item){
+//					if(item.product_id == product.id){
+//						console.log(item)
+//					}
+//				})
+//				
+//			}
 		},
 		created(){
 			this.getList();
 		},
 		mounted() {
+						
 	
 		},
 		computed: {
-			...mapGetters(["userInfo"])
+			//获取用户信息
+			...mapGetters(["userInfo"]),
+			//检测是否全选
+			isSelectAll(){
+				 //如果productList中每一条数据的select都为true，返回true，否则返回false;
+       			 return this.cart.every(function (val) { return val.select});
+			},
+			//获取总价和产品总件数
+			getTotal:function(){
+				//获取cart中select为true的数据。
+				let _proList = this.cart.filter(function (val) { return val.select});
+				let totalPrice = 0;
+				let totalNum = 0;
+				for(let i = 0,len = _proList.length;i<len;i++){
+					 //总价累加
+					totalPrice += _proList[i].goods_num * _proList[i].product_uprice;
+					totalNum += _proList[i].goods_num;
+				}
+				return {totalNum:totalNum,totalPrice:totalPrice}
+			}
 		},
 		components: {
 			headTitle,
@@ -154,10 +198,20 @@
 		justify-content: space-around;
 		align-items: center;
 		width:100px;
-		i{
-			font-size:38px;
-			color:#ccc;
+		.checkbox:before{
+				font-family: "iconfont" !important;
+				font-size: 16px;
+				font-style: normal;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				content: "\e614";
+				font-size: 40px;
+				color: #999;
 		}
+		&.active .checkbox:before {
+				content: "\e626";
+				color: #e4393c;
+			}
 		span{
 			font-size:24px;
 			color:#aaa;
@@ -181,9 +235,19 @@
 		height: 100%;
 		justify-content: center;
 		align-items: center;
-		i{
-			font-size:44px;
-			color:#aaa;
+		.checkbox:before{
+				font-family: "iconfont" !important;
+				font-size: 16px;
+				font-style: normal;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				content: "\e614";
+				font-size: 44px;
+				color: #999;
+		}
+		&.active .checkbox:before {
+				content: "\e626";
+				color: #e4393c;
 		}
 	}
 	.span2{

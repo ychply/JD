@@ -168,7 +168,6 @@
 					'img' :'m_icon7.webp'
 				}
 				]
-
 			}
 		},
 		methods:{

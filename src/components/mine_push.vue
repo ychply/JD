@@ -14,8 +14,8 @@
 			</ul>
 		</section>
 	    <ul class="common_links">
-	    	<li><span>yang15766633241</span></li>
-	    	<li><span>退出</span></li>
+	    	<li><span>{{userInfo.name}}</span></li>
+	    	<li><span @click="loginOut">退出</span></li>
 	    	<li><span>客户服务</span></li>
 	    	<li><span>返回顶部</span></li>
 	    </ul>
@@ -23,6 +23,8 @@
 </template>
 
 <script>
+	import { mapGetters } from "vuex";
+	import Storage from "@/utils/storage";
 	export default {
 		data() {
 			return {
@@ -44,10 +46,22 @@
 				}).catch((err) => {
 					console.log(err);
 				})
+			},
+			loginOut(){
+                this.$store.dispatch('setToken', 0);
+                this.$store.dispatch('setUserInfo', "")
+                Storage.cle();
+                this.$router.push('/home');
+                this.$router.afterEach((to,from,next)=>{
+			　　　　window,scrollTo(0,0);	
+			　　})
 			}
 		},
 		mounted() {
 			this.showList();
+		},
+		computed:{
+			...mapGetters(["token","userInfo"])
 		}
 
 	}
