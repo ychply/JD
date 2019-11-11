@@ -292,6 +292,7 @@
 				display: flex;
 				justify-content: center;
 				flex-wrap: nowrap;
+				align-items: flex-end;
 				i{
 					font-size: 20px;
 				}
