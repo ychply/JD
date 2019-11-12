@@ -6,10 +6,13 @@ import 'lib-flexible/flexible.js'
 import Vuelazyload from 'vue-lazyload'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
+import FastClick from 'fastclick'  //移动端click点击清除300ms延迟
 //import "@/permission";
 
 
-
+window.addEventListener('load', () => {//移动端click点击清除300ms延迟
+    FastClick.attach(document.body);
+})
 //import {store} from './store/store.js';
 import store from "./store/index";
 import '@/assets/images/iconfont/iconfont.css'

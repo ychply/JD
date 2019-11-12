@@ -9,6 +9,7 @@
   "dependencies": {
     "better-scroll": "^1.15.2",
     "connect-history-api-fallback": "^1.6.0",
+    "fastclick": "^1.0.6",
     "lib-flexible": "^0.3.2",
     "vue": "^2.5.16",
     "vue-awesome-swiper": "^3.1.3",
