@@ -41,7 +41,6 @@ Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
 router.beforeEach((to, from, next) => {
 //	console.log(store.getters.token);
-console.log(to.path)
 	if(to.meta.isLogin){
 		if(store.getters.token == 0){       //从vuex中获取是否已经登录
 				next({
