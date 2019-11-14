@@ -8,8 +8,10 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import FastClick from 'fastclick'  //移动端click点击清除300ms延迟
 //import "@/permission";
+import { Button } from "element-ui";
+import 'element-ui/lib/theme-chalk/index.css'
 
-
+Vue.use(Button);
 window.addEventListener('load', () => {//移动端click点击清除300ms延迟
     FastClick.attach(document.body);
 })
@@ -33,7 +35,7 @@ Vue.use(Vuelazyload,{
 
 axios.defaults.timeout = 5000; // 请求超时
 //axios.defaults.baseURL = '/api/' ;//开发环境的，跨域的请求
-//axios.defaults.baseURL = '/' ;//打包后的，不跨域的请求
+axios.defaults.baseURL = '/' ;//打包后的，不跨域的请求
 axios.defaults.baseURL = process.env.BASE_URL;
 Vue.config.productionTip = false;
 Vue.prototype.$http=axios;

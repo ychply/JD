@@ -12,7 +12,8 @@ import Router from 'vue-router'
 //import Mine from './views/mine.vue'
 //import Detail from './views/product_detail.vue'
 
-Vue.use(Router)
+//Vue.use(Router)
+if (!window.VueRouter) Vue.use(Router)
 
 export default new Router({
 	mode: 'history', //开发环境地址路径中的去掉#//打包要时不要有

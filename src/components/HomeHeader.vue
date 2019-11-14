@@ -38,7 +38,6 @@
 		},
 		mounted(){
 			 window.addEventListener('scroll', this.menu);
-			 console.log(this.$store.getters.isLogin)
 		},
 		computed:{
 //			 login(){
