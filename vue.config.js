@@ -27,15 +27,17 @@ const cdn = {
 	        'vuex': 'Vuex',
 	        'vue-router': 'VueRouter',
 	        'axios': 'axios',
-	        'vue-lazyload':'VueLazyload'
+	        'vue-lazyload':'VueLazyload',
+	        'mint-ui': 'MINT',
 	    },
-		css: [],
+		css: ['https://lib.baomitu.com/mint-ui/2.2.13/style.min.css'],
 		js: [
 			'https://lib.baomitu.com/vue/2.6.6/vue.min.js',
 			'https://lib.baomitu.com/vue-router/3.0.1/vue-router.min.js',
 			'https://lib.baomitu.com/vuex/3.0.1/vuex.min.js',
 			'https://lib.baomitu.com/axios/0.18.0/axios.min.js',
-			'https://lib.baomitu.com/vue-lazyload/1.2.6/vue-lazyload.js'
+			'https://lib.baomitu.com/vue-lazyload/1.2.6/vue-lazyload.js',
+			'https://lib.baomitu.com/mint-ui/2.2.13/index.js'
 		]
 	
 }
@@ -164,8 +166,8 @@ productionSourceMap: false,
 	devServer: {
 		disableHostCheck: true, //内网穿透
 		port: 8088, // 端口号
-//		host: '192.168.1.210',
-		  host: '192.168.1.4',
+		host: '192.168.1.210',
+//		  host: '192.168.1.4',
 		//  host: '127.0.0.1',
 
 		https: false, // https:{type:Boolean}
@@ -173,8 +175,8 @@ productionSourceMap: false,
 //		 proxy: 'http://localhost:4000' // 配置跨域处理,只有一个代理
 		proxy: {
 			'/api': {
-				target: 'http://192.168.1.4:3600/',
-//				target: 'http://192.168.1.210:3600/',
+//				target: 'http://192.168.1.4:3600/',
+				target: 'http://192.168.1.210:3600/',
 				ws: true,// 是否启用websockets
 				changeOrigin: true,//开启代理：在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
 				pathRewrite: {

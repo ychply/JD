@@ -23,6 +23,7 @@
 	</div>
 </template>
 <script>
+	import {Toast} from 'mint-ui'
 	export default {
 		data() {
 			return {
@@ -44,33 +45,27 @@
 			reg() {
 				let _this = this;
 				if(_this.userName === "") {
-					//					_this.$toast('请输入用户名');
-					//this.$notify('提示文案');
-					//this.$loading("加载提示文案");
-					this.$toast({
-						text: "成功文字",
-						iconClass: "success"
-					});
+					Toast('请输入用户名');
 					_this.$refs.user_name.focus();
 					return false;
 				}
 				if(_this.userPwd === "") {
-					_this.$toast('请输入密码');
+					Toast('请输入密码');
 					_this.$refs.user_pwd.focus();
 					return false;
 				}
 				if(_this.userPwd.length < 6 || _this.userPwd.length > 20) {
-					_this.$toast('密码长度不能小于6位，大于20位');
+					Toast('密码长度不能小于6位，大于20位');
 					return false;
 				}
 				if(_this.userPwd1 === "") {
-					_this.$toast('请确认密码');
+					Toast('请确认密码');
 					_this.$refs.user_pwd1.focus();
 					return false;
 				}
 
 				if(_this.userPwd != this.userPwd1) {
-					_this.$toast('两次密码不一致');
+					Toast('两次密码不一致');
 					_this.$refs.user_pwd1.focus();
 					return false;
 				}
@@ -88,15 +83,22 @@
 					//					_this.$router.go(-1);
 					//					}
 					if(res.data.status == 0) {
-						_this.$toast(res.data.msg);
+						Toast({
+						  message: res.data.msg,
+						  iconClass: 'mintui mintui-success',
+						  duration: 1000
+						});
 						setTimeout(() => {
 							_this.$router.push('/login');
 						}, 1000)
 					} else if(res.data.status == 5) {
-						_this.$toast(res.data.msg);
+						Toast(res.data.msg);
 					}
 				}).catch(function(err) {
-					console.log(err);
+						Toast({
+						  message: err,
+						  iconClass: 'mintui mintui-field-error'
+						});
 				})
 			},
 			reset_input() {

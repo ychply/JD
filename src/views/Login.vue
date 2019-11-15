@@ -23,8 +23,8 @@
 <script>
 //	import userApi from "@/api/userApi";
 //	import { mapGetters } from "vuex";
+    import {Toast} from 'mint-ui'
 	import Storage from "@/utils/storage";
-
 	export default {
 		data() {
 			return {
@@ -44,12 +44,12 @@
 			login() {
 				let _this = this;
 				if(_this.userName === "") {
-					_this.$toast('请输入用户名');
+					Toast('请输入用户名');
 					_this.$refs.user_name.focus();
 					return false;
 				}
 				if(_this.userPwd === "") {
-					_this.$toast('请输入密码');
+					Toast('请输入密码');
 					_this.$refs.user_pwd.focus();
 					return false;
 				}
@@ -60,7 +60,11 @@
 					}
 				}).then(function(res) {
 					if(res.data.status === 0) {
-						_this.$toast(res.data.msg);
+						Toast({
+						  message: res.data.msg,
+						  iconClass: 'mintui mintui-success',
+						  duration: 1000
+						});
 						Storage.set("userInfo", res.data.userInfo);
                         var userInfo = JSON.parse(res.data.userInfo);
                         _this.$store.dispatch('setToken', userInfo.id);
@@ -75,10 +79,13 @@
 							}
 						}, 1000)
 					} else {
-						_this.$toast(res.data.msg);
+						Toast(res.data.msg);
 					}
 				}).catch(function(err) {
-					console.log(err);
+					Toast({
+						  message: err,
+						  iconClass: 'mintui mintui-field-error'
+						});
 				})
 			},
 			reset_input(e) {

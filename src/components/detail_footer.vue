@@ -29,6 +29,7 @@
 		},
 		methods: {
 			addCart(){
+				console.log('132')
 				this.$emit('showCartPop','true')
 			}
 		},

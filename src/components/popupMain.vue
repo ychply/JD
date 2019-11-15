@@ -181,7 +181,6 @@
 			}
 		},
 		mounted() {
-
 		},
 		computed: {
 			...mapGetters(["userInfo","token"])

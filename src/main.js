@@ -8,10 +8,14 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import FastClick from 'fastclick'  //移动端click点击清除300ms延迟
 //import "@/permission";
-import { Button } from "element-ui";
-import 'element-ui/lib/theme-chalk/index.css'
+import MintUI from 'mint-ui'
+//import 'mint-ui/lib/style.css'
+Vue.use(MintUI)
+/* 或写为
+ * Vue.use(Button)
+ * Vue.use(Cell)
+ */
 
-Vue.use(Button);
 window.addEventListener('load', () => {//移动端click点击清除300ms延迟
     FastClick.attach(document.body);
 })
@@ -19,12 +23,12 @@ window.addEventListener('load', () => {//移动端click点击清除300ms延迟
 import store from "./store/index";
 import '@/assets/images/iconfont/iconfont.css'
 import "@/assets/scss";
-import "./components/plugin";
+//import "./components/plugin";
 
 //import Toast from './components/toast/index.js'
 //import '@/assets/styles/base.scss';
 //Vue.use(Toast)
-Vue.use(Vuelazyload,{
+Vue.use(Vuelazyload,{//图片赖加载
 	  preLoad: 1.3,
     error: require('./assets/images/err.png'),
     loading: require('./assets/images/loading.gif'),
@@ -38,7 +42,7 @@ axios.defaults.timeout = 5000; // 请求超时
 axios.defaults.baseURL = process.env.NODE_ENV  == 'dev' ? '/api' :'/';
 Vue.config.productionTip = false;
 Vue.prototype.$http=axios;
-Vue.use(VueAwesomeSwiper, /* { default global options } */)
+Vue.use(VueAwesomeSwiper, /* { default global options } */)//swiper
 
 router.beforeEach((to, from, next) => {
 //	console.log(store.getters.token);

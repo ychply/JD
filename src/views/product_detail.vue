@@ -17,15 +17,15 @@
 					<!--<img :src="item.image_url" v-for="(item,index) in listImg" :key="index" />-->
 					<swiper :options="swiperOption" class="swiper-container wrapper">
 						<swiper-slide class="slide_item" v-for='(item,index) of listImg' :key='index'>
-							<img class='' :src="item.image_url" alt="" />						
-<!--							<img v-lazy="item.image_url" />
--->						</swiper-slide>
+							<img class='' :src="item.image_url" alt="" />
+							<!--							<img v-lazy="item.image_url" />
+--></swiper-slide>
 						<div class="swiper-pagination" slot="pagination"></div>
 					</swiper>
 				</div>
-				<div class="product" v-for="(item,index) in listData" :key="index">
+				<div class="product">
 					<div class="price_box">
-						<span class="price">￥ <i class="f28">{{item.product_price}}</i></span>
+						<span class="price">￥ <i class="f28">{{listData[0].product_price}}</i></span>
 						<div class="remind">
 							<span class="remind_item">
 							<i class="icon iconjinqian"></i>
@@ -37,7 +37,7 @@
 						</span>
 						</div>
 					</div>
-					<div class="title">{{item.product_name}}</div>
+					<div class="title">{{listData[0].product_name}}</div>
 					<div class="mod_discount mgt20">
 						<span class="mod_title">优惠</span>
 						<div class="content">
@@ -99,8 +99,10 @@
 						<div class="detail_faqbox_head_num">查看全部问答 <i class="icon iconarrow-r"></i></div>
 					</div>
 					<ul class="detail_faqbox_list">
-						<li><p>这款风衣有里子吗？</p><span>暂无回答</span></li>
-						<li><p>这款风衣好看吗？</p><span>2个回答</span></li>
+						<li>
+							<p>这款风衣有里子吗？</p><span>暂无回答</span></li>
+						<li>
+							<p>这款风衣好看吗？</p><span>2个回答</span></li>
 					</ul>
 				</div>
 				<pushList id="floor3"></pushList>
@@ -109,7 +111,11 @@
 		</div>
 		<bottom @showCartPop="showCart"></bottom>
 		<popupMain :popType="popType" @hidePop="showCart" :info_data="listData" v-if='listData.length'></popupMain>
+		<mt-popup v-model="popupVisible" position="bottom">
+			<mt-picker :slots="slots" @change="onValuesChange"></mt-picker>
+		</mt-popup>
 	</div>
+
 </template>
 <script>
 	import assess from "../components/detail_assess.vue"
@@ -117,10 +123,10 @@
 	import pushList from "../components/detail_push.vue"
 	import info from "../components/detail_info.vue"
 	import popupMain from "../components/popupMain.vue"
-    import BScroll from 'better-scroll';
 	export default {
 		data() {
 			return {
+				popupVisible: true,
 				swiperOption: {
 					initialSlide: 0,
 					// 参数选项,显示小点
@@ -138,112 +144,134 @@
 
 				},
 				listImg: [],
-				listData: [],
+				listData: [
+					[]
+				],
 				topClass: "top_bar_op0",
-				nav:['商品','评价','推荐','详情'],
-				nav_id:0,
-				popType:'false'
+				nav: ['商品', '评价', '推荐', '详情'],
+				nav_id: 0,
+				popType: 'false',
+				slots: [{
+					flex: 1,
+					values: ['2015-01', '2015-02', '2015-03', '2015-04', '2015-05', '2015-06'],
+					className: 'slot1',
+					textAlign: 'right'
+				}, {
+					divider: true,
+					content: '-',
+					className: 'slot2'
+				}, {
+					flex: 1,
+					values: ['2015-01', '2015-02', '2015-03', '2015-04', '2015-05', '2015-06'],
+					className: 'slot3',
+					textAlign: 'left'
+				}]
 			}
 		},
 		methods: {
-			showCart(type){
-				if(type == 'true'){
-					ModalHelper.afterOpen();
-				}else{
-					ModalHelper.beforeClose();
+			onValuesChange(picker, values) {
+				if(values[0] > values[1]) {
+					picker.setSlotValue(1, values[0]);
 				}
-				this.popType = type;
 			},
-			feactData(pid) {
-				var _this = this;
-				_this.$http.get("detail", {
-					params: {
-						pId: pid
+			showCart(type) {
+					if(type == 'true') {
+						ModalHelper.afterOpen();
+					} else {
+						ModalHelper.beforeClose();
 					}
-				}).then((res) => {
-					this.listImg = res.data[0];
-					this.listData = res.data[1];
-				}).catch((err) => {
-					console.log(err);
-				})
-			},
-//			Show() {
-//				this.isShow = true;
-//			},
-			_back() {
-				 window.history.length > 1
-			        ? this.$router.go(-1)
-			        : this.$router.push('/');
-			},
-			nav_click(event,index){
-				var floor = event.target.dataset.floor;
-				floor++;
-				var floor_st = this.$refs.main.querySelector('#floor'+floor).offsetTop;
-				this.$refs.main.scrollTop = floor_st-40;
-				
-            },
-			top_scroll() {
-//				let clientHeight = document.documentElement.clientHeight || document.body.clientHeight;   // 设备/屏幕高度
-//				let scrollObj = document.getElementById(div); // 滚动区域
-//		        let scrollTop = scrollObj.scrollTop; // div 到头部的距离
-//		        let scrollHeight = scrollObj.scrollHeight; // 滚动条的总高度
-		         //滚动条到底部的条件
-//          if(scrollTop+clientHeight == scrollHeight){
-//              // div 到头部的距离 + 屏幕高度 = 可滚动的总高度
-//          }  
-				let scrolled = this.$refs.main.scrollTop;
-				let floor1 = this.$refs.main.querySelector('#floor1').offsetTop;
-				let floor2 = this.$refs.main.querySelector('#floor2').offsetTop - 60;
-				let floor3 = this.$refs.main.querySelector('#floor3').offsetTop - 60;
-				let floor4 = this.$refs.main.querySelector('#floor4').offsetTop - 60;
-//                 let total = jump[index].offsetTop;  
-                if(scrolled > floor1){
-                	this.nav_id = 0;
-                }
-                if(scrolled > floor2){
-                	this.nav_id = 1;
-                }
-                if(scrolled > floor3){
-                	this.nav_id = 2;
-                }
-                if(scrolled > floor4){
-                	this.nav_id = 3;
-                }
-				if(scrolled == 0) {
-					this.topClass = 'top_bar_op0';
-				}
-				if(scrolled > 8) {
+					this.popType = type;
+				},
+				feactData(pid) {
+					var _this = this;
+					_this.$http.get("detail", {
+						params: {
+							pId: pid
+						}
+					}).then((res) => {
+						this.listImg = res.data[0];
+						this.listData = res.data[1];
+					}).catch((err) => {
+						console.log(err);
+					})
+				},
+				//			Show() {
+				//				this.isShow = true;
+				//			},
+				_back() {
+					window.history.length > 1 ?
+						this.$router.go(-1) :
+						this.$router.push('/');
+				},
+				nav_click(event, index) {
+					var floor = event.target.dataset.floor;
+					floor++;
+					var floor_st = this.$refs.main.querySelector('#floor' + floor).offsetTop;
+					this.$refs.main.scrollTop = floor_st - 40;
 
-					this.topClass = 'top_bar_op1';
+				},
+				top_scroll() {
+					//				let clientHeight = document.documentElement.clientHeight || document.body.clientHeight;   // 设备/屏幕高度
+					//				let scrollObj = document.getElementById(div); // 滚动区域
+					//		        let scrollTop = scrollObj.scrollTop; // div 到头部的距离
+					//		        let scrollHeight = scrollObj.scrollHeight; // 滚动条的总高度
+					//滚动条到底部的条件
+					//          if(scrollTop+clientHeight == scrollHeight){
+					//              // div 到头部的距离 + 屏幕高度 = 可滚动的总高度
+					//          }  
+					let scrolled = this.$refs.main.scrollTop;
+					let floor1 = this.$refs.main.querySelector('#floor1').offsetTop;
+					let floor2 = this.$refs.main.querySelector('#floor2').offsetTop - 60;
+					let floor3 = this.$refs.main.querySelector('#floor3').offsetTop - 60;
+					let floor4 = this.$refs.main.querySelector('#floor4').offsetTop - 60;
+					//                 let total = jump[index].offsetTop;  
+					if(scrolled > floor1) {
+						this.nav_id = 0;
+					}
+					if(scrolled > floor2) {
+						this.nav_id = 1;
+					}
+					if(scrolled > floor3) {
+						this.nav_id = 2;
+					}
+					if(scrolled > floor4) {
+						this.nav_id = 3;
+					}
+					if(scrolled == 0) {
+						this.topClass = 'top_bar_op0';
+					}
+					if(scrolled > 8) {
+
+						this.topClass = 'top_bar_op1';
+					}
+					if(scrolled > 16) {
+						this.topClass = 'top_bar_op2';
+					}
+					if(scrolled > 34) {
+						this.topClass = 'top_bar_op3';
+					}
+					if(scrolled > 32) {
+						this.topClass = 'top_bar_op4';
+					}
+					if(scrolled > 40) {
+						this.topClass = 'top_bar_op5';
+					}
+					if(scrolled > 48) {
+						this.topClass = 'top_bar_op6';
+					}
+					if(scrolled > 56) {
+						this.topClass = 'top_bar_op7';
+					}
+					if(scrolled > 64) {
+						this.topClass = 'top_bar_op8';
+					}
+					if(scrolled > 72) {
+						this.topClass = 'top_bar_op9';
+					}
+					if(scrolled > 80) {
+						this.topClass = 'top_bar_op10';
+					}
 				}
-				if(scrolled > 16) {
-					this.topClass = 'top_bar_op2';
-				}
-				if(scrolled > 34) {
-					this.topClass = 'top_bar_op3';
-				}
-				if(scrolled > 32) {
-					this.topClass = 'top_bar_op4';
-				}
-				if(scrolled > 40) {
-					this.topClass = 'top_bar_op5';
-				}
-				if(scrolled > 48) {
-					this.topClass = 'top_bar_op6';
-				}
-				if(scrolled > 56) {
-					this.topClass = 'top_bar_op7';
-				}
-				if(scrolled > 64) {
-					this.topClass = 'top_bar_op8';
-				}
-				if(scrolled > 72) {
-					this.topClass = 'top_bar_op9';
-				}
-				if(scrolled > 80) {
-					this.topClass = 'top_bar_op10';
-				}
-			}
 		},
 		watch: {
 			$route(to) {
@@ -253,22 +281,20 @@
 					this.feactData(categotyId);
 				}
 			}
-			
+
 		},
 		created() {
 			//console.log(this.$route.params.uid);
 			this.$nextTick(() => {
 				this.feactData(this.$route.params.uid);
 			})
-//			console.log(this.listData);
 		},
 		mounted() {
 			this.$refs.main.addEventListener('scroll', this.top_scroll);
-//			this.Show();
-//			this.scroll = new BScroll(this.$refs.main, {
-//					    click: true,
-//					  });
-
+			//			this.Show();
+			//			this.scroll = new BScroll(this.$refs.main, {
+			//					    click: true,
+			//					  });
 		},
 		components: {
 			assess,
@@ -277,71 +303,72 @@
 			info,
 			popupMain
 		},
-		destroyed: function () {
-//      this.$refs.main.removeEventListener('scroll', this.top_scroll);   //  离开页面清除（移除）滚轮滚动事件
-      }
+		destroyed: function() {
+			//      this.$refs.main.removeEventListener('scroll', this.top_scroll);   //  离开页面清除（移除）滚轮滚动事件
+		}
 	}
 </script>
 
 <style lang="scss" scoped="scoped">
-.detail_faqbox_list{
-	padding:0 15px;
-	li{
-		height:50px;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		p{
-			font-size:22px;
-			color:#333;
-			&:before{
-				content: "Q";
-				display: inline-block;	
-				width:25px;
-				height: 25px;
-				line-height: 25px;
-				text-align: center;
-				background-color:#ff9600;
-				color:#fff;
+	.detail_faqbox_list {
+		padding: 0 15px;
+		li {
+			height: 50px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			p {
+				font-size: 22px;
+				color: #333;
+				&:before {
+					content: "Q";
+					display: inline-block;
+					width: 25px;
+					height: 25px;
+					line-height: 25px;
+					text-align: center;
+					background-color: #ff9600;
+					color: #fff;
+					font-size: 20px;
+					border-radius: 2px;
+					margin-right: 6px;
+					margin-top: -6px;
+				}
+			}
+			span {
 				font-size: 20px;
-				border-radius: 2px;
-				margin-right:6px;
-				margin-top:-6px;
-			}
-		}
-		span{
-			font-size: 20px;
-			color:#999;
-			
-		}
-	}
-}
-.detail_faqbox{
-	margin-bottom:20px;
-	background-color:#fff;
-	.detail_faqbox_head{
-		height: 70px;
-		display:flex;
-		padding:0 15px;
-		justify-content: space-between;
-		align-items: center;
-		border-bottom:1px solid #e5e5e5;
-		.detail_faqbox_head_tit{
-			font-size:22px;
-			color:#333;
-		}
-		.detail_faqbox_head_num{
-			font-size:20px;
-			color:#666;
-			i{
-				font-size:24px;
-				color:#666;
-				position: relative;
-				top:2px;
+				color: #999;
 			}
 		}
 	}
-}
+	
+	.detail_faqbox {
+		margin-bottom: 20px;
+		background-color: #fff;
+		.detail_faqbox_head {
+			height: 70px;
+			display: flex;
+			padding: 0 15px;
+			justify-content: space-between;
+			align-items: center;
+			border-bottom: 1px solid #e5e5e5;
+			.detail_faqbox_head_tit {
+				font-size: 22px;
+				color: #333;
+			}
+			.detail_faqbox_head_num {
+				font-size: 20px;
+				color: #666;
+				i {
+					font-size: 24px;
+					color: #666;
+					position: relative;
+					top: 2px;
+				}
+			}
+		}
+	}
+	
 	.wrapper /deep/ .swiper-pagination-bullet {
 		background: #fff;
 	}
@@ -525,12 +552,12 @@
 					visibility: hidden;
 					color: $color_primary;
 					font-size: 20px;
-					margin-top:3px;
-					margin-right:4px;
+					margin-top: 3px;
+					margin-right: 4px;
 				}
 			}
-			.active{
-				i{
+			.active {
+				i {
 					visibility: visible;
 				}
 			}
