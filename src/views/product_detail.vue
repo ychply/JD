@@ -76,7 +76,7 @@
 						<div class="content">
 							广州黄埔区时代春树里
 						</div>
-						<div class="see">
+						<div class="see" @click="areaOpt">
 							<i class="icon icongengduo"></i>
 						</div>
 					</div>
@@ -111,11 +111,8 @@
 		</div>
 		<bottom @showCartPop="showCart"></bottom>
 		<popupMain :popType="popType" @hidePop="showCart" :info_data="listData" v-if='listData.length'></popupMain>
-		<mt-popup v-model="popupVisible" position="bottom">
-			<mt-picker :slots="slots" @change="onValuesChange"></mt-picker>
-		</mt-popup>
+		<areaOpt :areaPop="areaPop" :codes='address' @getAddress="getAddress"></areaOpt>
 	</div>
-
 </template>
 <script>
 	import assess from "../components/detail_assess.vue"
@@ -123,10 +120,16 @@
 	import pushList from "../components/detail_push.vue"
 	import info from "../components/detail_info.vue"
 	import popupMain from "../components/popupMain.vue"
+	import areaOpt from "../components/areaOpt.vue"
 	export default {
 		data() {
 			return {
-				popupVisible: true,
+				address: {
+		          province: "",
+		          city: "",
+		          county: "",
+		          changeActive: false
+		       },
 				swiperOption: {
 					initialSlide: 0,
 					// 参数选项,显示小点
@@ -151,29 +154,16 @@
 				nav: ['商品', '评价', '推荐', '详情'],
 				nav_id: 0,
 				popType: 'false',
-				slots: [{
-					flex: 1,
-					values: ['2015-01', '2015-02', '2015-03', '2015-04', '2015-05', '2015-06'],
-					className: 'slot1',
-					textAlign: 'right'
-				}, {
-					divider: true,
-					content: '-',
-					className: 'slot2'
-				}, {
-					flex: 1,
-					values: ['2015-01', '2015-02', '2015-03', '2015-04', '2015-05', '2015-06'],
-					className: 'slot3',
-					textAlign: 'left'
-				}]
+				areaPop:false
 			}
 		},
 		methods: {
-			onValuesChange(picker, values) {
-				if(values[0] > values[1]) {
-					picker.setSlotValue(1, values[0]);
-				}
+			areaOpt(){
+				this.areaPop = true;
 			},
+			getAddress(data) {
+		        console.log(data);
+		     },
 			showCart(type) {
 					if(type == 'true') {
 						ModalHelper.afterOpen();
@@ -301,7 +291,8 @@
 			bottom,
 			pushList,
 			info,
-			popupMain
+			popupMain,
+			areaOpt
 		},
 		destroyed: function() {
 			//      this.$refs.main.removeEventListener('scroll', this.top_scroll);   //  离开页面清除（移除）滚轮滚动事件
