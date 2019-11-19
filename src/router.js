@@ -130,6 +130,18 @@ export default new Router({
 			}
 		},
 		{
+			path: '/account',
+			name: 'account',
+			component: (resolve) => require(['./views/mine-account.vue'],resolve),
+			meta: {
+				title: '账号管理',
+				index: 7,
+				isLogin: true,
+				showFooter: false,
+				keepAlive: true
+			}
+		},
+		{
 			path: '/detail/:uid',
 			name: 'detail',
 			component: (resolve) => require(['./views/product_detail.vue'],resolve),

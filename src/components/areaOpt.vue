@@ -6,8 +6,8 @@
 		</p>-->
 		<mt-popup v-model="areaPop" position="bottom">
             <div class='pieker-title'>
-                <button class='btn' @click='closePicker(1)'>取消</button>
-				<button class='btn' @click='closePicker(2)'>确定</button>
+            	<mt-button type="primary" @click='closePicker(1)'>取消</mt-button>
+            	<mt-button type="primary" @click='closePicker(2)'>确定</mt-button>
             </div>
 			<mt-picker :slots="slots" value-key="name" @change="onValuesChange">
 			</mt-picker>
@@ -73,7 +73,6 @@ export default {
   },
   methods: {
     closePicker(type) {
-      this.areaPop = false;
       let codes =
         type === 1
           ? { province: "", city: "", county: "", changeActive: false }
@@ -121,10 +120,11 @@ export default {
   height: 65px;
   border: none;
   font-size: 26px;
-  color: #fff;
-  background: #26A2ff;
+  border-radius: 0;
+  &:first-child{
+  	border-right:1px solid #fff;
+  }
 }
-
 .picker-box /deep/ .picker-item{
 	  font-size: 22px;
 	  color:#222;

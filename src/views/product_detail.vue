@@ -4,10 +4,6 @@
 			<span @click="_back" class="icon_bg"><i class="icon iconarrow-l fwb"></i></span>
 			<ul class="nav_list">
 				<li :class="{'active':nav_id==index}" :data-floor="index" @click="nav_click($event,index)" v-for="(item,index) of nav" :key="index"><i class="icon icondingwei"></i> {{item}}</li>
-				<!--<li><i class="icon icondingwei"></i> 商品</li>
-				<li><i class="icon icondingwei"></i> 评价</li>
-				<li><i class="icon icondingwei"></i> 详情</li>
-				<li><i class="icon icondingwei"></i> 推荐</li>-->
 			</ul>
 			<span class="icon_bg"><i class="icon icongengduo "></i></span>
 		</header>
@@ -18,8 +14,7 @@
 					<swiper :options="swiperOption" class="swiper-container wrapper">
 						<swiper-slide class="slide_item" v-for='(item,index) of listImg' :key='index'>
 							<img class='' :src="item.image_url" alt="" />
-							<!--							<img v-lazy="item.image_url" />
---></swiper-slide>
+						</swiper-slide>
 						<div class="swiper-pagination" slot="pagination"></div>
 					</swiper>
 				</div>
@@ -51,7 +46,7 @@
 							<i class="icon icongengduo"></i>
 						</div>
 					</div>
-					<div class="mod_discount">
+					<div class="mod_discount" @click="baitiaoOpt">
 						<div class="line"></div>
 						<span class="mod_title">白条</span>
 						<div class="content">
@@ -70,13 +65,13 @@
 							<i class="icon icongengduo"></i>
 						</div>
 					</div>
-					<div class="mod_discount">
+					<div class="mod_discount" @click="areaOpt">
 						<div class="line"></div>
 						<span class="mod_title">送至</span>
 						<div class="content">
-							广州黄埔区时代春树里
+							{{address.province}}/{{address.city}}/{{address.county}}
 						</div>
-						<div class="see" @click="areaOpt">
+						<div class="see">
 							<i class="icon icongengduo"></i>
 						</div>
 					</div>
@@ -111,16 +106,20 @@
 		</div>
 		<bottom @showCartPop="showCart"></bottom>
 		<popupMain :popType="popType" @hidePop="showCart" :info_data="listData" v-if='listData.length'></popupMain>
+		<mt-popup v-model="baitiaoPop" position="bottom">
+          	<baitiaoOpt @popChange="popChange"></baitiaoOpt>
+		</mt-popup>
 		<areaOpt :areaPop="areaPop" :codes='address' @getAddress="getAddress"></areaOpt>
 	</div>
 </template>
 <script>
-	import assess from "../components/detail_assess.vue"
-	import bottom from "../components/detail_footer.vue"
-	import pushList from "../components/detail_push.vue"
-	import info from "../components/detail_info.vue"
-	import popupMain from "../components/popupMain.vue"
+	import assess from "../components/detail/assess.vue"
+	import bottom from "../components/detail/footer.vue"
+	import pushList from "../components/detail/push.vue"
+	import info from "../components/detail/info.vue"
+	import popupMain from "../components/detail/popupMain.vue"
 	import areaOpt from "../components/areaOpt.vue"
+	import baitiaoOpt from "../components/detail/baitiaoOpt.vue"
 	export default {
 		data() {
 			return {
@@ -154,15 +153,22 @@
 				nav: ['商品', '评价', '推荐', '详情'],
 				nav_id: 0,
 				popType: 'false',
-				areaPop:false
+				areaPop:false,
+				baitiaoPop:false
 			}
 		},
 		methods: {
+			popChange(data){
+				this.baitiaoPop = false;
+			},
 			areaOpt(){
 				this.areaPop = true;
 			},
+			baitiaoOpt(){
+				this.baitiaoPop = true;
+			},
 			getAddress(data) {
-		        console.log(data);
+				this.areaPop = false;
 		     },
 			showCart(type) {
 					if(type == 'true') {
@@ -292,7 +298,8 @@
 			pushList,
 			info,
 			popupMain,
-			areaOpt
+			areaOpt,
+			baitiaoOpt
 		},
 		destroyed: function() {
 			//      this.$refs.main.removeEventListener('scroll', this.top_scroll);   //  离开页面清除（移除）滚轮滚动事件
@@ -301,6 +308,9 @@
 </script>
 
 <style lang="scss" scoped="scoped">
+	.mint-popup{
+	  width: 100%;
+	}
 	.detail_faqbox_list {
 		padding: 0 15px;
 		li {

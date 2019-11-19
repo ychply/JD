@@ -95,8 +95,8 @@
 </template>
 <script>
 	import BScroll from 'better-scroll';
-	import setnumber from "../components/number.vue"
-	import { mapGetters } from "vuex";
+	import setnumber from "@/components/number.vue"
+	import { mapGetters } from "vuex"
 	export default {
 //		props: {
 //			popType:String,
