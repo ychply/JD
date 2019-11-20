@@ -233,6 +233,12 @@
 	.mgt20{
 		margin-top:20px;
 	}
+	.mgt26{
+		margin-top:26px;
+	}
+	.mgb20{
+		margin-bottom:20px;
+	}
 	
 	.mgl20 {
 		margin-left: 20px;

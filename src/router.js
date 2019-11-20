@@ -142,6 +142,18 @@ export default new Router({
 			}
 		},
 		{
+			path: '/addressList',
+			name: 'addressList',
+			component: (resolve) => require(['./views/addressList.vue'],resolve),
+			meta: {
+				title: '收货地址',
+				index: 8,
+				isLogin: true,
+				showFooter: false,
+				keepAlive: false
+			}
+		},
+		{
 			path: '/detail/:uid',
 			name: 'detail',
 			component: (resolve) => require(['./views/product_detail.vue'],resolve),

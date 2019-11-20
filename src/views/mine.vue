@@ -9,9 +9,9 @@
 		<div class="header_con">
 			<div class="my_header shadow">
 				<div class="user_info">
-					<div class="avatar_wrap">
+					<router-link to="/account" class="avatar_wrap">
 						<img src="../assets/images/mine/head.png" alt="" />
-					</div>
+					</router-link>
 					<div class="personal_wrap">
 						<div class="name_wrap">
 							<span class="my_header_name">莫上尘</span>
@@ -34,9 +34,9 @@
 						
 					</div>
 				</div>
-			    <div class="account_wrap">
+			    <router-link to="/account" class="account_wrap">
 			    	<i class="icon iconshezhi"></i>账号管理
-			    </div>
+			    </router-link>
 			</div>
 		</div>
 	    <ul class="my_cell my_info">
