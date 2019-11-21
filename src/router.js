@@ -154,6 +154,18 @@ export default new Router({
 			}
 		},
 		{
+			path: '/addressEdit',
+			name: 'addressEdit',
+			component: (resolve) => require(['./views/addressEdit.vue'],resolve),
+			meta: {
+				title: '编缉地址',
+				index: 9,
+				isLogin: true,
+				showFooter: false,
+				keepAlive: false
+			}
+		},
+		{
 			path: '/detail/:uid',
 			name: 'detail',
 			component: (resolve) => require(['./views/product_detail.vue'],resolve),

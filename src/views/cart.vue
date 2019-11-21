@@ -45,7 +45,7 @@
 		},
 		methods: {
 			getList(){
-				var _this = this;
+				let _this = this;
 				_this.$http.get('cart', {
 					params: {
 						userId: _this.userInfo.id

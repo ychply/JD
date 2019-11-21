@@ -2,25 +2,41 @@
 	<div class="m_mine">
 		<headTitle message="收货地址"></headTitle>
 		<div class="address_list">
-			<addressItem></addressItem>
-		</div>		
+			<addressItem v-for="(item,index) in addressList" :key="index" :address="item"></addressItem>
+		</div>	
+		<router-link to="/addressEdit" class="add_address">新增收货地址</router-link>
 	</div>
 </template>
 <script>
 	import headTitle from "../components/head_title.vue"
 	import addressItem from "../components/mine/addressItem.vue"
+	import { mapGetters } from "vuex"
 	export default {
 		data() {
 			return {
+				addressList:null
 
 			}
 		},
 		methods: {
-
+			getAddressList(){
+				let _this = this;
+				_this.$http.get('addressList',{
+					params:{
+						userId: 1
+					}
+				}).then((res)=>{
+					_this.addressList = res.data;
+				})
+			}
+ 
 		},
 		components: {
 			headTitle,
 			addressItem
+		},
+		mounted(){
+			this.getAddressList();
 		}
 
 	}
@@ -30,12 +46,26 @@
 	.m_mine {
 		width: 100%;
 		background-color: #f7f7f7;
-		padding-bottom: 80px;
+		padding-bottom: 200px;
 		text-align: left;
+		min-height: 100%;
 		.address_list{
 			width:100%;
-             background-color:#fff;
-             border-top:1px solid #ccc;
+            border-top:1px solid #ccc;
+		}
+		.add_address{
+			width:100%;
+			height: 80px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: #e4393c;
+			color:#fff;
+			font-size: 26px;
+			position: fixed;
+			bottom:0;
+			left:0;
+			right:0;
 		}
 	}
 </style>

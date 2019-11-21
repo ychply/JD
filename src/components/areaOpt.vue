@@ -4,14 +4,11 @@
 		<p @click='pickerShow=true'  v-if='codes.changeActive === false' style='color: #666;margin-right:5px;'>
 			请选择
 		</p>-->
-		<mt-popup v-model="areaPop" position="bottom">
-            <div class='pieker-title'>
-            	<mt-button type="primary" @click='closePicker(1)'>取消</mt-button>
-            	<mt-button type="primary" @click='closePicker(2)'>确定</mt-button>
-            </div>
-			<mt-picker :slots="slots" value-key="name" @change="onValuesChange">
-			</mt-picker>
-		</mt-popup>
+        <div class='pieker-title'>
+        	<mt-button type="primary" @click='closePicker(1)'>取消</mt-button>
+        	<mt-button type="primary" @click='closePicker(2)'>确定</mt-button>
+        </div>
+		<mt-picker :slots="slots" value-key="name" @change="onValuesChange"></mt-picker>
 	</div>
 </template>
 <script>
@@ -30,10 +27,6 @@ export default {
     type: {
       type: String,
       default: "text"
-    },
-    areaPop:{
-    	type: Boolean,
-    	default:false
     }
   },
   data() {

@@ -109,8 +109,9 @@
 		<mt-popup v-model="baitiaoPop" position="bottom">
           	<baitiaoOpt @popChange="popChange"></baitiaoOpt>
 		</mt-popup>
-		<areaOpt :areaPop="areaPop" :codes='address' @getAddress="getAddress"></areaOpt>
-	</div>
+		<mt-popup v-model="areaPop" position="bottom">
+			<areaOpt  :codes='address' @getAddress="getAddress"></areaOpt>
+		</mt-popup>	</div>
 </template>
 <script>
 	import assess from "../components/detail/assess.vue"
