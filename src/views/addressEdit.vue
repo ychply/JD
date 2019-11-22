@@ -17,7 +17,7 @@
 			<div class="item1 item2" @click="areaOpt">
 				<label>
 					<span class="tit">所在地区</span>
-					<input id="name" type="text" :value="addressVal" placeholder="选择所在地区" readonly="readonly" />
+					<input id="name" type="text" :value="addressInfo.addressarea" placeholder="选择所在地区" readonly="readonly" />
 					<i class="icon iconarrow-r"></i>
 				</label>
 			</div>
@@ -59,7 +59,13 @@
 		    	},
 		    	areaPop:false,
 		    	id:0,
-		    	addressInfo:{}
+		    	addressInfo:{
+		    		sname:"",
+		    		user_phone:"",
+		    		addressarea:"",
+		    		addressinfo:"",
+		    		isdefault:0
+		    	}
 			}
 		},
 		methods: {
@@ -71,11 +77,15 @@
 			},
 			getAddress(data) {
 				this.areaPop = false;
-				console.log(this.areaPop)
-				this.address = data;
+				this.addressInfo.addressarea = data.province + data.city + data.county;
 		     },
 		     uadateAddress(){
-		     	
+		     	let _this = this;
+		     	_this.$http.post('updateAddress',
+		     	{'address_id':this.id,'sname':this.addressInfo.sname,'user_phone':this.addressInfo.user_phone,'addressarea':this.addressInfo.addressarea,'addressinfo':this.addressInfo.addressinfo,'isdefault':this.addressInfo.isdefault}
+		     ).then((res)=>{
+		     	console.log(res)
+		     })
 		     },
 		     getAddressInfo(){
 		     	let _this = this;
@@ -93,9 +103,7 @@
 			areaOpt
 		},
 		computed:{
-			addressVal(){
-				return this.address.province + this.address.city + this.address.county;
-			}
+
 		},
 		created(){
 			if(this.$route.query.id){
