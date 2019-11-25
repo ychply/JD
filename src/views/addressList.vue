@@ -1,6 +1,6 @@
 <template>
 	<div class="m_mine">
-		<headTitle message="收货地址"></headTitle>
+		<headTitle message="收货地址" :push="routerLink"></headTitle>
 		<div class="address_list">
 			<addressItem v-for="(item,index) in addressList" :key="index" :address="item"></addressItem>
 		</div>	
@@ -14,8 +14,8 @@
 	export default {
 		data() {
 			return {
-				addressList:null
-
+				addressList:null,
+				routerLink :'account'
 			}
 		},
 		methods: {
@@ -23,13 +23,17 @@
 				let _this = this;
 				_this.$http.get('addressList',{
 					params:{
-						userId: 1
+						userId: _this.userInfo.id
 					}
 				}).then((res)=>{
 					_this.addressList = res.data;
 				})
 			}
  
+		},
+		computed:{
+						//获取用户信息
+			...mapGetters(["userInfo"]),
 		},
 		components: {
 			headTitle,

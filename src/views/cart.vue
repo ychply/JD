@@ -52,7 +52,6 @@
 					}
 				}).then((res) => {
 					_this.cart = res.data;
-					console.log(_this.cart)
 					_this.cart.map(function(item){
 						_this.$set(item,'select',true)			
 					})

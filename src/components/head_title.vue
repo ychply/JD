@@ -11,14 +11,28 @@
 			return{
 			}
 		},
-		props:['message'],
+	    props:{
+			message:{
+				type:String,
+				default :() => ""
+			},
+			push: {
+		        type: String,
+		        default: () => ""
+		      },
+		},
 		methods:{
 			_back() {
-					this.$router.go(-1)
+					if(this.push != ""){
+						this.$router.push(`/${this.push}`);
+					}else{
+					window.history.length > 1
+			        ? this.$router.go(-1)
+			        : this.$router.push('/');
+					}		
 				}
 		},
 		mounted(){
-			
 		},
 		computed:{
 

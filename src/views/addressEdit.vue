@@ -5,19 +5,19 @@
 			<div class="item1">
 				<label>
 					<span class="tit">收货人</span>
-					<input id="name" type="text" value="" placeholder="姓名" v-model="addressInfo.sname" />
+					<input type="text" value="" placeholder="姓名" v-model="addressInfo.sname" />
 				</label>
 			</div>
 			<div class="item1">
 				<label>
 					<span class="tit">联系方式</span>
-					<input id="name" type="text" value="" placeholder="姓名" v-model="addressInfo.user_phone" />
+					<input type="text" value="" placeholder="联系方式" v-model="addressInfo.user_phone" />
 				</label>
 			</div>
 			<div class="item1 item2" @click="areaOpt">
 				<label>
 					<span class="tit">所在地区</span>
-					<input id="name" type="text" :value="addressInfo.addressarea" placeholder="选择所在地区" readonly="readonly" />
+					<input type="text" :value="addressInfo.addressarea" placeholder="选择所在地区" readonly="readonly" />
 					<i class="icon iconarrow-r"></i>
 				</label>
 			</div>
@@ -27,6 +27,10 @@
 					<textarea placeholder="详细地址需填写楼栋楼层或房间号信息" id="adinfo" value="" v-model="addressInfo.addressinfo" rows="2"></textarea>
 					<i class="icon iconcuo"></i>
 				</label>
+			</div>
+			<div class="switch_box">
+				<span>设置默认地址</span>
+				<mt-switch v-model="isDefault"></mt-switch>
 			</div>
 			<div class="item1 item3">
 				<label>
@@ -46,6 +50,8 @@
 <script>
 	import headTitle from "../components/head_title.vue"
 	import areaOpt from "../components/areaOpt.vue"
+	import { mapGetters } from "vuex"
+	import {Toast} from 'mint-ui'
 	export default {
 		data() {
 			return {
@@ -65,7 +71,8 @@
 		    		addressarea:"",
 		    		addressinfo:"",
 		    		isdefault:0
-		    	}
+		    	},
+		    	isDefault:false
 			}
 		},
 		methods: {
@@ -81,10 +88,33 @@
 		     },
 		     uadateAddress(){
 		     	let _this = this;
+		     	if(_this.addressInfo.sname == ""){
+		     		Toast("请输入姓名！")
+		     		return false;
+		     	}
+		     	if(_this.addressInfo.user_phone == ""){
+		     		Toast("请输入手机号！")
+		     		return false;
+		     	}
+		     	if(!(/^1[34578]\d{9}$/.test(_this.addressInfo.user_phone))){
+		     		Toast("电话号码格式错误！")
+		     		return false;
+		     	}
+		     	if(_this.addressInfo.addressarea == ""){
+		     		Toast("请选择所在地区！")
+		     		return false;
+		     	}
+		     	if(_this.addressInfo.addressinfo == ""){
+		     		Toast("请输入详细地址！")
+		     		return false;
+		     	}
 		     	_this.$http.post('updateAddress',
-		     	{'address_id':this.id,'sname':this.addressInfo.sname,'user_phone':this.addressInfo.user_phone,'addressarea':this.addressInfo.addressarea,'addressinfo':this.addressInfo.addressinfo,'isdefault':this.addressInfo.isdefault}
+		     	{'address_id':this.id,'user_id':_this.userInfo.id,'sname':_this.addressInfo.sname,'user_phone':_this.addressInfo.user_phone,'addressarea':_this.addressInfo.addressarea,'addressinfo':_this.addressInfo.addressinfo,'isdefault':_this.addressInfo.isdefault}
 		     ).then((res)=>{
-		     	console.log(res)
+		     	console.log(res.data)
+		     	if(res.data.status == 1){
+		     		this.$router.push('/addressList') 
+		     	}
 		     })
 		     },
 		     getAddressInfo(){
@@ -93,17 +123,17 @@
 		     		params:{"addressId" : _this.id}
 		     	}).then((res)=>{
 		     		_this.addressInfo = res.data[0];
-		     		console.log(res.data[0])
+		     		_this.isDefault = res.data[0].isdefault == 1 ? true : false;
 		     	})
 		     }
- 
 		},
 		components: {
 			headTitle,
 			areaOpt
 		},
 		computed:{
-
+			//获取用户信息
+			...mapGetters(["userInfo"])
 		},
 		created(){
 			if(this.$route.query.id){
@@ -113,6 +143,16 @@
 		},
 		mounted(){
 
+		},
+		watch:{
+			isDefault(){
+				 if(this.isDefault){
+				 	this.addressInfo.isdefault = 1;
+				 }else{
+				 	this.addressInfo.isdefault = 0;
+				 }
+				 
+			}
 		}
 
 	}
@@ -135,6 +175,8 @@
 			.address_btn{
 				width:96%;
 				margin:30px auto 0;
+				height: 70px;
+				font-size: 28px;
 			}
 		}
 		.item1{
@@ -184,6 +226,33 @@
 				font-weight: bold;
 				color:#666;
 			}
+		}
+		.switch_box{
+			width:100%;
+			display: flex;
+			justify-content: space-between;
+            align-items: center;
+            padding:0 20px;
+            height:72px;
+            position:relative;  
+            &:after{
+				content:"";
+				display: block;
+				width:100%;
+				height: 2px;
+				background-color:#cbcbcb;
+				z-index: 1;
+				position: absolute;
+				bottom:0;
+				left: 0;
+				right:0;
+				opacity: 0.6;
+				transform: scaleY(0.8);
+			}
+            span{
+            	color:#999;
+            	font-size:22px;
+            }
 		}
 		.item3{
 			padding:16px 6px 16px 135px;
