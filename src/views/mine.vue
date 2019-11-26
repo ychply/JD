@@ -5,7 +5,7 @@
 			<span class="cmm_title">我的京东</span>
 			<span class="span"><i class="icon icongengduo "></i></span>
 		</div>-->
-		<headTitle message="我的京东"></headTitle>
+		<headTitle message="我的京东" :push="routerLink"></headTitle>
 		<div class="header_con">
 			<div class="my_header shadow">
 				<div class="user_info">
@@ -120,6 +120,7 @@
 	export default {
 		data() {
 			return {
+				routerLink :'home',
 				xlist:[
 				{
 					'name':'待付款',

@@ -1,6 +1,6 @@
 <template>
 	<div class="m_mine">
-		<headTitle message="账号管理"></headTitle>
+		<headTitle message="账号管理" :push="routerLink"></headTitle>
 		<div class="account_head">
 			<h2>管理我的账号</h2>
 			<div class="account_list">
@@ -30,7 +30,7 @@
 	export default {
 		data() {
 			return {
-
+				routerLink :'mine'
 			}
 		},
 		methods: {
