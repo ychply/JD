@@ -41,6 +41,7 @@
 				</label>
 			</div>
 			<mt-button class="address_btn" size="large" type="danger" @click="uadateAddress">确认</mt-button>
+			<mt-button v-if="id!=0" class="address_btn" size="large" type="default" @click="delAddress">删除收货地址</mt-button>
 		</div>		
 		<mt-popup v-model="areaPop" position="bottom">
 			<areaOpt  :codes='address' @getAddress="getAddress"></areaOpt>
@@ -85,6 +86,14 @@
 			getAddress(data) {
 				this.areaPop = false;
 				this.addressInfo.addressarea = data.province + data.city + data.county;
+		     },
+		     delAddress(){
+		     	let _this = this;
+		     	_this.$http.get('delAddress',{params:{'address_id':this.id}}).then((res)=>{
+		     		if(res.data.status == 1){
+		     			this.$router.push('/addressList');
+		     		}
+		     	})
 		     },
 		     uadateAddress(){
 		     	let _this = this;
