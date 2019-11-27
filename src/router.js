@@ -176,6 +176,18 @@ export default new Router({
 				keepAlive: false
 			}
 		},
+		{
+			path: '/desktop',
+			name: 'desktop',
+			component: (resolve) => require(['./views/desktop.vue'],resolve),
+			meta: {
+				title: '确认订单',
+				index: 12,
+				isLogin: true,
+				showFooter: false,
+				keepAlive: true
+			}
+		}
 	],
 	//这个前进会回到顶部，后退就不动了…
 	 scrollBehavior (to, from, savedPosition) {

@@ -131,7 +131,7 @@
 				});
 			},
 			buy() {
-				console.log('立即购买');
+				this.$router.push('/desktop')
 			},
 			addCart() {
 				let that = this;

@@ -1,6 +1,8 @@
 <template>
 	<div class="m_cart">
 		<headTitle message="确认订单"></headTitle>
+		
+		
 
 	</div>
 </template>
