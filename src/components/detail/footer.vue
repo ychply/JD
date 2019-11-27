@@ -9,10 +9,10 @@
 				<em class="icon2 cat_icon"></em>
 				<span>关注</span>
 			</a>
-			<a href="#">
+			<router-link to="/cart" tag="a">
 				<em class="icon3 cat_icon"></em>
 				<span>购物车</span>
-			</a>
+			</router-link>
 		</div>
 		<div class="fot_right">
 			<a href="javascript:;" @click="addCart">加入购物车</a>

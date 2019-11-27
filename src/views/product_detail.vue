@@ -56,7 +56,7 @@
 							<i class="icon icongengduo"></i>
 						</div>
 					</div>
-					<div class="mod_discount mgt20">
+					<div class="mod_discount mgt20" @click="skuOpt">
 						<span class="mod_title">已选</span>
 						<div class="content">
 							套餐1
@@ -109,6 +109,9 @@
 		<mt-popup v-model="baitiaoPop" position="bottom">
           	<baitiaoOpt @popChange="popChange"></baitiaoOpt>
 		</mt-popup>
+		<mt-popup v-model="skuPop" position="bottom">
+          	<skuOpt @popChange="skuChange" :info_data="listData" v-if='listData.length'></skuOpt>
+		</mt-popup>
 		<mt-popup v-model="areaPop" position="bottom">
 			<areaOpt  :codes='address' @getAddress="getAddress"></areaOpt>
 		</mt-popup>	</div>
@@ -121,6 +124,7 @@
 	import popupMain from "../components/detail/popupMain.vue"
 	import areaOpt from "../components/areaOpt.vue"
 	import baitiaoOpt from "../components/detail/baitiaoOpt.vue"
+	import skuOpt from "../components/detail/skuOpt.vue"
 	export default {
 		data() {
 			return {
@@ -155,10 +159,17 @@
 				nav_id: 0,
 				popType: 'false',
 				areaPop:false,
-				baitiaoPop:false
+				baitiaoPop:false,
+				skuPop:false
 			}
 		},
 		methods: {
+			skuOpt(){
+				this.skuPop = true;
+			},
+			skuChange(data){
+				this.skuPop = false;
+			},
 			popChange(data){
 				this.baitiaoPop = false;
 			},
@@ -300,7 +311,8 @@
 			info,
 			popupMain,
 			areaOpt,
-			baitiaoOpt
+			baitiaoOpt,
+			skuOpt
 		},
 		destroyed: function() {
 			//      this.$refs.main.removeEventListener('scroll', this.top_scroll);   //  离开页面清除（移除）滚轮滚动事件
