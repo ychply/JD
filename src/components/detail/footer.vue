@@ -16,7 +16,7 @@
 		</div>
 		<div class="fot_right">
 			<a href="javascript:;" @click="addCart">加入购物车</a>
-			<a href="javascript:;">立即购买</a>
+			<router-link to="/desktop">立即购买</router-link>
 		</div>
 	</div>
 </template>

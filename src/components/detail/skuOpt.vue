@@ -87,7 +87,7 @@
 		</div>
 		<div class="btns">
 			<div class="btn1" @click="addCart">加入购物车</div>
-			<div class="btn2" @click="buy">立即购买</div>
+			<router-link class="btn2" to="/desktop">立即购买</router-link>
 		</div>
 	</div>
 	</div>
