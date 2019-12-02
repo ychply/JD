@@ -16,7 +16,7 @@
 		</div>
 		<div class="fot_right">
 			<a href="javascript:;" @click="addCart">加入购物车</a>
-			<router-link to="/desktop">立即购买</router-link>
+			<a href="javascript:;" @click="buyPop">立即购买</a>
 		</div>
 	</div>
 </template>
@@ -29,7 +29,11 @@
 		},
 		methods: {
 			addCart(){
-				this.$emit('showCartPop','true')
+				this.$emit('showCartPop','true');
+			},
+			//加入购物车以原生方式做的弹窗，立即购买是以mt-popup方式做的弹窗，以后可以优化成都用mt-popupt方式，暂时分开
+			buyPop(){
+				this.$emit('showBuyPop',0);
 			}
 		},
 		components: {

@@ -86,8 +86,8 @@
 			</div>
 		</div>
 		<div class="btns">
-			<div class="btn1" @click="addCart">加入购物车</div>
-			<router-link class="btn2" to="/desktop">立即购买</router-link>
+			<div v-if="pop_type !== 0" class="btn1" @click="addCart">加入购物车</div>
+			<router-link  v-if="pop_type !== 1" class="btn2" to="/desktop">立即购买</router-link>
 		</div>
 	</div>
 	</div>
@@ -97,7 +97,7 @@
 	import setnumber from "@/components/number.vue"
 	import { mapGetters } from "vuex"
 	export default {
-		props: ['info_data'],
+		props: ['info_data','pop_type'],
 		data() {
 			return {
 				p_number: 1,

@@ -1,6 +1,7 @@
 <template>
 	<div class="m_cart">
 		<headTitle message="确认订单"></headTitle>
+		<addressInfo></addressInfo>
 		
 		
 
@@ -9,6 +10,7 @@
 
 <script>
 	import headTitle from "../components/head_title.vue"
+	import addressInfo from "../components/desktop/address.vue"
 	import { mapGetters } from "vuex";
 	export default {
 		data() {
@@ -32,7 +34,8 @@
 			
 		},
 		components: {
-			headTitle
+			headTitle,
+			addressInfo
 		}
 		//		watch(){
 		//			login(val) {

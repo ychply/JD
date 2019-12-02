@@ -56,7 +56,7 @@
 							<i class="icon icongengduo"></i>
 						</div>
 					</div>
-					<div class="mod_discount mgt20" @click="skuOpt">
+					<div class="mod_discount mgt20" @click="skuOpt(3)">
 						<span class="mod_title">已选</span>
 						<div class="content">
 							套餐1
@@ -104,13 +104,13 @@
 				<info id="floor4"></info>
 			</div>
 		</div>
-		<bottom @showCartPop="showCart"></bottom>
+		<bottom @showCartPop="showCart" @showBuyPop="showBuy"></bottom>
 		<popupMain :popType="popType" @hidePop="showCart" :info_data="listData" v-if='listData.length'></popupMain>
 		<mt-popup v-model="baitiaoPop" position="bottom">
           	<baitiaoOpt @popChange="popChange"></baitiaoOpt>
 		</mt-popup>
 		<mt-popup v-model="skuPop" position="bottom">
-          	<skuOpt @popChange="skuChange" :info_data="listData" v-if='listData.length'></skuOpt>
+          	<skuOpt @popChange="skuChange" :info_data="listData" v-if='listData.length' :pop_type="pop_type"></skuOpt>
 		</mt-popup>
 		<mt-popup v-model="areaPop" position="bottom">
 			<areaOpt  :codes='address' @getAddress="getAddress"></areaOpt>
@@ -160,11 +160,14 @@
 				popType: 'false',
 				areaPop:false,
 				baitiaoPop:false,
-				skuPop:false
+				skuPop:false,
+				//pop_type 0为购买弹窗 1为加入购物车，3为两个都可选择的弹窗
+				pop_type:0
 			}
 		},
 		methods: {
-			skuOpt(){
+			skuOpt(type){
+				this.pop_type = type;
 				this.skuPop = true;
 			},
 			skuChange(data){
@@ -182,6 +185,10 @@
 			getAddress(data) {
 				this.areaPop = false;
 		     },
+		    showBuy(type){
+		    	this.pop_type = type;
+		    	this.skuPop = true;
+		    },
 			showCart(type) {
 					if(type == 'true') {
 						ModalHelper.afterOpen();
