@@ -87,7 +87,7 @@
 		</div>
 		<div class="btns">
 			<div v-if="pop_type !== 0" class="btn1" @click="addCart">加入购物车</div>
-			<router-link  v-if="pop_type !== 1" class="btn2" to="/desktop">立即购买</router-link>
+			<router-link  v-if="pop_type !== 1" class="btn2" :to="{name:'desktop',params: {uid:info_data[0].product_id}}">立即购买</router-link>
 		</div>
 	</div>
 	</div>

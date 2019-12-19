@@ -67,7 +67,7 @@
 <style lang="scss" scoped="scoped">
 	.num_wrap{
 		width:148px;
-		height: 100%;
+		height: 54px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;

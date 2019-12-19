@@ -177,7 +177,7 @@ export default new Router({
 			}
 		},
 		{
-			path: '/desktop',
+			path: '/desktop/:uid',
 			name: 'desktop',
 			component: (resolve) => require(['./views/desktop.vue'],resolve),
 			meta: {

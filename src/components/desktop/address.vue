@@ -1,9 +1,9 @@
 <template>
-	<div class="address_item">
+	<router-link :to="{name:'addressEdit', query: {id:address.address_id}}" class="address_item">
 		<h2>{{address.sname}} <span>{{address.user_phone}}</span></h2>
 		<p><span v-if="address.isdefault == 1">默认</span>{{address.addressarea}}{{address.addressinfo}}</p>
-		<router-link  :to="{name:'addressEdit', query: {id:address.address_id}}" class="edit"><i class="icon iconarrow-r"></i></router-link>
-	</div>
+		<span class="edit"><i class="icon iconarrow-r"></i></span>
+	</router-link>
 </template>
 <script>
 	export default {
@@ -13,7 +13,6 @@
 					sname : '杨长辉',
 					user_phone : 15766633241,
 					addressarea: "广东省广州市荔湾区",
-					addressinfo: "区块链开发中心",
 					isdefault : 1
 				}
 			}
@@ -31,11 +30,16 @@
 	.address_item{
 		width:100%;
 		padding-left:30px;
-		padding:20px 90px 20px 20px;
+		padding:20px 90px 25px 20px;
 		position: relative;
 		background-color: #fff;
 		border-bottom: 1px solid #F7F7F7;
-		min-height: 150px;
+		border-top:1px solid #F7F7F7;
+		min-height: 120px;
+		display: flex;
+		flex-direction: column;
+		background:url('../../assets/images/address_bot.png') repeat-x left bottom;
+		background-size: 128px 10px;
 		h2{
 			font-size:28px;
 			color:#222;
@@ -70,6 +74,11 @@
 			right:0;
 			font-size: 24px;
 			padding-left:6px;
+			i{
+				font-size: 28px;
+				font-weight: bold;
+				color:#666;
+			}
 		}
 	}
 	
