@@ -49,7 +49,7 @@
 	</div>
 </template>
 <script>
-	import headTitle from "../components/head_title.vue"
+	import headTitle from "../components/headTitle.vue"
 	import areaOpt from "../components/areaOpt.vue"
 	import { mapGetters } from "vuex"
 	import {Toast} from 'mint-ui'

@@ -26,7 +26,7 @@ export default new Router({
 		{
 			path: '/home',
 			name: 'home',
-			component: (resolve) => require(['./views/Home.vue'],resolve),
+			component: (resolve) => require(['./views/home.vue'],resolve),
 			meta: {
 				title: '首页',
 				index: 1,
@@ -45,28 +45,9 @@ export default new Router({
 			}
 		},
 		{
-			path: '/product',
-			name: 'product',
-			component: (resolve) => require(['./views/product.vue'],resolve),
-			meta: {
-				isLogin: false,
-				showFooter: true,
-				keepAlive: true
-			}
-		},
-		{
-			path: '/productdatil',
-			name: 'productdatil',
-			component: (resolve) => require(['./views/productDatil.vue'],resolve),
-			meta: {
-				isLogin: false,
-				keepAlive: false
-			}
-		},
-		{
 			path: '/login',
 			name: 'login',
-			component: (resolve) => require(['./views/Login.vue'],resolve),
+			component: (resolve) => require(['./views/login.vue'],resolve),
 			meta: {
 				isLogin: false,
 				keepAlive: false
@@ -168,7 +149,7 @@ export default new Router({
 		{
 			path: '/detail/:uid',
 			name: 'detail',
-			component: (resolve) => require(['./views/product_detail.vue'],resolve),
+			component: (resolve) => require(['./views/productDetail.vue'],resolve),
 			meta: {
 				title: '详情页',
 				index: 6,

@@ -34,8 +34,11 @@
 <style scoped="scoped">
 	.m_catgory{
 		background: #F3F4F6;
-		max-width:750px;
+		width:100%;
 		margin:0 auto;
+		position: fixed;
+		top:0;
+		left: 0;
 	}
 	
 /*中间内容*/

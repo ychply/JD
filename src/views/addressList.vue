@@ -8,7 +8,7 @@
 	</div>
 </template>
 <script>
-	import headTitle from "../components/head_title.vue"
+	import headTitle from "../components/headTitle.vue"
 	import addressItem from "../components/mine/addressItem.vue"
 	import { mapGetters } from "vuex"
 	export default {

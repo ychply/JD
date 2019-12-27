@@ -10,15 +10,17 @@
             <!--商品区-->
             <HomeMainView></HomeMainView>
   	</div>
+  	<toTop></toTop>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HomeHeaderView from "../components/HomeHeader.vue"
-import HomeBannerView from "../components/HomeBanner.vue"
-import HomeNavView from "../components/HomeNav.vue"
-import HomeMainView from "../components/HomeMain.vue"
+import HomeHeaderView from "../components/home/header.vue"
+import HomeBannerView from "../components/home/banner.vue"
+import HomeNavView from "../components/home/nav.vue"
+import HomeMainView from "../components/home/main.vue"
+import toTop from "../components/toTop.vue"
 export default {
   data(){return{
   	 slides: [
@@ -61,6 +63,7 @@ export default {
     HomeBannerView,
     HomeNavView,
     HomeMainView,
+    toTop
   },
   	created(){
 //			 this.$store.commit('modifyCount',true);

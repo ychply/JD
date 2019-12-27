@@ -31,7 +31,7 @@ import "@/assets/scss";
 Vue.use(Vuelazyload,{//图片赖加载
 	  preLoad: 1.3,
     error: require('./assets/images/err.png'),
-    loading: require('./assets/images/loading.gif'),
+    loading: require('./assets/images/loading3.gif'),
     attempt: 1,
     listenEvents: ['scroll']
 })

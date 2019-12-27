@@ -3,7 +3,7 @@
 		<div class="headBox">
 			<a href="javascript:;" class="icon-logo"></a>
 			<router-link class="search" to="/search">
-				<img @click="search()" class="icon-search" src="../assets/images/search-logo.jpg"/>
+				<img @click="search()" class="icon-search" src="../../assets/images/search-logo.jpg"/>
 				<!--<input type="text"  placeholder="请输入搜索商品..."/>-->
 				<span>请输入搜索商品...</span>
 			</router-link>
@@ -39,6 +39,10 @@
 		mounted(){
 			 window.addEventListener('scroll', this.menu);
 		},
+		destroyed () {
+		  window.removeEventListener('scroll', this.menu)
+		},
+				
 		computed:{
 //			 login(){
 //              return this.$store.getters.isLogin;
@@ -82,7 +86,7 @@
 		width:58px;
 		height:46px;
 	    margin-top: 9px;
-		background: url(../assets/images/sprites.png) no-repeat;
+		background: url(../../assets/images/sprites.png) no-repeat;
 		background-size: 200px 200px;
 		background-position: 0 -103px;
 	}

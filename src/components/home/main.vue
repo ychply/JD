@@ -2,7 +2,7 @@
 	<div>
 		<section class="product_box">
 			<div class="product_top">
-				<img src="../assets/images/jd_skill.png" class="miaosha_icon" />
+				<img src="../../assets/images/jd_skill.png" class="miaosha_icon" />
 				<strong>六点场</strong>
 				<span class="time">00:22:43</span>
 			</div>
@@ -20,7 +20,7 @@
 
 		<!--商品区-->
 		<section class="idx_main">
-			<img class="title" src="../assets/images/recommend.png" alt="" />
+			<img class="title" src="../../assets/images/recommend.png" alt="" />
 			<ul class="product_list">
 				<router-link v-for="(item,index) in productList" :key="index" tag="li" :to="'/detail/'+item.product_id">
 					<div class="imgs"><img v-lazy="item.product_img_url" /></div>
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+
 	export default {
 		data() {
 			return {

@@ -2,13 +2,13 @@
 	<div>
 		<div class="navTop">
 			<a href="#" v-for="(item,index) in navtop" :key="index">
-				<img :src="require('../assets/images/'+item.src)"/>
+				<img :src="require('../../assets/images/'+item.src)"/>
 				<span>{{item.title}}</span>
 			</a>
 		</div>
 		<div class="navTop">
 			<a href="#" v-for="(item,index) in navbot" :key="index">
-				<img :src="require('../assets/images/'+item.src)"/>
+				<img :src="require('../../assets/images/'+item.src)"/>
 				<span>{{item.title}}</span>
 			</a>
 		</div>

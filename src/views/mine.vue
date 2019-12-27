@@ -112,11 +112,13 @@
         	<i class="icon iconarrow-r"></i>
         </div>	
 	    <mineList></mineList>
+	    <toTop></toTop>
 	</div>
 </template>
 <script>
-	import mineList from "../components/mine_push.vue"
-	import headTitle from "../components/head_title.vue"
+	import mineList from "../components/mine/minePush.vue"
+	import headTitle from "../components/headTitle.vue"
+	import toTop from "../components/toTop.vue"
 	export default {
 		data() {
 			return {
@@ -176,7 +178,8 @@
 		},
 		components:{
 			mineList,
-			headTitle
+			headTitle,
+			toTop
 		}
 	
 	}

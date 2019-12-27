@@ -31,12 +31,13 @@
 				<div class="cell_item line"><span class="title">红包   </span><span class="val">无可用<i class="icon iconarrow-r"></i></span></div>	
 				<div class="cell_item line"><span class="title">京豆   </span><span class="val">无可用<i class="icon iconarrow-r"></i></span></div>					
 	        </div>
+	        <a href="javascript:void(0);" class="des_btn">在线支付</a>
 		</div>
 	</div>
 </template>
 
 <script>
-	import headTitle from "../components/head_title.vue"
+	import headTitle from "../components/headTitle.vue"
 	import addressInfo from "../components/desktop/address.vue"
 	import setnumber from "@/components/number.vue"
 	import { mapGetters } from "vuex"
@@ -224,6 +225,19 @@
 		transform: scaleY(0.5);
 		opacity: 0.6;
 	}
+}
+.des_btn{
+	display: flex;
+	width:90%;
+	height: 80px;
+	margin: 50px auto 150px;
+	background-color: #3884ff;
+	font-size:30px;
+	color:#fff;
+	justify-content: center;
+	align-items: center;
+	border-radius: 6px;
+	letter-spacing: 2px;
 }
 
 </style>

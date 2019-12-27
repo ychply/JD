@@ -36,7 +36,7 @@
 <style lang="scss" scoped="scoped">
 	.top_bar {
 		width: 100%;
-		height: 6vh;
+		height: 80px;
 		transition: all 0.2s linear;
 		display: flex;
 		justify-content: space-between;

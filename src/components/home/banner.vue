@@ -2,7 +2,7 @@
 	<div class="wrap">
 		<swiper :options="swiperOption" class="swiper-container wrapper">
 			<swiper-slide v-for='(item,index) of swiperList' :key='index'>
-				<img class='' :src="require( '../assets/images/'+item)" alt="" />
+				<img class='' :src="require( '../../assets/images/'+item)" alt="" />
 			</swiper-slide>			
              <div class="swiper-pagination" slot="pagination"></div>
 		</swiper>

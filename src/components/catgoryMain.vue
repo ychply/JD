@@ -36,7 +36,7 @@
 		width: 100%;
 		display: flex;
 		flex-direction: row;
-		height: 87vh;
+		height: 88vh;
 	}
 	.category_left{
 		flex: 1;

@@ -2,7 +2,7 @@
 	<div>
 		<!--商品区-->
 		<section class="idx_main">
-			<img class="title" src="../assets/images/recommend.png" alt="" />
+			<img class="title" src="../../assets/images/recommend.png" alt="" />
 			<ul class="product_list">
 				<router-link v-for="(item,index) in productList" :key="index" tag="li" :to="'/detail/'+item.product_id">
 					<div class="imgs"><img v-lazy="item.product_img_url" /></div>

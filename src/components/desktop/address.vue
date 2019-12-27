@@ -1,5 +1,5 @@
 <template>
-	<router-link :to="{name:'addressEdit', query: {id:address.address_id}}" class="address_item">
+	<router-link :to="{name:'addressList'}" class="address_item">
 		<h2>{{address.sname}} <span>{{address.user_phone}}</span></h2>
 		<p><span v-if="address.isdefault == 1">默认</span>{{address.addressarea}}{{address.addressinfo}}</p>
 		<span class="edit"><i class="icon iconarrow-r"></i></span>
